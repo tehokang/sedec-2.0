@@ -1,0 +1,73 @@
+#if !defined(__DVB_AIT_SECTION_TRANSCODER_H__)
+#define __DVB_AIT_SECTION_TRANSCODER_H__
+
+#include <list>
+
+#include "dvb/descriptors/application.h"
+#include "dvb/descriptors/descriptor.h"
+#include "dvb/sections/application_information_table.h"
+
+using namespace std;
+
+namespace sedec
+{
+/**
+    @addtogroup Sedec
+    @{
+*/
+
+namespace dvb
+{
+
+class Descriptor;
+class Application;
+
+class ApplicationInformationTableTranscoder : public DVBAit
+{
+public:
+    ApplicationInformationTableTranscoder();
+    ApplicationInformationTableTranscoder(unsigned char *raw_buffer);
+    ApplicationInformationTableTranscoder(unsigned char *raw_buffer, unsigned int raw_length);
+    virtual ~ApplicationInformationTableTranscoder();
+
+    /* Scenario Interfaces to encode (setter) */
+    void SetApplicationUrl(const char *base_url, const char *init_path);
+    void SetApplicationVersion(const int major, const int minor, const int micro);
+    void SetApplicationVisibility(const int value);
+    void SetApplicationId(const int value);
+    void SetOrganizationId(const int value);
+    void SetRemoteConnection(const int value);
+    void SetProtocolId(const int value);
+    void SetOriginalNetworkId(const int value);
+    void SetTransportStreamId(const int value);
+    void SetServiceId(const int value);
+    void SetComponentTag(const int value);
+
+    /* Scenario Interfaces to encode (getter) */
+    void GetApplicationVersion(int &major, int &minor, int &micro);
+    void GetApplicationUrl(const char **base_url, const char **init_path);
+
+    /* Interfaces to encode (setter) */
+    void SetTestApplicationFlag(const int value) { test_application_flag = value;}
+    void SetApplicationType(const int value) { application_type = value;}
+    void SetVersionNumber(const int value) { version_number = value;}
+    void SetCurrentNextIndicator(const int value) { current_next_indicator = value;}
+    void SetSectionNumber(const int value) { section_number = value;}
+    void SetLastSectionNumber(const int value) { last_section_number = value;}
+    void SetTransportProtocolLabel(const char *label);
+    void SetCommonDescriptors(const list<dvb::Descriptor*> value);
+    void SetApplications(const list<dvb::Application*> value);
+
+private:
+    dvb::Descriptor* findDescriptor(list<dvb::Descriptor*>descriptors, dvb::Descriptor::DESCRIPTOR_TAG tag);
+};
+
+/** @} */
+
+} // end of dvb namespace
+
+/** @} */
+
+} // end of sedec namespace
+
+#endif

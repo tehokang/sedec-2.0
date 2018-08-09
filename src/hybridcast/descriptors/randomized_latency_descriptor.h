@@ -1,0 +1,63 @@
+// randomized_latency_descriptor.h: interface for the RandomizedLatencyDescriptor class.
+//
+//////////////////////////////////////////////////////////////////////
+#if !defined __HYBRIDCAST_RANDOMIZED_LATENCY_DESCRIPTOR_H__
+#define __HYBRIDCAST_RANDOMIZED_LATENCY_DESCRIPTOR_H__
+
+#include <list>
+#include <string.h>
+#include <stdlib.h>
+#include "descriptor.h"
+
+namespace sedec
+{
+/**
+    @addtogroup Sedec
+    @{
+*/
+
+class BitReadWriter;
+
+namespace hybridcast
+{
+/**
+    @addtogroup hybridcast
+    @{
+*/
+
+class RandomizedLatencyDescriptor : public Descriptor
+{
+public:
+    RandomizedLatencyDescriptor();
+    RandomizedLatencyDescriptor(BitReadWriter *rw);
+    virtual ~RandomizedLatencyDescriptor();
+
+    virtual void WriteDescriptor(BitReadWriter* rw);
+    virtual void PrintDescriptor();
+
+    void SetRange(unsigned int value) { range = value;}
+    void SetRate(unsigned int value) { rate = value;}
+    void SetRandomizationEndTimeFlag(unsigned char value) { randomization_end_time_flag = value;}
+    void SetRandomizationEndTime(double value) { randomization_end_time = value;}
+
+    unsigned int GetRange() { return range;}
+    unsigned int GetRate() { return rate;}
+    unsigned char GetRandomizationEndTimeFlag() { return randomization_end_time_flag;}
+    double GetRandomizationEndTime() { return randomization_end_time;}
+
+protected:
+    virtual void calcLength();
+
+    unsigned int range;
+    unsigned int rate;
+    unsigned char randomization_end_time_flag;
+    double randomization_end_time;
+};
+
+/** @} */
+
+} // end of hybridcast namespace
+/** @} */
+
+} // end of sedec namespace
+#endif 
