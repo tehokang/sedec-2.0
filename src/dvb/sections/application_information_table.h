@@ -56,9 +56,6 @@ protected:
     unsigned int application_loop_length;
     list<dvb::Application*> m_applications;
 
-    virtual void WriteSection();
-    virtual void SetSection();
-    virtual void CalcSectionLength();
     virtual void decode();
 };
 

@@ -49,9 +49,10 @@ protected:
     void WriteSectionHeader();
     void MakeCRC();
 
-    virtual void WriteSection()=0;
-    virtual void SetSection()=0;
-    virtual void CalcSectionLength()=0;
+    virtual void WriteSection() {};
+    virtual void SetSection() {};
+    virtual void CalcSectionLength() {}
+    ;
     virtual void decode()=0;
 
     unsigned char* m_crc;

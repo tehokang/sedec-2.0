@@ -58,6 +58,11 @@ public:
     void SetCommonDescriptors(const list<dvb::Descriptor*> value);
     void SetApplications(const list<dvb::Application*> value);
 
+protected:
+    virtual void WriteSection();
+    virtual void SetSection();
+    virtual void CalcSectionLength();
+
 private:
     dvb::Descriptor* findDescriptor(list<dvb::Descriptor*>descriptors, dvb::Descriptor::DESCRIPTOR_TAG tag);
 };
