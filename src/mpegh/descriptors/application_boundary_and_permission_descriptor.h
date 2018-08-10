@@ -25,12 +25,14 @@ namespace mpegh
 class ApplicationBoundaryAndPermissionDescriptor : public Descriptor
 {
 private:
-    struct ManagedURL {
+    struct ManagedURL
+    {
         unsigned char managed_URL_length;
         unsigned char managed_URL_byte[256];
     };
 
-    struct ApplicationBoundaryAndPermission {
+    struct ApplicationBoundaryAndPermission
+    {
         unsigned char permission_bitmap_count;
         std::list<uint16_t> permission_bitmaps;
         unsigned char managed_URL_count;

@@ -31,7 +31,8 @@ public:
     virtual void WriteDescriptor(base::BitReadWriter* rw);
     virtual void PrintDescriptor();
 
-    struct ApplicationProfile {
+    struct ApplicationProfile
+    {
         int applicaton_profile;
         int version_major;
         int version_minor;
@@ -45,6 +46,7 @@ public:
         application_profiles.version_minor = minor;
         application_profiles.version_micro = micro;
     }
+
     void SetServiceBoundFlag(int value) { service_bound_flag = value;}
     void SetVisibility(int value) { visibility = value;}
     void SetApplicationPriority(int value) { application_priority = value;}

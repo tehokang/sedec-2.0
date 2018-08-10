@@ -39,27 +39,34 @@ public:
             channel_transport.URL_base_byte[i] = base_url[i];
         channel_transport.URL_extension_count = 0;
     }
+
     void SetProtocolId(unsigned int value){ protocol_id = value;}
+
     void SetTransportProtocolLabel(unsigned char value)
     {
         transport_protocol_label = value;
     }
+
     void SetRemoteConnection(unsigned char value)
     {
         oc_transport.remote_connection = value;
     }
+
     void SetOriginalNetworkId(unsigned int value)
     {
         oc_transport.original_network_id = value;
     }
+
     void SetTransportStreamId(unsigned int value)
     {
         oc_transport.transport_stream_id = value;
     }
+
     void SetServiceId(unsigned int value)
     {
         oc_transport.service_id = value;
     }
+
     void SetComponentTag(unsigned char value)
     {
         oc_transport.component_tag = value;
@@ -78,7 +85,8 @@ public:
 protected:
     virtual void calcLength();
 
-    enum{
+    enum
+    {
         PROTOCOL_OBJECT_CAROUSEL=0x0001,
         PROTOCOL_HTTP=0x0003,
         /**
@@ -96,7 +104,8 @@ protected:
     /**
      * @note It is related in IPTVFJ STD-0010 version 2.0
      **/
-    struct DCtransport{
+    struct DCtransport
+    {
         unsigned char remote_connection;
         unsigned int original_network_id;
         unsigned int transport_stream_id;
@@ -105,7 +114,8 @@ protected:
     };
     DCtransport dc_transport;
 
-    struct OCtransport{
+    struct OCtransport
+    {
         unsigned char remote_connection;
         unsigned int original_network_id;
         unsigned int transport_stream_id;
@@ -114,13 +124,15 @@ protected:
     };
     OCtransport oc_transport;
 
-    struct UrlExtension {
+    struct UrlExtension
+    {
         unsigned char URL_extension_length;
         char URL_extension_byte[256];
     };
     std::list<UrlExtension *> url_extensions;
 
-    struct Channeltransport {
+    struct Channeltransport
+    {
         unsigned char URL_base_length;
         char URL_base_byte[256];
         unsigned char URL_extension_count;
