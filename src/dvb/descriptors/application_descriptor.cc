@@ -1,15 +1,6 @@
-// application_descriptor.cpp: implementation of the ApplicationDescriptor class.
-//
-//////////////////////////////////////////////////////////////////////
-#include "section_common.h"
-#include "descriptors/dvb/application_descriptor.h"
-#include "bit_readwriter.h"
+#include "base/macro.h"
+#include "descriptors/application_descriptor.h"
 #include <string.h>
-
-
-//////////////////////////////////////////////////////////////////////
-// Construction/Destruction
-//////////////////////////////////////////////////////////////////////
 
 namespace sedec
 {
@@ -31,7 +22,7 @@ ApplicationDescriptor::ApplicationDescriptor()
     memset(transport_protocol_label, 0x00, sizeof(transport_protocol_label));
 }
 
-ApplicationDescriptor::ApplicationDescriptor(BitReadWriter *rw) : Descriptor(rw)
+ApplicationDescriptor::ApplicationDescriptor(base::BitReadWriter *rw) : Descriptor(rw)
 {
     application_profiles_length = rw->Read_On_Buffer(8);
     for(int i=application_profiles_length;i>0;i-=5)
@@ -87,7 +78,7 @@ void ApplicationDescriptor::calcLength()
             1 + (application_profiles_length>0 ? 5:0) + 2 + transport_protocol_label_length;
 }
 
-void ApplicationDescriptor::WriteDescriptor(BitReadWriter *rw)
+void ApplicationDescriptor::WriteDescriptor(base::BitReadWriter *rw)
 {
     Descriptor::WriteDescriptor(rw);
 

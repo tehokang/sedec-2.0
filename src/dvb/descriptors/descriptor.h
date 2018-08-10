@@ -1,8 +1,7 @@
-// Descriptor.h: interface for the Descriptor class.
-//
-//////////////////////////////////////////////////////////////////////
 #if !defined __DVB_DESCRIPTOR_H__
 #define __DVB_DESCRIPTOR_H__
+
+#include "base/bit_readwriter.h"
 
 namespace sedec
 {
@@ -10,9 +9,6 @@ namespace sedec
     @addtogroup Sedec
     @{
 */
-
-class BitReadWriter;
-
 namespace dvb
 {
 /**
@@ -22,15 +18,15 @@ namespace dvb
 
 class Descriptor
 {
-public:	
+public:
     Descriptor();
-    Descriptor(BitReadWriter *rw);
+    Descriptor(base::BitReadWriter *rw);
     virtual ~Descriptor();
 
     int GetDescriptorLength();
     int GetDescriptorTag();
 
-    virtual void WriteDescriptor(BitReadWriter* rw);
+    virtual void WriteDescriptor(base::BitReadWriter* rw);
     virtual void PrintDescriptor()=0;
 
     static enum DESCRIPTOR_TAG
@@ -59,10 +55,10 @@ class UnknownDescriptor : public Descriptor
 {
 public:
     UnknownDescriptor();
-    UnknownDescriptor(BitReadWriter *rw);
+    UnknownDescriptor(base::BitReadWriter *rw);
     virtual ~UnknownDescriptor();
 
-    virtual void WriteDescriptor(BitReadWriter* rw){};
+    virtual void WriteDescriptor(base::BitReadWriter* rw){};
     virtual void PrintDescriptor();
 
 protected:
@@ -76,4 +72,4 @@ protected:
 /** @} */
 
 } // end of sedec namespace
-#endif 
+#endif

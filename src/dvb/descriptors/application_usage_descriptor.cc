@@ -1,13 +1,5 @@
-// application_usage_descriptor.cpp: implementation of the ApplicationUsageDescriptor class.
-//
-//////////////////////////////////////////////////////////////////////
-#include "section_common.h"
-#include "descriptors/dvb/application_usage_descriptor.h"
-#include "bit_readwriter.h"
-
-//////////////////////////////////////////////////////////////////////
-// Construction/Destruction
-//////////////////////////////////////////////////////////////////////
+#include "base/macro.h"
+#include "descriptors/application_usage_descriptor.h"
 
 namespace sedec
 {
@@ -22,7 +14,7 @@ ApplicationUsageDescriptor::ApplicationUsageDescriptor()
     usage_type = 0;
 }
 
-ApplicationUsageDescriptor::ApplicationUsageDescriptor(BitReadWriter *rw) : Descriptor(rw)
+ApplicationUsageDescriptor::ApplicationUsageDescriptor(base::BitReadWriter *rw) : Descriptor(rw)
 {
     usage_type = rw->Read_On_Buffer(8);
 }
@@ -46,7 +38,7 @@ void ApplicationUsageDescriptor::calcLength()
     descriptor_length = 1;
 }
 
-void ApplicationUsageDescriptor::WriteDescriptor(BitReadWriter *rw)
+void ApplicationUsageDescriptor::WriteDescriptor(base::BitReadWriter *rw)
 {
     Descriptor::WriteDescriptor(rw);
 

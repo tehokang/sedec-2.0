@@ -1,19 +1,12 @@
-// application.cpp: implementation of the Application class.
-//
-//////////////////////////////////////////////////////////////////////
-#include "section_common.h"
-#include "descriptors/dvb/descriptor.h"
-#include "descriptors/dvb/descriptor_factory.h"
-#include "descriptors/dvb/application.h"
-#include "bit_readwriter.h"
+#include "base/macro.h"
 
-#include "descriptors/dvb/application_descriptor.h"
-#include "descriptors/dvb/simple_application_location_descriptor.h"
-#include "descriptors/dvb/transport_protocol_descriptor.h"
+#include "descriptor_factory.h"
+#include "descriptors/descriptor.h"
+#include "descriptors/application.h"
 
-//////////////////////////////////////////////////////////////////////
-// Construction/Destruction
-//////////////////////////////////////////////////////////////////////
+#include "descriptors/application_descriptor.h"
+#include "descriptors/simple_application_location_descriptor.h"
+#include "descriptors/transport_protocol_descriptor.h"
 
 namespace sedec
 {
@@ -30,7 +23,7 @@ Application::Application()
     m_application_length = 0;
 }
 
-Application::Application(BitReadWriter *rw)
+Application::Application(base::BitReadWriter *rw)
 {
     organization_id = rw->Read_On_Buffer(32);
     application_id = rw->Read_On_Buffer(16);
@@ -90,7 +83,7 @@ void Application::calcLength()
     m_application_length = (9+application_descriptors_loop_length);
 }
 
-void Application::WriteApplication(BitReadWriter *rw)
+void Application::WriteApplication(base::BitReadWriter *rw)
 {
     rw->Write_On_Buffer(organization_id, 32);
     rw->Write_On_Buffer(application_id, 16);

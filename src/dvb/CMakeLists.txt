@@ -8,7 +8,7 @@ set(VERSION_MAJOR "2")
 set(VERSION_MINOR "0")
 set(VERSION_PATCH "0")
 set(VERSION "${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_PATCH}")
-
+set(TARGET ${MODULE_NAME}-${VERSION})
 #=====================================================================================
 # Build Options
 #=====================================================================================
@@ -46,16 +46,22 @@ set(SOURCE_FILES ${SOURCE_FILES}
 )
 
 link_directories(
-
+  ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}
 )
 
 #=======================================================================================
 # Build sources
 #=======================================================================================
-add_library(${MODULE_NAME}-${VERSION} SHARED ${SOURCE_FILES})
+add_library(${TARGET} SHARED ${SOURCE_FILES})
+add_custom_command(
+  TARGET ${TARGET}
+  POST_BUILD
+  COMMAND ln -sf lib${TARGET}.so
+      ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/lib${MODULE_NAME}.so
+)
 
-target_link_libraries(${MODULE_NAME}
-
+target_link_libraries(${TARGET}
+  sedec-base
 )
 #=====================================================================================
 # Install

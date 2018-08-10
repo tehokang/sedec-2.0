@@ -3,9 +3,9 @@
 
 #include <list>
 
-#include "dvb/descriptors/application.h"
-#include "dvb/descriptors/descriptor.h"
-#include "dvb/sections/application_information_table.h"
+#include "descriptors/application.h"
+#include "descriptors/descriptor.h"
+#include "sections/application_information_table.h"
 
 using namespace std;
 
@@ -22,7 +22,7 @@ namespace dvb
 class Descriptor;
 class Application;
 
-class ApplicationInformationTableTranscoder : public DVBAit
+class ApplicationInformationTableTranscoder : public ApplicationInformationTable
 {
 public:
     ApplicationInformationTableTranscoder();

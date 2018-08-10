@@ -1,13 +1,10 @@
-// transport_protocol_descriptor.h: interface for the TransportProtocolDescriptor class.
-//
-//////////////////////////////////////////////////////////////////////
 #if !defined __DVB_CONNECTION_REQUIREMENT_DESC___
 #define __DVB_CONNECTION_REQUIREMENT_DESC___
 
 #include <list>
 #include <string.h>
-#include "descriptor.h"
-
+#include "base/bit_readwriter.h"
+#include "descriptors/descriptor.h"
 
 namespace sedec
 {
@@ -15,8 +12,6 @@ namespace sedec
     @addtogroup Sedec
     @{
 */
-
-class BitReadWriter;
 
 namespace dvb
 {
@@ -27,12 +22,12 @@ namespace dvb
 
 class ConnectionRequirementDescriptor : public Descriptor
 {
-public:	
+public:
     ConnectionRequirementDescriptor();
-    ConnectionRequirementDescriptor(BitReadWriter *rw);
+    ConnectionRequirementDescriptor(base::BitReadWriter *rw);
     virtual ~ConnectionRequirementDescriptor();
 
-    virtual void WriteDescriptor(BitReadWriter* rw);
+    virtual void WriteDescriptor(base::BitReadWriter* rw);
     virtual void PrintDescriptor();
 
     /* Interface to decode (getter) */
@@ -52,4 +47,4 @@ protected:
 
 } // end of sedec namespace
 
-#endif 
+#endif

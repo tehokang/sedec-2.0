@@ -1,12 +1,12 @@
-#include "macro.h"
-#include "dvb/sections/application_information_table.h"
-#include "dvb/descriptors/descriptor.h"
-#include "dvb/descriptors/application.h"
-#include "dvb/descriptors/descriptor_factory.h"
-
 #include <string.h>
 #include <cstddef>
 #include <stdlib.h>
+
+#include "base/macro.h"
+#include "descriptor_factory.h"
+#include "descriptors/descriptor.h"
+#include "descriptors/application.h"
+#include "sections/application_information_table.h"
 
 namespace sedec
 {

@@ -23,7 +23,7 @@ namespace dvb
 class Application;
 class Descriptor;
 
-class ApplicationInformationTable : public Section
+class ApplicationInformationTable : public base::Section
 {
 public:
     ApplicationInformationTable();

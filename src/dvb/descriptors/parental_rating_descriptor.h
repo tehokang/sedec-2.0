@@ -1,13 +1,10 @@
-// parental_rating_descriptor.h: interface for the ParentalRatingDescriptor class.
-//
-//////////////////////////////////////////////////////////////////////
-
 #if !defined __DVB_PARENTAL_RATING_DESCRIPTOR_H__
 #define __DVB_PARENTAL_RATING_DESCRIPTOR_H__
 
 #include <list>
 #include <string.h>
-#include "descriptor.h"
+#include "base/bit_readwriter.h"
+#include "descriptors/descriptor.h"
 
 namespace sedec
 {
@@ -15,8 +12,6 @@ namespace sedec
     @addtogroup Sedec
     @{
 */
-
-class BitReadWriter;
 
 namespace dvb
 {
@@ -29,10 +24,10 @@ class ParentalRatingDescriptor : public Descriptor
 {
 public:
     ParentalRatingDescriptor();
-    ParentalRatingDescriptor(BitReadWriter *rw);
+    ParentalRatingDescriptor(base::BitReadWriter *rw);
     virtual ~ParentalRatingDescriptor();
 
-    virtual void WriteDescriptor(BitReadWriter* rw);
+    virtual void WriteDescriptor(base::BitReadWriter* rw);
     virtual void PrintDescriptor();
 
 protected:

@@ -1,12 +1,10 @@
-// simple_application_boundary_descriptor.h: interface for the SimpleApplicationBoundaryDescriptor class.
-//
-//////////////////////////////////////////////////////////////////////
 #if !defined __DVB_SIMPLE_APP_BOUNDARY_DESCRIPTOR_H__
 #define __DVB_SIMPLE_APP_BOUNDARY_DESCRIPTOR_H__
 
 #include <list>
 #include <string.h>
-#include "descriptor.h"
+#include "base/bit_readwriter.h"
+#include "descriptors/descriptor.h"
 
 namespace sedec
 {
@@ -14,8 +12,6 @@ namespace sedec
     @addtogroup Sedec
     @{
 */
-
-class BitReadWriter;
 
 namespace dvb
 {
@@ -28,10 +24,10 @@ class SimpleApplicationBoundaryDescriptor : public Descriptor
 {
 public:
     SimpleApplicationBoundaryDescriptor();
-    SimpleApplicationBoundaryDescriptor(BitReadWriter *rw);
+    SimpleApplicationBoundaryDescriptor(base::BitReadWriter *rw);
     virtual ~SimpleApplicationBoundaryDescriptor();
 
-    virtual void WriteDescriptor(BitReadWriter* rw);
+    virtual void WriteDescriptor(base::BitReadWriter* rw);
     virtual void PrintDescriptor();
 
     /* Interface to encode (setter) */
@@ -64,4 +60,4 @@ protected:
 /** @} */
 
 } // end of sedec namespace
-#endif 
+#endif

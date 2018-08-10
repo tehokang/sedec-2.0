@@ -1,12 +1,10 @@
-// transport_protocol_descriptor.h: interface for the TransportProtocolDescriptor class.
-//
-//////////////////////////////////////////////////////////////////////
 #if !defined __DVB_TRANSPORT_PROTOCOL_DESC__
 #define __DVB_TRANSPORT_PROTOCOL_DESC__
 
 #include <list>
 #include <string.h>
-#include "descriptor.h"
+#include "base/bit_readwriter.h"
+#include "descriptors/descriptor.h"
 
 namespace sedec
 {
@@ -14,8 +12,6 @@ namespace sedec
     @addtogroup Sedec
     @{
 */
-
-class BitReadWriter;
 
 namespace dvb
 {
@@ -26,12 +22,12 @@ namespace dvb
 
 class TransportProtocolDescriptor : public Descriptor
 {
-public:	
+public:
     TransportProtocolDescriptor();
-    TransportProtocolDescriptor(BitReadWriter *rw);
+    TransportProtocolDescriptor(base::BitReadWriter *rw);
     virtual ~TransportProtocolDescriptor();
 
-    virtual void WriteDescriptor(BitReadWriter* rw);
+    virtual void WriteDescriptor(base::BitReadWriter* rw);
     virtual void PrintDescriptor();
 
     /* Interface to encode (setter) */
@@ -82,12 +78,12 @@ public:
 protected:
     virtual void calcLength();
 
-    enum{ 
-        PROTOCOL_OBJECT_CAROUSEL=0x0001, 
+    enum{
+        PROTOCOL_OBJECT_CAROUSEL=0x0001,
         PROTOCOL_HTTP=0x0003,
         /**
          * @note It is related in IPTVFJ STD-0010 version 2.0
-         **/ 
+         **/
         PROTOCOL_DATA_CAROUSEL=0x0004,
     };
     unsigned int protocol_id;
@@ -136,4 +132,4 @@ protected:
 /** @} */
 
 } // end of sedec namespace
-#endif 
+#endif

@@ -1,13 +1,11 @@
-// simple_application_location_descriptor.h: interface for the SimpleApplicationLocationDescriptor class.
-//
-//////////////////////////////////////////////////////////////////////
 #if !defined __DVB_SIMPLE_APP_LOC_DESC__
 #define __DVB_SIMPLE_APP_LOC_DESC__
 
 #include <list>
 #include <stdio.h>
 #include <string.h>
-#include "descriptor.h"
+#include "base/bit_readwriter.h"
+#include "descriptors/descriptor.h"
 
 namespace sedec
 {
@@ -15,8 +13,6 @@ namespace sedec
     @addtogroup Sedec
     @{
 */
-
-class BitReadWriter;
 
 namespace dvb
 {
@@ -29,10 +25,10 @@ class SimpleApplicationLocationDescriptor : public Descriptor
 {
 public:
     SimpleApplicationLocationDescriptor();
-    SimpleApplicationLocationDescriptor(BitReadWriter *rw);
+    SimpleApplicationLocationDescriptor(base::BitReadWriter *rw);
     virtual ~SimpleApplicationLocationDescriptor();
 
-    virtual void WriteDescriptor(BitReadWriter* rw);
+    virtual void WriteDescriptor(base::BitReadWriter* rw);
     virtual void PrintDescriptor();
 
     /* Interface to encode (setter) */
@@ -57,4 +53,4 @@ protected:
 /** @} */
 
 } // end of sedec namespace
-#endif 
+#endif

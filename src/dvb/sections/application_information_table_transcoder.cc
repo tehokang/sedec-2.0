@@ -1,19 +1,16 @@
-// dvb_ait_transcoder.cpp: implementation of the ApplicationInformationTableTranscoder class.
-//
-//////////////////////////////////////////////////////////////////////
-
-#include "section_common.h"
-#include "dvb_ait_transcoder.h"
-#include "descriptors/dvb/descriptor.h"
-#include "descriptors/dvb/application.h"
-#include "descriptors/dvb/descriptor_factory.h"
-#include "descriptors/dvb/simple_application_location_descriptor.h"
-#include "descriptors/dvb/transport_protocol_descriptor.h"
-#include "descriptors/dvb/application_descriptor.h"
-
 #include <string.h>
 #include <cstddef>
 #include <stdlib.h>
+
+#include "base/macro.h"
+#include "application_information_table_transcoder.h"
+
+#include "descriptor_factory.h"
+#include "descriptors/descriptor.h"
+#include "descriptors/application.h"
+#include "descriptors/application_descriptor.h"
+#include "descriptors/transport_protocol_descriptor.h"
+#include "descriptors/simple_application_location_descriptor.h"
 
 namespace sedec
 {
@@ -26,14 +23,14 @@ ApplicationInformationTableTranscoder::ApplicationInformationTableTranscoder()
 }
 
 ApplicationInformationTableTranscoder::ApplicationInformationTableTranscoder(unsigned char *raw_buffer)
-    : DVBAit(raw_buffer, (( raw_buffer[1] << 8 | raw_buffer[2] ) & 0x0fff ) + 3)
+    : ApplicationInformationTable(raw_buffer, (( raw_buffer[1] << 8 | raw_buffer[2] ) & 0x0fff ) + 3)
 {
 
 }
 
 
 ApplicationInformationTableTranscoder::ApplicationInformationTableTranscoder(unsigned char *raw_buffer, unsigned int raw_length)
-    : DVBAit(raw_buffer, raw_length)
+    : ApplicationInformationTable(raw_buffer, raw_length)
 {
 
 }

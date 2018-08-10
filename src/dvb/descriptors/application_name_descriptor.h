@@ -1,11 +1,9 @@
-// application_name_descriptor.h: interface for the ApplicationNameDescriptor class.
-//
-//////////////////////////////////////////////////////////////////////
 #if !defined __DVB_APPLICATION_NAME_DESCRIPTOR_H__
 #define __DVB_APPLICATION_NAME_DESCRIPTOR_H__
 
-#include "descriptor.h"
 #include <string.h>
+#include "base/bit_readwriter.h"
+#include "descriptors/descriptor.h"
 
 namespace sedec
 {
@@ -14,23 +12,20 @@ namespace sedec
     @{
 */
 
-class BitReadWriter;
-
 namespace dvb
 {
 /**
     @addtogroup dvb
     @{
 */
-
 class ApplicationNameDescriptor : public Descriptor
 {
-public:	
+public:
     ApplicationNameDescriptor();
-    ApplicationNameDescriptor(BitReadWriter *rw);
+    ApplicationNameDescriptor(base::BitReadWriter *rw);
     virtual ~ApplicationNameDescriptor();
 
-    virtual void WriteDescriptor(BitReadWriter* rw);
+    virtual void WriteDescriptor(base::BitReadWriter* rw);
     virtual void PrintDescriptor();
 
     /* Interface to encode (setter) */
@@ -68,4 +63,4 @@ protected:
 
 } // end of sedec namespace
 
-#endif 
+#endif

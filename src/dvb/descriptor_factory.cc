@@ -1,5 +1,4 @@
 #include "base/macro.h"
-#include "base/bit_readwriter.h"
 
 #include "dvb/descriptor_factory.h"
 #include "dvb/descriptors/descriptor.h"
@@ -19,7 +18,7 @@ namespace sedec
 namespace dvb
 {
 
-Descriptor* DescriptorFactory::CreateDescriptor(BitReadWriter *rw)
+Descriptor* DescriptorFactory::CreateDescriptor(base::BitReadWriter *rw)
 {
     int descriptor_tag = (*(rw->GetCurrentBuffer()) & 0xff);
 

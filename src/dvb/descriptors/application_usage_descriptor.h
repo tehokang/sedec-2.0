@@ -1,13 +1,10 @@
-// application_usage_descriptor.h: interface for the ApplicationUsageDescriptor class.
-//
-//////////////////////////////////////////////////////////////////////
-
 #if !defined __DVB_APPLICATION_USAGE_DESCRIPTOR_H__
 #define __DVB_APPLICATION_USAGE_DESCRIPTOR_H__
 
 #include <list>
 #include <string.h>
-#include "descriptor.h"
+#include "base/bit_readwriter.h"
+#include "descriptors/descriptor.h"
 
 namespace sedec
 {
@@ -15,8 +12,6 @@ namespace sedec
     @addtogroup Sedec
     @{
 */
-
-class BitReadWriter;
 
 namespace dvb
 {
@@ -29,10 +24,10 @@ class ApplicationUsageDescriptor : public Descriptor
 {
 public:
     ApplicationUsageDescriptor();
-    ApplicationUsageDescriptor(BitReadWriter *rw);
+    ApplicationUsageDescriptor(base::BitReadWriter *rw);
     virtual ~ApplicationUsageDescriptor();
 
-    virtual void WriteDescriptor(BitReadWriter* rw);
+    virtual void WriteDescriptor(base::BitReadWriter* rw);
     virtual void PrintDescriptor();
 
     void SetUsageType(int value) { usage_type = value;}

@@ -1,14 +1,7 @@
-// application_name_descriptor.cpp: implementation of the ApplicationNameDescriptor class.
-//
-//////////////////////////////////////////////////////////////////////
-#include "section_common.h"
-#include "descriptors/dvb/application_name_descriptor.h"
-#include "bit_readwriter.h"
 #include <stdlib.h>
 #include <string.h>
-//////////////////////////////////////////////////////////////////////
-// Construction/Destruction
-//////////////////////////////////////////////////////////////////////
+#include "base/macro.h"
+#include "descriptors/application_name_descriptor.h"
 
 namespace sedec
 {
@@ -25,7 +18,7 @@ ApplicationNameDescriptor::ApplicationNameDescriptor()
     memset(application_name, 0x00, sizeof(application_name));
 }
 
-ApplicationNameDescriptor::ApplicationNameDescriptor(BitReadWriter *rw) : Descriptor(rw)
+ApplicationNameDescriptor::ApplicationNameDescriptor(base::BitReadWriter *rw) : Descriptor(rw)
 {
     memset(ISO_639_language_code, 0x00, sizeof(ISO_639_language_code));
     application_name_length = 0;
@@ -74,7 +67,7 @@ void ApplicationNameDescriptor::calcLength()
     descriptor_length = 4 + strlen((char*)application_name);
 }
 
-void ApplicationNameDescriptor::WriteDescriptor(BitReadWriter *rw)
+void ApplicationNameDescriptor::WriteDescriptor(base::BitReadWriter *rw)
 {
     Descriptor::WriteDescriptor(rw);
 

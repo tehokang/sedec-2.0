@@ -1,13 +1,10 @@
-// application_recording_descriptor.h: interface for the ApplicationRecordingDescriptor class.
-//
-//////////////////////////////////////////////////////////////////////
-
 #if !defined __DVB_APPLICATION_RECORDING_DESCRIPTOR_H__
 #define __DVB_APPLICATION_RECORDING_DESCRIPTOR_H__
 
 #include <list>
 #include <string.h>
-#include "descriptor.h"
+#include "descriptors/descriptor.h"
+#include "base/bit_readwriter.h"
 
 namespace sedec
 {
@@ -15,8 +12,6 @@ namespace sedec
     @addtogroup Sedec
     @{
 */
-
-class BitReadWriter;
 
 namespace dvb
 {
@@ -29,10 +24,10 @@ class ApplicationRecordingDescriptor : public Descriptor
 {
 public:
     ApplicationRecordingDescriptor();
-    ApplicationRecordingDescriptor(BitReadWriter *rw);
+    ApplicationRecordingDescriptor(base::BitReadWriter *rw);
     virtual ~ApplicationRecordingDescriptor();
 
-    virtual void WriteDescriptor(BitReadWriter* rw);
+    virtual void WriteDescriptor(base::BitReadWriter* rw);
     virtual void PrintDescriptor();
 
     void SetScheduledRecordingFlag(int value) { scheduled_recording_flag = value;}

@@ -1,15 +1,7 @@
-// simple_application_boundary_descriptor.cpp: implementation of the SimpleApplicationBoundaryDescriptor class.
-//
-//////////////////////////////////////////////////////////////////////
-#include "section_common.h"
-#include "descriptors/dvb/simple_application_boundary_descriptor.h"
-#include "bit_readwriter.h"
 #include <string.h>
 
-
-//////////////////////////////////////////////////////////////////////
-// Construction/Destruction
-//////////////////////////////////////////////////////////////////////
+#include "base/macro.h"
+#include "descriptors/simple_application_boundary_descriptor.h"
 
 namespace sedec
 {
@@ -27,7 +19,7 @@ SimpleApplicationBoundaryDescriptor::SimpleApplicationBoundaryDescriptor()
     memset(boundary_extension_byte, 0x00, sizeof(boundary_extension_byte));
 }
 
-SimpleApplicationBoundaryDescriptor::SimpleApplicationBoundaryDescriptor(BitReadWriter *rw) : Descriptor(rw)
+SimpleApplicationBoundaryDescriptor::SimpleApplicationBoundaryDescriptor(base::BitReadWriter *rw) : Descriptor(rw)
 {
     boundary_extension_count = 0;
     memset(boundary_extension_length, 0x00, sizeof(boundary_extension_length));
@@ -78,8 +70,8 @@ void SimpleApplicationBoundaryDescriptor::calcLength()
     }
 }
 
-void SimpleApplicationBoundaryDescriptor::WriteDescriptor(BitReadWriter *rw)
-{    
+void SimpleApplicationBoundaryDescriptor::WriteDescriptor(base::BitReadWriter *rw)
+{
     Descriptor::WriteDescriptor(rw);
 
     rw->Write_On_Buffer(boundary_extension_count, 8);
