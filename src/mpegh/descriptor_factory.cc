@@ -1,34 +1,26 @@
-// descriptor_factory.cpp: implementation of the DescriptorFactory class.
-//
-//////////////////////////////////////////////////////////////////////
-#include "section_common.h"
-#include "descriptors/mh/descriptor_factory.h"
-#include "bit_readwriter.h"
-#include "descriptors/mh/descriptor.h"
-#include "descriptors/mh/application_descriptor.h"
-#include "descriptors/mh/simple_application_location_descriptor.h"
-#include "descriptors/mh/transport_protocol_descriptor.h"
+#include "base/macro.h"
+#include "descriptor_factory.h"
+#include "descriptors/descriptor.h"
+#include "descriptors/application_descriptor.h"
+#include "descriptors/simple_application_location_descriptor.h"
+#include "descriptors/transport_protocol_descriptor.h"
 
-#include "descriptors/mh/application_boundary_and_permission_descriptor.h"
-#include "descriptors/mh/autostart_priority_descriptor.h"
-#include "descriptors/mh/cache_control_info_descriptor.h"
-#include "descriptors/mh/randomized_latency_descriptor.h"
-
-//////////////////////////////////////////////////////////////////////
-// Construction/Destruction
-//////////////////////////////////////////////////////////////////////
+#include "descriptors/application_boundary_and_permission_descriptor.h"
+#include "descriptors/autostart_priority_descriptor.h"
+#include "descriptors/cache_control_info_descriptor.h"
+#include "descriptors/randomized_latency_descriptor.h"
 
 namespace sedec
 {
 
-namespace mh
+namespace mpegh
 {
 
-Descriptor* DescriptorFactory::CreateDescriptor(BitReadWriter *rw)
+Descriptor* DescriptorFactory::CreateDescriptor(base::BitReadWriter *rw)
 {
     int descriptor_tag = ((*(rw->GetCurrentBuffer()) << 8) &0xff00);
     descriptor_tag |= *(rw->GetCurrentBuffer()+1);
-    
+
     switch(descriptor_tag)
     {
         /**

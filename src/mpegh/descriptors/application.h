@@ -1,11 +1,9 @@
-// DSISection.h: interface for the DVBAit class.
-//
-//////////////////////////////////////////////////////////////////////
-
 #if !defined(__MH_APPLICATION_H__)
 #define __MH_APPLICATION_H__
 
 #include <list>
+#include "base/bit_readwriter.h"
+
 using namespace std;
 
 namespace sedec
@@ -14,12 +12,11 @@ namespace sedec
     @addtogroup Sedec
     @{
 */
-class BitReadWriter;
 
-namespace mh
+namespace mpegh
 {
 /**
-    @addtogroup mh
+    @addtogroup mpegh
     @{
 */
 
@@ -29,10 +26,10 @@ class Application
 {
 public:
     Application();
-    Application(BitReadWriter *rw);
+    Application(base::BitReadWriter *rw);
     virtual ~Application();
     virtual int GetApplicationLength();
-    virtual void WriteApplication(BitReadWriter *rw);
+    virtual void WriteApplication(base::BitReadWriter *rw);
     virtual void PrintApplication();
 
 
@@ -77,4 +74,4 @@ private:
 /** @} */
 
 } // end of sedec namespace
-#endif 
+#endif

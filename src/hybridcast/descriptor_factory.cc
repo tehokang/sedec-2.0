@@ -1,24 +1,20 @@
-// descriptor_factory.cpp: implementation of the DescriptorFactory class.
-//
-//////////////////////////////////////////////////////////////////////
-#include "section_common.h"
-#include "descriptors/hybridcast/descriptor_factory.h"
-#include "bit_readwriter.h"
-#include "descriptors/hybridcast/descriptor.h"
-#include "descriptors/hybridcast/application_descriptor.h"
-#include "descriptors/hybridcast/application_name_descriptor.h"
-#include "descriptors/hybridcast/application_usage_descriptor.h"
-#include "descriptors/hybridcast/application_recording_descriptor.h"
-#include "descriptors/hybridcast/simple_application_location_descriptor.h"
-#include "descriptors/hybridcast/simple_application_boundary_descriptor.h"
-#include "descriptors/hybridcast/transport_protocol_descriptor.h"
-#include "descriptors/hybridcast/parental_rating_descriptor.h"
-#include "descriptors/hybridcast/connection_requirement_descriptor.h"
+#include "base/macro.h"
+#include "descriptor_factory.h"
+#include "descriptors/descriptor.h"
+#include "descriptors/application_descriptor.h"
+#include "descriptors/application_name_descriptor.h"
+#include "descriptors/application_usage_descriptor.h"
+#include "descriptors/application_recording_descriptor.h"
+#include "descriptors/simple_application_location_descriptor.h"
+#include "descriptors/simple_application_boundary_descriptor.h"
+#include "descriptors/transport_protocol_descriptor.h"
+#include "descriptors/parental_rating_descriptor.h"
+#include "descriptors/connection_requirement_descriptor.h"
 
-#include "descriptors/hybridcast/application_boundary_and_permission_descriptor.h"
-#include "descriptors/hybridcast/autostart_priority_descriptor.h"
-#include "descriptors/hybridcast/cache_control_info_descriptor.h"
-#include "descriptors/hybridcast/randomized_latency_descriptor.h"
+#include "descriptors/application_boundary_and_permission_descriptor.h"
+#include "descriptors/autostart_priority_descriptor.h"
+#include "descriptors/cache_control_info_descriptor.h"
+#include "descriptors/randomized_latency_descriptor.h"
 
 //////////////////////////////////////////////////////////////////////
 // Construction/Destruction
@@ -30,7 +26,7 @@ namespace sedec
 namespace hybridcast
 {
 
-Descriptor* DescriptorFactory::CreateDescriptor(BitReadWriter *rw)
+Descriptor* DescriptorFactory::CreateDescriptor(base::BitReadWriter *rw)
 {
     int descriptor_tag = (*(rw->GetCurrentBuffer()) & 0xff);
 

@@ -1,24 +1,11 @@
-
-/** **********************************************************************************************************
-	@file 		autostart_priority_descriptor.cpp
-
-	@date		2018/01/19
-	@author		Humax SW Group
-	@breif
-
-    It is related in ARIB STD-B60 version 1.2
-
-*********************************************************************************************************** */
-    
-#include "section_common.h"
-#include "descriptors/mh/autostart_priority_descriptor.h"
-#include "bit_readwriter.h"
 #include <string.h>
+#include "base/macro.h"
+#include "descriptors/autostart_priority_descriptor.h"
 
 namespace sedec
 {
 
-namespace mh
+namespace mpegh
 {
 
 AutostartPriorityDescriptor::AutostartPriorityDescriptor()
@@ -28,7 +15,7 @@ AutostartPriorityDescriptor::AutostartPriorityDescriptor()
     autostart_priority = 0;
 }
 
-AutostartPriorityDescriptor::AutostartPriorityDescriptor(BitReadWriter *rw) : Descriptor(rw)
+AutostartPriorityDescriptor::AutostartPriorityDescriptor(base::BitReadWriter *rw) : Descriptor(rw)
 {
     autostart_priority = rw->Read_On_Buffer(8);
 }
@@ -52,11 +39,11 @@ void AutostartPriorityDescriptor::calcLength()
     descriptor_length = 1;
 }
 
-void AutostartPriorityDescriptor::WriteDescriptor(BitReadWriter *rw)
-{   
+void AutostartPriorityDescriptor::WriteDescriptor(base::BitReadWriter *rw)
+{
     Descriptor::WriteDescriptor(rw);
 
-    rw->Write_On_Buffer(autostart_priority, 8);    
+    rw->Write_On_Buffer(autostart_priority, 8);
 }
 
 } // end of mh namespace

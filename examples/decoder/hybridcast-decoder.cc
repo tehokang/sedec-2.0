@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 #include "base/macro.h"
-#include "dvb/sections/application_information_table.h"
+#include "hybridcast/sections/application_information_table.h"
 
 using namespace sedec;
 
@@ -32,8 +32,8 @@ int main(int argc, char *argv[])
     unsigned char *raw_buffer = (unsigned char*)malloc(sizeof(unsigned char)*raw_buffer_length);
     if ( 0 < fread(raw_buffer, 1, raw_buffer_length, fp) )
     {
-      dvb::ApplicationInformationTable *ait =
-          new dvb::ApplicationInformationTable(raw_buffer, raw_buffer_length);
+      hybridcast::ApplicationInformationTable *ait =
+          new hybridcast::ApplicationInformationTable(raw_buffer, raw_buffer_length);
       ait->PrintSection();
 
       delete ait;

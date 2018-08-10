@@ -1,6 +1,3 @@
-// cache_control_info_descriptor.h: interface for the CacheControlInfoDescriptor class.
-//
-//////////////////////////////////////////////////////////////////////
 #if !defined __MH_CACHE_CONTROL_INFO_DESCRIPTOR_H__
 #define __MH_CACHE_CONTROL_INFO_DESCRIPTOR_H__
 
@@ -8,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "descriptor.h"
+#include "base/bit_readwriter.h"
 
 namespace sedec
 {
@@ -16,12 +14,10 @@ namespace sedec
     @{
 */
 
-class BitReadWriter;
-
-namespace mh
+namespace mpegh
 {
 /**
-    @addtogroup mh
+    @addtogroup mpegh
     @{
 */
 
@@ -29,10 +25,10 @@ class CacheControlInfoDescriptor : public Descriptor
 {
 public:
     CacheControlInfoDescriptor();
-    CacheControlInfoDescriptor(BitReadWriter *rw);
+    CacheControlInfoDescriptor(base::BitReadWriter *rw);
     virtual ~CacheControlInfoDescriptor();
 
-    virtual void WriteDescriptor(BitReadWriter* rw);
+    virtual void WriteDescriptor(base::BitReadWriter* rw);
     virtual void PrintDescriptor();
 
     void SetApplicationSize(unsigned int value) { application_size = value;}
@@ -64,4 +60,4 @@ protected:
 /** @} */
 
 } // end of sedec namespace
-#endif 
+#endif

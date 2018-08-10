@@ -1,4 +1,4 @@
-// DSISection.h: interface for the HCAit class.
+// DSISection.h: interface for the ApplicationInformationTable class.
 //
 //////////////////////////////////////////////////////////////////////
 
@@ -8,7 +8,7 @@
 using namespace std;
 #include <list>
 
-#include "section.h"
+#include "base/section.h"
 
 namespace sedec
 {
@@ -17,18 +17,18 @@ namespace sedec
     @{
 */
 
-namespace hybridcast{
+namespace hybridcast
+{
+
 class Application;
 class Descriptor;
-};
-
-class HCAit : public Section  
+class ApplicationInformationTable : public base::Section
 {
 public:
-    HCAit();
-    HCAit(unsigned char *raw_buffer);
-    HCAit(unsigned char *raw_buffer, unsigned int raw_length);
-    virtual ~HCAit();
+    ApplicationInformationTable();
+    ApplicationInformationTable(unsigned char *raw_buffer);
+    ApplicationInformationTable(unsigned char *raw_buffer, unsigned int raw_length);
+    virtual ~ApplicationInformationTable();
     virtual void PrintSection();
 
     /* Interfaces to get information (e.g. getter) */
@@ -60,7 +60,9 @@ protected:
 };
 
 /** @} */
+} // end of hybridcast namespace
 
+/** @} */
 } // end of sedec namespace
 
-#endif 
+#endif

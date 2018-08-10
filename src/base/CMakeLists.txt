@@ -16,12 +16,8 @@ set(TARGET ${MODULE_NAME}-${VERSION})
 #=====================================================================================
 # Sub directories
 #=====================================================================================
-set(INCPATHS
-    ${CMAKE_SOURCE_DIR}/src/base
-)
-
 include_directories(
-    ${INCPATHS}
+  ${CMAKE_SOURCE_DIR}/src/base
 )
 
 set(SOURCE_FILES ${SOURCE_FILES}

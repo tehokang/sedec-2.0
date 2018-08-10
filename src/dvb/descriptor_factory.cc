@@ -1,16 +1,16 @@
 #include "base/macro.h"
 
-#include "dvb/descriptor_factory.h"
-#include "dvb/descriptors/descriptor.h"
-#include "dvb/descriptors/application_descriptor.h"
-#include "dvb/descriptors/application_name_descriptor.h"
-#include "dvb/descriptors/application_usage_descriptor.h"
-#include "dvb/descriptors/application_recording_descriptor.h"
-#include "dvb/descriptors/simple_application_location_descriptor.h"
-#include "dvb/descriptors/simple_application_boundary_descriptor.h"
-#include "dvb/descriptors/transport_protocol_descriptor.h"
-#include "dvb/descriptors/parental_rating_descriptor.h"
-#include "dvb/descriptors/connection_requirement_descriptor.h"
+#include "descriptor_factory.h"
+#include "descriptors/descriptor.h"
+#include "descriptors/application_descriptor.h"
+#include "descriptors/application_name_descriptor.h"
+#include "descriptors/application_usage_descriptor.h"
+#include "descriptors/application_recording_descriptor.h"
+#include "descriptors/simple_application_location_descriptor.h"
+#include "descriptors/simple_application_boundary_descriptor.h"
+#include "descriptors/transport_protocol_descriptor.h"
+#include "descriptors/parental_rating_descriptor.h"
+#include "descriptors/connection_requirement_descriptor.h"
 
 namespace sedec
 {

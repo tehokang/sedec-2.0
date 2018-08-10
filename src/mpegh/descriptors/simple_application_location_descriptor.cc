@@ -1,20 +1,12 @@
-// simple_application_location_descriptor.cpp: implementation of the SimpleApplicationLocationDescriptor class.
-//
-//////////////////////////////////////////////////////////////////////
-#include "section_common.h"
-#include "descriptors/mh/simple_application_location_descriptor.h"
-#include "bit_readwriter.h"
 #include <stdlib.h>
 #include <string.h>
-
-//////////////////////////////////////////////////////////////////////
-// Construction/Destruction
-//////////////////////////////////////////////////////////////////////
+#include "base/macro.h"
+#include "descriptors/simple_application_location_descriptor.h"
 
 namespace sedec
 {
 
-namespace mh
+namespace mpegh
 {
 
 SimpleApplicationLocationDescriptor::SimpleApplicationLocationDescriptor()
@@ -24,7 +16,7 @@ SimpleApplicationLocationDescriptor::SimpleApplicationLocationDescriptor()
     memset(initial_path_bytes, 0x00, sizeof(initial_path_bytes));
 }
 
-SimpleApplicationLocationDescriptor::SimpleApplicationLocationDescriptor(BitReadWriter *rw) : Descriptor(rw)
+SimpleApplicationLocationDescriptor::SimpleApplicationLocationDescriptor(base::BitReadWriter *rw) : Descriptor(rw)
 {
     memset(initial_path_bytes, 0x00, sizeof(initial_path_bytes));
 
@@ -56,7 +48,7 @@ void SimpleApplicationLocationDescriptor::calcLength()
     descriptor_length = strlen((char*)initial_path_bytes);
 }
 
-void SimpleApplicationLocationDescriptor::WriteDescriptor(BitReadWriter *rw)
+void SimpleApplicationLocationDescriptor::WriteDescriptor(base::BitReadWriter *rw)
 {
     Descriptor::WriteDescriptor(rw);
 

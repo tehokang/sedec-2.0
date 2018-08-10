@@ -33,8 +33,8 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=c++11")
 add_subdirectory(${CMAKE_SOURCE_DIR}/src/base)
 
 add_subdirectory(${CMAKE_SOURCE_DIR}/src/dvb)
-# add_subdirectory(${CMAKE_SOURCE_DIR}/src/hybridcast)
-# add_subdirectory(${CMAKE_SOURCE_DIR}/src/mpegh)
+add_subdirectory(${CMAKE_SOURCE_DIR}/src/hybridcast)
+add_subdirectory(${CMAKE_SOURCE_DIR}/src/mpegh)
 
 add_subdirectory(${CMAKE_SOURCE_DIR}/examples/decoder)
 # add_subdirectory(${CMAKE_SOURCE_DIR}/examples/encoder)

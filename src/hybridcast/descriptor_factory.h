@@ -4,14 +4,14 @@
 #if !defined __HYBRIDCAST_DESCRIPTOR_FACTORY_H__
 #define __HYBRIDCAST_DESCRIPTOR_FACTORY_H__
 
+#include "base/bit_readwriter.h"
+
 namespace sedec
 {
 /**
     @addtogroup Sedec
     @{
 */
-
-class BitReadWriter;
 
 namespace hybridcast
 {
@@ -21,13 +21,12 @@ namespace hybridcast
 */
 
 class Descriptor;
-
 class DescriptorFactory
 {
 public:
-    static Descriptor* CreateDescriptor(BitReadWriter *rw);
+    static Descriptor* CreateDescriptor(base::BitReadWriter *rw);
 
-private:	
+private:
     DescriptorFactory(){};
     virtual ~DescriptorFactory(){};
 };
@@ -38,4 +37,4 @@ private:
 /** @} */
 
 } // end of sedec namespace
-#endif 
+#endif

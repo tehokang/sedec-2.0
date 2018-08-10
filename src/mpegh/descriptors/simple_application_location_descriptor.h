@@ -1,6 +1,3 @@
-// simple_application_location_descriptor.h: interface for the SimpleApplicationLocationDescriptor class.
-//
-//////////////////////////////////////////////////////////////////////
 #if !defined __MH_SIMPLE_APP_LOC_DESC__
 #define __MH_SIMPLE_APP_LOC_DESC__
 
@@ -8,6 +5,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "descriptor.h"
+#include "base/bit_readwriter.h"
 
 namespace sedec
 {
@@ -16,9 +14,7 @@ namespace sedec
     @{
 */
 
-class BitReadWriter;
-
-namespace mh
+namespace mpegh
 {
 /**
     @addtogroup mh
@@ -29,10 +25,10 @@ class SimpleApplicationLocationDescriptor : public Descriptor
 {
 public:
     SimpleApplicationLocationDescriptor();
-    SimpleApplicationLocationDescriptor(BitReadWriter *rw);
+    SimpleApplicationLocationDescriptor(base::BitReadWriter *rw);
     virtual ~SimpleApplicationLocationDescriptor();
 
-    virtual void WriteDescriptor(BitReadWriter* rw);
+    virtual void WriteDescriptor(base::BitReadWriter* rw);
     virtual void PrintDescriptor();
 
     /* Interface to encode (setter) */
@@ -57,4 +53,4 @@ protected:
 /** @} */
 
 } // end of sedec namespace
-#endif 
+#endif

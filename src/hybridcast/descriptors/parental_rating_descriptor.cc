@@ -1,13 +1,5 @@
-// parental_rating_descriptor.cpp: implementation of the ParentalRatingDescriptor class.
-//
-//////////////////////////////////////////////////////////////////////
-#include "section_common.h"
-#include "descriptors/hybridcast/parental_rating_descriptor.h"
-#include "bit_readwriter.h"
-
-//////////////////////////////////////////////////////////////////////
-// Construction/Destruction
-//////////////////////////////////////////////////////////////////////
+#include "base/macro.h"
+#include "descriptors/parental_rating_descriptor.h"
 
 namespace sedec
 {
@@ -25,7 +17,7 @@ ParentalRatingDescriptor::ParentalRatingDescriptor()
     memset(rating, 0x00, sizeof(rating[64]));
 }
 
-ParentalRatingDescriptor::ParentalRatingDescriptor(BitReadWriter *rw) : Descriptor(rw)
+ParentalRatingDescriptor::ParentalRatingDescriptor(base::BitReadWriter *rw) : Descriptor(rw)
 {
     int j = 0;
     for(int i=descriptor_length;i>0;j++)
@@ -60,7 +52,7 @@ void ParentalRatingDescriptor::calcLength()
     descriptor_length = m_parent_rating_count*4;
 }
 
-void ParentalRatingDescriptor::WriteDescriptor(BitReadWriter *rw)
+void ParentalRatingDescriptor::WriteDescriptor(base::BitReadWriter *rw)
 {
     Descriptor::WriteDescriptor(rw);
 

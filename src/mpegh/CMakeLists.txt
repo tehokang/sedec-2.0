@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 2.8)
 
-set(MODULE_NAME sedec-dvb)
+set(MODULE_NAME sedec-mpegh)
 #=====================================================================================
 # Version
 #=====================================================================================
@@ -18,27 +18,24 @@ set(TARGET ${MODULE_NAME}-${VERSION})
 #=====================================================================================
 include_directories(
   ${CMAKE_SOURCE_DIR}/src/
-  ${CMAKE_SOURCE_DIR}/src/dvb/
+  ${CMAKE_SOURCE_DIR}/src/mpegh
 )
 
 set(SOURCE_FILES ${SOURCE_FILES}
   section_factory.cc
   descriptor_factory.cc
 
+  descriptors/application_boundary_and_permission_descriptor.cc
   descriptors/application_descriptor.cc
-  descriptors/application_name_descriptor.cc
-  descriptors/application_recording_descriptor.cc
-  descriptors/application_usage_descriptor.cc
   descriptors/application.cc
-  descriptors/connection_requirement_descriptor.cc
+  descriptors/autostart_priority_descriptor.cc
+  descriptors/cache_control_info_descriptor.cc
   descriptors/descriptor.cc
-  descriptors/parental_rating_descriptor.cc
-  descriptors/simple_application_boundary_descriptor.cc
+  descriptors/randomized_latency_descriptor.cc
   descriptors/simple_application_location_descriptor.cc
   descriptors/transport_protocol_descriptor.cc
 
   sections/application_information_table.cc
-  sections/application_information_table_transcoder.cc
 )
 
 link_directories(

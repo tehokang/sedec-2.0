@@ -1,13 +1,5 @@
-// application_recording_descriptor.cpp: implementation of the ApplicationRecordingDescriptor class.
-//
-//////////////////////////////////////////////////////////////////////
-#include "section_common.h"
-#include "descriptors/hybridcast/application_recording_descriptor.h"
-#include "bit_readwriter.h"
-
-//////////////////////////////////////////////////////////////////////
-// Construction/Destruction
-//////////////////////////////////////////////////////////////////////
+#include "base/macro.h"
+#include "descriptors/application_recording_descriptor.h"
 
 namespace sedec
 {
@@ -39,7 +31,7 @@ ApplicationRecordingDescriptor::ApplicationRecordingDescriptor()
     memset(__private, 0x00, sizeof(__private));
 }
 
-ApplicationRecordingDescriptor::ApplicationRecordingDescriptor(BitReadWriter *rw) : Descriptor(rw)
+ApplicationRecordingDescriptor::ApplicationRecordingDescriptor(base::BitReadWriter *rw) : Descriptor(rw)
 {
     scheduled_recording_flag = rw->Read_On_Buffer(1);
     trick_mode_aware_flag = rw->Read_On_Buffer(1);
@@ -119,7 +111,7 @@ void ApplicationRecordingDescriptor::calcLength()
     descriptor_length = 4 + temp_length;
 }
 
-void ApplicationRecordingDescriptor::WriteDescriptor(BitReadWriter *rw)
+void ApplicationRecordingDescriptor::WriteDescriptor(base::BitReadWriter *rw)
 {
     Descriptor::WriteDescriptor(rw);
 

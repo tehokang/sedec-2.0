@@ -1,29 +1,21 @@
-// mh_ait.cpp: implementation of the MHAit class.
-//
-//////////////////////////////////////////////////////////////////////
-
-#include "section_common.h"
-#include "mh_ait.h"
-#include "descriptors/mh/descriptor.h"
-#include "descriptors/mh/application.h"
-#include "descriptors/mh/descriptor_factory.h"
-
 #include <string.h>
 #include <cstddef>
 #include <stdlib.h>
-//////////////////////////////////////////////////////////////////////
-// Construction/Destruction
-//////////////////////////////////////////////////////////////////////
- 
+
+#include "base/macro.h"
+#include "descriptor_factory.h"
+#include "descriptors/descriptor.h"
+#include "descriptors/application.h"
+#include "sections/application_information_table.h"
 
 namespace sedec
 {
 
-using namespace mh;
+using namespace mpegh;
 
-MHAit::MHAit()
+ApplicationInformationTable::ApplicationInformationTable()
 {
-    m_section_name = strdup("MHAit");
+    m_section_name = strdup("ApplicationInformationTable");
 
     table_id = MH_APPLICATION_INFORMATION_TABLE;
     section_syntax_indicator = 0x01;
@@ -36,24 +28,24 @@ MHAit::MHAit()
     common_descriptors_length = 0;
 }
 
-MHAit::MHAit(unsigned char *raw_buffer)
+ApplicationInformationTable::ApplicationInformationTable(unsigned char *raw_buffer)
     : Section(raw_buffer, (( raw_buffer[1] << 8 | raw_buffer[2] ) & 0x0fff ) + 3)
 {
-    m_section_name = strdup("MHAit");
+    m_section_name = strdup("ApplicationInformationTable");
 
     decode();
 }
 
 
-MHAit::MHAit(unsigned char *raw_buffer, unsigned int raw_length) 
+ApplicationInformationTable::ApplicationInformationTable(unsigned char *raw_buffer, unsigned int raw_length)
     : Section(raw_buffer, raw_length)
 {
-    m_section_name = strdup("MHAit");
+    m_section_name = strdup("ApplicationInformationTable");
 
     decode();
 }
 
-MHAit::~MHAit()
+ApplicationInformationTable::~ApplicationInformationTable()
 {
     if(m_section_name) {
         free(m_section_name);
@@ -76,7 +68,7 @@ MHAit::~MHAit()
     m_common_descriptors.clear();
 }
 
-void MHAit::decode()
+void ApplicationInformationTable::decode()
 {
     if(MH_APPLICATION_INFORMATION_TABLE != table_id ||
             4093 < section_length) return;
@@ -107,7 +99,7 @@ void MHAit::decode()
     checksum_CRC32 = Read_On_Buffer(32);
 }
 
-void MHAit::PrintSection()
+void ApplicationInformationTable::PrintSection()
 {
     if(MH_APPLICATION_INFORMATION_TABLE != table_id) return;
     SECTION_DEBUG("= AIT Section's raw information is followings ===== \n");
@@ -145,7 +137,7 @@ void MHAit::PrintSection()
     SECTION_DEBUG("====================================== \n\n");
 }
 
-void MHAit::SetSection()
+void ApplicationInformationTable::SetSection()
 {
     common_descriptors_length = 0;
     for (std::list<Descriptor*>::iterator it=m_common_descriptors.begin();
@@ -164,7 +156,7 @@ void MHAit::SetSection()
     }
 }
 
-void MHAit::CalcSectionLength()
+void ApplicationInformationTable::CalcSectionLength()
 {
     section_length = 0;
     for (std::list<Descriptor*>::iterator it=m_common_descriptors.begin();
@@ -183,7 +175,7 @@ void MHAit::CalcSectionLength()
     section_length += 13; /* 9 + crc(4) */
 }
 
-void MHAit::WriteSection()
+void ApplicationInformationTable::WriteSection()
 {
     Write_On_Buffer(application_type, 16);
     Write_On_Buffer(0x03, 2);

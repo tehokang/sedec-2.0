@@ -6,7 +6,7 @@
 
 using namespace sedec;
 
-int buffer_length(FILE *f)
+int getFileLength(FILE *f)
 {
   int pos;
   int end;
@@ -28,16 +28,17 @@ int main(int argc, char *argv[])
 
   if(fp)
   {
-    unsigned int raw_buffer_length = buffer_length(fp);
+    unsigned int raw_buffer_length = getFileLength(fp);
     unsigned char *raw_buffer = (unsigned char*)malloc(sizeof(unsigned char)*raw_buffer_length);
-    fread(raw_buffer, 1, raw_buffer_length, fp);
+    if ( 0 < fread(raw_buffer, 1, raw_buffer_length, fp) )
+    {
+      dvb::ApplicationInformationTable *ait =
+          new dvb::ApplicationInformationTable(raw_buffer, raw_buffer_length);
+      ait->PrintSection();
 
-    dvb::ApplicationInformationTable *ait =
-        new dvb::ApplicationInformationTable(raw_buffer, raw_buffer_length);
-    ait->PrintSection();
-
-    delete ait;
-    ait = nullptr;
+      delete ait;
+      ait = nullptr;
+    }
   }
 
   return 0;

@@ -1,12 +1,12 @@
-// hc_ait.cpp: implementation of the HCAit class.
+// hc_ait.cpp: implementation of the ApplicationInformationTable class.
 //
 //////////////////////////////////////////////////////////////////////
 
-#include "section_common.h"
-#include "hc_ait.h"
-#include "descriptors/hybridcast/descriptor.h"
-#include "descriptors/hybridcast/application.h"
-#include "descriptors/hybridcast/descriptor_factory.h"
+#include "base/macro.h"
+#include "descriptor_factory.h"
+#include "descriptors/descriptor.h"
+#include "descriptors/application.h"
+#include "sections/application_information_table.h"
 
 #include <string.h>
 #include <cstddef>
@@ -18,11 +18,12 @@
 namespace sedec
 {
 
-using namespace hybridcast;
-
-HCAit::HCAit()
+namespace hybridcast
 {
-    m_section_name = strdup("HCAit");
+
+ApplicationInformationTable::ApplicationInformationTable()
+{
+    m_section_name = strdup("ApplicationInformationTable");
 
     table_id = HC_APPLICATION_INFORMATION_TABLE;
     section_syntax_indicator = 0x01;
@@ -35,24 +36,24 @@ HCAit::HCAit()
     common_descriptors_length = 0;
 }
 
-HCAit::HCAit(unsigned char *raw_buffer)
+ApplicationInformationTable::ApplicationInformationTable(unsigned char *raw_buffer)
     : Section(raw_buffer, (( raw_buffer[1] << 8 | raw_buffer[2] ) & 0x0fff ) + 3)
 {
-    m_section_name = strdup("HCAit");
+    m_section_name = strdup("ApplicationInformationTable");
 
     decode();
 }
 
 
-HCAit::HCAit(unsigned char *raw_buffer, unsigned int raw_length) 
+ApplicationInformationTable::ApplicationInformationTable(unsigned char *raw_buffer, unsigned int raw_length)
     : Section(raw_buffer, raw_length)
 {
-    m_section_name = strdup("HCAit");
+    m_section_name = strdup("ApplicationInformationTable");
 
     decode();
 }
 
-HCAit::~HCAit()
+ApplicationInformationTable::~ApplicationInformationTable()
 {
     if(m_section_name) {
         free(m_section_name);
@@ -75,7 +76,7 @@ HCAit::~HCAit()
     m_common_descriptors.clear();
 }
 
-void HCAit::decode()
+void ApplicationInformationTable::decode()
 {
     if(HC_APPLICATION_INFORMATION_TABLE != table_id ||
             4093 < section_length) return;
@@ -106,7 +107,7 @@ void HCAit::decode()
     checksum_CRC32 = Read_On_Buffer(32);
 }
 
-void HCAit::PrintSection()
+void ApplicationInformationTable::PrintSection()
 {
     if(HC_APPLICATION_INFORMATION_TABLE != table_id) return;
     SECTION_DEBUG("= AIT Section's raw information is followings ===== \n");
@@ -144,7 +145,7 @@ void HCAit::PrintSection()
     SECTION_DEBUG("====================================== \n\n");
 }
 
-void HCAit::SetSection()
+void ApplicationInformationTable::SetSection()
 {
     common_descriptors_length = 0;
     for (std::list<Descriptor*>::iterator it=m_common_descriptors.begin();
@@ -163,7 +164,7 @@ void HCAit::SetSection()
     }
 }
 
-void HCAit::CalcSectionLength()
+void ApplicationInformationTable::CalcSectionLength()
 {
     section_length = 0;
     for (std::list<Descriptor*>::iterator it=m_common_descriptors.begin();
@@ -182,7 +183,7 @@ void HCAit::CalcSectionLength()
     section_length += 13; /* 9 + crc(4) */
 }
 
-void HCAit::WriteSection()
+void ApplicationInformationTable::WriteSection()
 {
     Write_On_Buffer(application_type, 16);
     Write_On_Buffer(0x03, 2);
@@ -212,4 +213,7 @@ void HCAit::WriteSection()
     MakeCRC();
 }
 
+} // end of hybridcast namespace
+
 } // end of sedec namespace
+

@@ -1,6 +1,3 @@
-// application_descriptor.h: interface for the ApplicationDescriptor class.
-//
-//////////////////////////////////////////////////////////////////////
 #if !defined __MH_APPLICATION_DESCRIPTOR_H__
 #define __MH_APPLICATION_DESCRIPTOR_H__
 
@@ -8,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "descriptor.h"
+#include "base/bit_readwriter.h"
 
 namespace sedec
 {
@@ -16,12 +14,10 @@ namespace sedec
     @{
 */
 
-class BitReadWriter;
-
-namespace mh
+namespace mpegh
 {
 /**
-    @addtogroup mh
+    @addtogroup mpegh
     @{
 */
 
@@ -29,10 +25,10 @@ class ApplicationDescriptor : public Descriptor
 {
 public:
     ApplicationDescriptor();
-    ApplicationDescriptor(BitReadWriter *rw);
+    ApplicationDescriptor(base::BitReadWriter *rw);
     virtual ~ApplicationDescriptor();
 
-    virtual void WriteDescriptor(BitReadWriter* rw);
+    virtual void WriteDescriptor(base::BitReadWriter* rw);
     virtual void PrintDescriptor();
 
     struct ApplicationProfile {
@@ -92,4 +88,4 @@ protected:
 /** @} */
 
 } // end of sedec namespace
-#endif 
+#endif

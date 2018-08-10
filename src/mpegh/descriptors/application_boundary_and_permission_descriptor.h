@@ -1,6 +1,3 @@
-// application_boundary_and_permission_descriptor.h: interface for the ApplicationBoundaryAndPermissionDescriptor class.
-//
-//////////////////////////////////////////////////////////////////////
 #if !defined __MH_APPLICATION_BOUNDARY_AND_PERMISSION_DESCRIPTOR_H__
 #define __MH_APPLICATION_BOUNDARY_AND_PERMISSION_DESCRIPTOR_H__
 
@@ -9,6 +6,7 @@
 #include <stdlib.h>
 #include <stdint.h>
 #include "descriptor.h"
+#include "base/bit_readwriter.h"
 
 namespace sedec
 {
@@ -17,12 +15,10 @@ namespace sedec
     @{
 */
 
-class BitReadWriter;
-
-namespace mh
+namespace mpegh
 {
 /**
-    @addtogroup mh
+    @addtogroup mpegh
     @{
 */
 
@@ -44,17 +40,17 @@ private:
 
 public:
     ApplicationBoundaryAndPermissionDescriptor();
-    ApplicationBoundaryAndPermissionDescriptor(BitReadWriter *rw);
+    ApplicationBoundaryAndPermissionDescriptor(base::BitReadWriter *rw);
     virtual ~ApplicationBoundaryAndPermissionDescriptor();
 
-    virtual void WriteDescriptor(BitReadWriter* rw);
+    virtual void WriteDescriptor(base::BitReadWriter* rw);
     virtual void PrintDescriptor();
 
     int GetApplicationBoundaryAndPermissionCount()
     {
         return infos.size();
     }
-    
+
     std::list<ApplicationBoundaryAndPermission *>& GetBoundaryAndPermissions()
     {
         return infos;
@@ -72,4 +68,4 @@ protected:
 /** @} */
 
 } // end of sedec namespace
-#endif 
+#endif

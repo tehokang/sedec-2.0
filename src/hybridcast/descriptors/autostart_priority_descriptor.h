@@ -1,6 +1,3 @@
-// autostart_priority_descriptor.h: interface for the AutostartPriorityDescriptor class.
-//
-//////////////////////////////////////////////////////////////////////
 #if !defined __HYBRIDCAST_AUTOSTART_PRIORITY_DESCRIPTOR_H__
 #define __HYBRIDCAST_AUTOSTART_PRIORITY_DESCRIPTOR_H__
 
@@ -8,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "descriptor.h"
+#include "base/bit_readwriter.h"
 
 namespace sedec
 {
@@ -15,8 +13,6 @@ namespace sedec
     @addtogroup Sedec
     @{
 */
-
-class BitReadWriter;
 
 namespace hybridcast
 {
@@ -29,10 +25,10 @@ class AutostartPriorityDescriptor : public Descriptor
 {
 public:
     AutostartPriorityDescriptor();
-    AutostartPriorityDescriptor(BitReadWriter *rw);
+    AutostartPriorityDescriptor(base::BitReadWriter *rw);
     virtual ~AutostartPriorityDescriptor();
 
-    virtual void WriteDescriptor(BitReadWriter* rw);
+    virtual void WriteDescriptor(base::BitReadWriter* rw);
     virtual void PrintDescriptor();
 
     void SetAutostartPriority(char value) { autostart_priority = value;}
@@ -51,4 +47,4 @@ protected:
 /** @} */
 
 } // end of sedec namespace
-#endif 
+#endif

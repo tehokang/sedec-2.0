@@ -1,16 +1,10 @@
-// Descriptor.cpp: implementation of the Descriptor class.
-//
-//////////////////////////////////////////////////////////////////////
-#include "section_common.h"
-#include "descriptors/mh/descriptor.h"
-#include "bit_readwriter.h"
-//////////////////////////////////////////////////////////////////////
-// Construction/Destruction
-//////////////////////////////////////////////////////////////////////
+#include "base/macro.h"
+#include "descriptors/descriptor.h"
+
 namespace sedec
 {
 
-namespace mh
+namespace mpegh
 {
 
 Descriptor::Descriptor()
@@ -19,7 +13,7 @@ Descriptor::Descriptor()
     descriptor_length = 0;
 }
 
-Descriptor::Descriptor(BitReadWriter *rw)
+Descriptor::Descriptor(base::BitReadWriter *rw)
 {
     descriptor_tag = rw->Read_On_Buffer(16);
     descriptor_length = rw->Read_On_Buffer(8);
@@ -41,7 +35,7 @@ int Descriptor::GetDescriptorLength()
     return descriptor_length + DESCRIPTOR_HEADER_LENGTH;
 }
 
-void Descriptor::WriteDescriptor(BitReadWriter* rw)
+void Descriptor::WriteDescriptor(base::BitReadWriter* rw)
 {
     calcLength();
     rw->Write_On_Buffer(descriptor_tag, 16);
@@ -53,7 +47,7 @@ UnknownDescriptor::UnknownDescriptor()
 
 }
 
-UnknownDescriptor::UnknownDescriptor(BitReadWriter *rw) : Descriptor(rw)
+UnknownDescriptor::UnknownDescriptor(base::BitReadWriter *rw) : Descriptor(rw)
 {
     rw->Skip_On_Buffer(descriptor_length*8);
 }

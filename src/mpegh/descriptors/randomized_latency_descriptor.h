@@ -1,6 +1,3 @@
-// randomized_latency_descriptor.h: interface for the RandomizedLatencyDescriptor class.
-//
-//////////////////////////////////////////////////////////////////////
 #if !defined __MH_RANDOMIZED_LATENCY_DESCRIPTOR_H__
 #define __MH_RANDOMIZED_LATENCY_DESCRIPTOR_H__
 
@@ -8,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "descriptor.h"
+#include "base/bit_readwriter.h"
 
 namespace sedec
 {
@@ -16,12 +14,10 @@ namespace sedec
     @{
 */
 
-class BitReadWriter;
-
-namespace mh
+namespace mpegh
 {
 /**
-    @addtogroup mh
+    @addtogroup mpegh
     @{
 */
 
@@ -29,10 +25,10 @@ class RandomizedLatencyDescriptor : public Descriptor
 {
 public:
     RandomizedLatencyDescriptor();
-    RandomizedLatencyDescriptor(BitReadWriter *rw);
+    RandomizedLatencyDescriptor(base::BitReadWriter *rw);
     virtual ~RandomizedLatencyDescriptor();
 
-    virtual void WriteDescriptor(BitReadWriter* rw);
+    virtual void WriteDescriptor(base::BitReadWriter* rw);
     virtual void PrintDescriptor();
 
     void SetRange(unsigned int value) { range = value;}
@@ -62,4 +58,4 @@ protected:
 /** @} */
 
 } // end of sedec namespace
-#endif 
+#endif

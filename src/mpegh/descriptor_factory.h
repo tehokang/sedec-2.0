@@ -1,8 +1,7 @@
-// descriptor_factory.h: interface for the DescriptorFactory class.
-//
-//////////////////////////////////////////////////////////////////////
 #if !defined __MH_DESCRIPTOR_FACTORY_H__
 #define __MH_DESCRIPTOR_FACTORY_H__
+
+#include "base/bit_readwriter.h"
 
 namespace sedec
 {
@@ -10,22 +9,20 @@ namespace sedec
     @addtogroup Sedec
     @{
 */
-class BitReadWriter;
 
-namespace mh
+namespace mpegh
 {
 /**
-    @addtogroup mh
+    @addtogroup mpegh
     @{
 */
 class Descriptor;
-
 class DescriptorFactory
 {
 public:
-    static Descriptor* CreateDescriptor(BitReadWriter *rw);
+    static Descriptor* CreateDescriptor(base::BitReadWriter *rw);
 
-private:	
+private:
     DescriptorFactory(){};
     virtual ~DescriptorFactory(){};
 };
@@ -37,4 +34,4 @@ private:
 /** @} */
 
 } // end of sedec namespace
-#endif 
+#endif

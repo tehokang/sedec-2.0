@@ -1,16 +1,5 @@
-// transport_protocol_descriptor.cpp: implementation of the ConnectionRequirementDescriptor class.
-//
-//////////////////////////////////////////////////////////////////////
-#include "section_common.h"
-#include "descriptors/hybridcast/connection_requirement_descriptor.h"
-#include "bit_readwriter.h"
-
-
-//#include <stdlib.h>
-//#include <string.h>
-//////////////////////////////////////////////////////////////////////
-// Construction/Destruction
-//////////////////////////////////////////////////////////////////////
+#include "base/macro.h"
+#include "descriptors/connection_requirement_descriptor.h"
 
 namespace sedec
 {
@@ -26,7 +15,7 @@ ConnectionRequirementDescriptor::ConnectionRequirementDescriptor()
     IP_connection_requirement_flag = false;
 }
 
-ConnectionRequirementDescriptor::ConnectionRequirementDescriptor(BitReadWriter *rw) : Descriptor(rw)
+ConnectionRequirementDescriptor::ConnectionRequirementDescriptor(base::BitReadWriter *rw) : Descriptor(rw)
 {
     rw->Read_On_Buffer(7);
     IP_connection_requirement_flag = rw->Read_On_Buffer(1);
@@ -55,7 +44,7 @@ void ConnectionRequirementDescriptor::calcLength()
     descriptor_length = 3;
 }
 
-void ConnectionRequirementDescriptor::WriteDescriptor(BitReadWriter *rw)
+void ConnectionRequirementDescriptor::WriteDescriptor(base::BitReadWriter *rw)
 {
     Descriptor::WriteDescriptor(rw);
 

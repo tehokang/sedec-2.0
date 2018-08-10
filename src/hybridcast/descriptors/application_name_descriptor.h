@@ -1,11 +1,9 @@
-// application_name_descriptor.h: interface for the ApplicationNameDescriptor class.
-//
-//////////////////////////////////////////////////////////////////////
 #if !defined __HYBRIDCAST_APPLICATION_NAME_DESCRIPTOR_H__
 #define __HYBRIDCAST_APPLICATION_NAME_DESCRIPTOR_H__
 
-#include "descriptor.h"
 #include <string.h>
+#include "descriptor.h"
+#include "base/bit_readwriter.h"
 
 namespace sedec
 {
@@ -13,8 +11,6 @@ namespace sedec
     @addtogroup Sedec
     @{
 */
-
-class BitReadWriter;
 
 namespace hybridcast
 {
@@ -25,12 +21,12 @@ namespace hybridcast
 
 class ApplicationNameDescriptor : public Descriptor
 {
-public:	
+public:
     ApplicationNameDescriptor();
-    ApplicationNameDescriptor(BitReadWriter *rw);
+    ApplicationNameDescriptor(base::BitReadWriter *rw);
     virtual ~ApplicationNameDescriptor();
 
-    virtual void WriteDescriptor(BitReadWriter* rw);
+    virtual void WriteDescriptor(base::BitReadWriter* rw);
     virtual void PrintDescriptor();
 
     /* Interface to encode (setter) */
@@ -67,4 +63,4 @@ protected:
 
 } // end of sedec namespace
 
-#endif 
+#endif

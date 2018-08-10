@@ -1,20 +1,12 @@
-// transport_protocol_descriptor.cpp: implementation of the TransportProtocolDescriptor class.
-//
-//////////////////////////////////////////////////////////////////////
-#include "section_common.h"
-#include "descriptors/mh/transport_protocol_descriptor.h"
-#include "bit_readwriter.h"
-
 #include <stdlib.h>
 #include <string.h>
-//////////////////////////////////////////////////////////////////////
-// Construction/Destruction
-//////////////////////////////////////////////////////////////////////
+#include "base/macro.h"
+#include "descriptors/transport_protocol_descriptor.h"
 
 namespace sedec
 {
 
-namespace mh
+namespace mpegh
 {
 
 TransportProtocolDescriptor::TransportProtocolDescriptor()
@@ -33,7 +25,7 @@ TransportProtocolDescriptor::TransportProtocolDescriptor()
     memset(&dc_transport, 0x00, sizeof(DCtransport));
 }
 
-TransportProtocolDescriptor::TransportProtocolDescriptor(BitReadWriter *rw) : Descriptor(rw)
+TransportProtocolDescriptor::TransportProtocolDescriptor(base::BitReadWriter *rw) : Descriptor(rw)
 {
     protocol_id = rw->Read_On_Buffer(16);
     transport_protocol_label = rw->Read_On_Buffer(8);
@@ -60,7 +52,7 @@ TransportProtocolDescriptor::TransportProtocolDescriptor(BitReadWriter *rw) : De
              * @note It is related in ARIB STD-B60 version 1.2
              **/
             case PROTOCOL_HTTP:
-            case PROTOCOL_MMT_NON_TIMED: 
+            case PROTOCOL_MMT_NON_TIMED:
                 {
                     memset(&channel_transport, 0x00, sizeof(Channeltransport));
                     channel_transport.URL_base_length = rw->Read_On_Buffer(8);
@@ -84,7 +76,7 @@ TransportProtocolDescriptor::TransportProtocolDescriptor(BitReadWriter *rw) : De
                 break;
             /**
              * @note It is related in IPTVFJ STD-0010 version 2.0
-             **/                
+             **/
             case PROTOCOL_DATA_CAROUSEL:
                 {
                     memset(&dc_transport, 0x00, sizeof(DCtransport));
@@ -141,24 +133,24 @@ void TransportProtocolDescriptor::PrintDescriptor()
          * @note It is related in ARIB STD-B60 version 1.2
          **/
         case PROTOCOL_HTTP:
-        case PROTOCOL_MMT_NON_TIMED: 
+        case PROTOCOL_MMT_NON_TIMED:
             {
                 SECTION_DEBUG("\tURL_base_length : 0x%x (%d) \n",
                                 channel_transport.URL_base_length, channel_transport.URL_base_length);
                 SECTION_DEBUG("\tURL_base_byte : %s \n", channel_transport.URL_base_byte);
                 SECTION_DEBUG("\tURL_extension_count : 0x%x \n", channel_transport.URL_extension_count);
-                
+
                 for (std::list<UrlExtension *>::iterator it=url_extensions.begin();
                     it != url_extensions.end(); ++it)
                 {
-                    SECTION_DEBUG("\tmanaged_URL_length : 0x%x \n", (*it)->URL_extension_length); 
-                    SECTION_DEBUG("\tmanaged_URL_byte : %s \n", (*it)->URL_extension_byte); 
+                    SECTION_DEBUG("\tmanaged_URL_length : 0x%x \n", (*it)->URL_extension_length);
+                    SECTION_DEBUG("\tmanaged_URL_byte : %s \n", (*it)->URL_extension_byte);
                 }
             }
             break;
         /**
          * @note It is related in IPTVFJ STD-0010 version 2.0
-         **/      
+         **/
         case PROTOCOL_DATA_CAROUSEL:
             {
                 SECTION_DEBUG("\tremote_connection : %x \n", dc_transport.remote_connection);
@@ -192,11 +184,11 @@ void TransportProtocolDescriptor::calcLength()
          * @note It is related in ARIB STD-B60 version 1.2
          **/
         case PROTOCOL_HTTP:
-        case PROTOCOL_MMT_NON_TIMED:        
+        case PROTOCOL_MMT_NON_TIMED:
             {
                 selector_byte_length = 1 + channel_transport.URL_base_length +
                                         1 + channel_transport.URL_extension_count;
-                
+
                 for (std::list<UrlExtension *>::iterator it=url_extensions.begin();
                     it != url_extensions.end(); ++it)
                 {
@@ -206,20 +198,20 @@ void TransportProtocolDescriptor::calcLength()
             break;
         /**
          * @note It is related in IPTVFJ STD-0010 version 2.0
-         **/         
+         **/
         case PROTOCOL_DATA_CAROUSEL:
             if(0x01 == dc_transport.remote_connection)
                 selector_byte_length = 8;
             else
                 selector_byte_length = 2;
-            break;    
+            break;
         default:
             break;
     }
     descriptor_length = 3 + selector_byte_length;
 }
 
-void TransportProtocolDescriptor::WriteDescriptor(BitReadWriter *rw)
+void TransportProtocolDescriptor::WriteDescriptor(base::BitReadWriter *rw)
 {
     Descriptor::WriteDescriptor(rw);
 
@@ -243,24 +235,24 @@ void TransportProtocolDescriptor::WriteDescriptor(BitReadWriter *rw)
          * @note It is related in ARIB STD-B60 version 1.2
          **/
         case PROTOCOL_HTTP:
-        case PROTOCOL_MMT_NON_TIMED: 
+        case PROTOCOL_MMT_NON_TIMED:
             rw->Write_On_Buffer(channel_transport.URL_base_length, 8);
             for(int i=0;i<channel_transport.URL_base_length;i++)
                 rw->Write_On_Buffer(channel_transport.URL_base_byte[i], 8);
 
             rw->Write_On_Buffer(channel_transport.URL_extension_count, 8);
-            
+
             for (std::list<UrlExtension *>::iterator it=url_extensions.begin();
                 it != url_extensions.end(); ++it)
             {
                 rw->Write_On_Buffer((*it)->URL_extension_length, 8);
                 for(int j=0;j<(*it)->URL_extension_length;j++)
                     rw->Write_On_Buffer((*it)->URL_extension_byte[j], 8);
-            }            
+            }
             break;
         /**
          * @note It is related in IPTVFJ STD-0010 version 2.0
-         **/      
+         **/
         case PROTOCOL_DATA_CAROUSEL:
             rw->Write_On_Buffer(dc_transport.remote_connection, 1);
             rw->Write_On_Buffer(0x7f, 7);
@@ -271,7 +263,7 @@ void TransportProtocolDescriptor::WriteDescriptor(BitReadWriter *rw)
                 rw->Write_On_Buffer(dc_transport.service_id, 16);
             }
             rw->Write_On_Buffer(dc_transport.component_tag, 8);
-            break;            
+            break;
         default:
             break;
     }
