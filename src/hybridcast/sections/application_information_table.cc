@@ -210,7 +210,6 @@ void ApplicationInformationTable::WriteSection()
         Application *app = (Application*)*it;
         app->WriteApplication(this);
     }
-    MakeCRC();
 }
 
 } // end of hybridcast namespace

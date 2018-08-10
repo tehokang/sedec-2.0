@@ -38,7 +38,7 @@ Section::~Section()
 	}
 }
 
-void Section::ReadyBuffer()
+void Section::__encode_prepare_buffer__()
 {
 	if(m_buffer != NULL)
 	{
@@ -51,7 +51,7 @@ void Section::ReadyBuffer()
 	SetBuffer(m_buffer);
 }
 
-void Section::WriteSectionHeader()
+void Section::__encode_write_section_header__()
 {
 	Write_On_Buffer( table_id, 8 );
 	Write_On_Buffer( section_syntax_indicator, 1);
@@ -65,12 +65,13 @@ void Section::EncodeSection()
 {
 	CalcSectionLength();
 	SetSection();
-	ReadyBuffer();
-	WriteSectionHeader();
+	__encode_prepare_buffer__();
+	__encode_write_section_header__();
 	WriteSection();
+	__encode_make_crc__();
 }
 
-void Section::MakeCRC()
+void Section::__encode_make_crc__()
 {
 	m_crc = new unsigned char[section_length-1];
 	memcpy( m_crc, m_buffer, section_length-1 );

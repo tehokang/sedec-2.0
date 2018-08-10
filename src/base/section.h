@@ -45,14 +45,14 @@ public:
     }_SUPPORTED_TABLE_ID_;
 
 protected:
-    void ReadyBuffer();
-    void WriteSectionHeader();
-    void MakeCRC();
+    void __encode_prepare_buffer__();
+    void __encode_write_section_header__();
+    void __encode_make_crc__();
 
     virtual void WriteSection() {};
     virtual void SetSection() {};
-    virtual void CalcSectionLength() {}
-    ;
+    virtual void CalcSectionLength() {};
+
     virtual void decode()=0;
 
     unsigned char* m_crc;

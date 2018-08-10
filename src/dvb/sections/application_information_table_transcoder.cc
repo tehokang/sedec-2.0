@@ -122,7 +122,6 @@ void ApplicationInformationTableTranscoder::WriteSection()
         Application *app = (Application*)*it;
         app->WriteApplication(this);
     }
-    MakeCRC();
 }
 
 void ApplicationInformationTableTranscoder::SetApplicationUrl(const char *base_url, const char *init_path)
