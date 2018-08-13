@@ -40,9 +40,9 @@ public:
     unsigned int GetSectionNumber() const { return section_number;}
     unsigned int GetLastSectionNumber() const { return last_section_number;}
     unsigned int GetCommonDescriptorLength() const { return common_descriptors_length;}
-    list<dvb::Descriptor*> GetCommonDescriptors() const { return m_common_descriptors;}
+    list<Descriptor*> GetCommonDescriptors() const { return m_common_descriptors;}
     unsigned int GetApplicationLoopLength() const { return application_loop_length;}
-    list<dvb::Application*> GetApplications() const { return m_applications;}
+    list<Application*> GetApplications() const { return m_applications;}
 
 protected:
     int test_application_flag;
@@ -52,11 +52,11 @@ protected:
     unsigned int section_number;
     unsigned int last_section_number;
     unsigned int common_descriptors_length;
-    list<dvb::Descriptor*> m_common_descriptors;
+    list<Descriptor*> m_common_descriptors;
     unsigned int application_loop_length;
-    list<dvb::Application*> m_applications;
+    list<Application*> m_applications;
 
-    virtual void decode();
+    virtual void __decode_section_body__();
 };
 
 /** @} */

@@ -23,7 +23,6 @@ class Section  : public BitReadWriter
 {
 public:
     Section();
-    /* Below constructor is to decode raw section */
     Section(unsigned char* raw_buffer, unsigned int raw_length);
     virtual ~Section();
 
@@ -34,26 +33,32 @@ public:
     unsigned char* GetSection();
 
     void PrintRawSection();
-    virtual void PrintSection()=0;
+    virtual void PrintSection();
 
-    static enum TABLE_ID
-    {
-        DVB_APPLICATION_INFORMATION_TABLE = 0x74,
-        HC_APPLICATION_INFORMATION_TABLE = 0x74,
-        MH_APPLICATION_INFORMATION_TABLE = 0x9C,
-        UNKNOWN_TABLE = 0xff,
-    }_SUPPORTED_TABLE_ID_;
+    // static enum TABLE_ID
+    // {
+    //     DVB_APPLICATION_INFORMATION_TABLE = 0x74,
+    //     HC_APPLICATION_INFORMATION_TABLE = 0x74,
+    //     MH_APPLICATION_INFORMATION_TABLE = 0x9C,
+    //     UNKNOWN_TABLE = 0xff,
+    // }_SUPPORTED_TABLE_ID_;
 
 protected:
-    void __encode_prepare_buffer__();
-    void __encode_write_section_header__();
-    void __encode_make_crc__();
+    /**
+     * @warning PLEASE OVERRIDE TO PARSE YOUR SECTION TABLE
+     * and this call have to be called in your section's constructor.
+     */
+    virtual void __decode_section_body__() = 0;
 
-    virtual void WriteSection() {};
-    virtual void SetSection() {};
-    virtual void CalcSectionLength() {};
-
-    virtual void decode()=0;
+    /**
+     * @note Please override followings if you want to modify original data with custom data
+     * - __encode_write_section_body__
+     * - __encode_preprare_section__
+     * - __encode_update_section_length__
+     */
+    virtual void __encode_write_section_body__() {};
+    virtual void __encode_preprare_section__() {};
+    virtual void __encode_update_section_length__() {};
 
     unsigned char* m_crc;
     unsigned int checksum_CRC32;
@@ -64,6 +69,25 @@ protected:
     unsigned int table_id;
     unsigned int section_syntax_indicator;
     unsigned int section_length;
+
+private:
+    void __decode_section_header__();
+
+    void __encode_prepare_buffer__();
+    void __encode_write_section_header__();
+    void __encode_make_crc__();
+};
+
+class UnknownSection : public Section
+{
+public:
+    UnknownSection();
+    UnknownSection(unsigned char* raw_buffer, unsigned int raw_length);
+    virtual ~UnknownSection();
+    virtual void __decode_section_body__() override;
+
+protected:
+    virtual void updateDescriptorLength(){};
 };
 
 /** @} */

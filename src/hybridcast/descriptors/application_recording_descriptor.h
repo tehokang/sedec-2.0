@@ -45,7 +45,7 @@ public:
     int GetInitiatingReplayFlag() { return initiating_replay_flag;}
 
 protected:
-    virtual void calcLength();
+    virtual void updateDescriptorLength() override;
 
     int scheduled_recording_flag;
     int trick_mode_aware_flag;

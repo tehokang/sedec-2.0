@@ -12,7 +12,7 @@ namespace dvb
 
 SimpleApplicationLocationDescriptor::SimpleApplicationLocationDescriptor()
 {
-    descriptor_tag = SIMPLE_APPLICATION_LOCATION_DESCRIPTOR;
+    descriptor_tag = 0x15;
     descriptor_length = 0;
     memset(initial_path_bytes, 0x00, sizeof(initial_path_bytes));
 }
@@ -44,7 +44,7 @@ void SimpleApplicationLocationDescriptor::PrintDescriptor()
     SECTION_DEBUG("\n");
 }
 
-void SimpleApplicationLocationDescriptor::calcLength()
+void SimpleApplicationLocationDescriptor::updateDescriptorLength()
 {
     descriptor_length = strlen((char*)initial_path_bytes);
 }

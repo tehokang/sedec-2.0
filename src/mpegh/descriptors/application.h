@@ -55,7 +55,7 @@ public:
     list<Descriptor*>& GetDescriptors() { return application_descriptors;};
 
 private:
-    virtual void calcLength();
+    virtual void updateDescriptorLength();
 
     /* application identifier */
     int organization_id;

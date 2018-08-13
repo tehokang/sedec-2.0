@@ -66,11 +66,11 @@ void Application::PrintApplication()
 
 int Application::GetApplicationLength()
 {
-    calcLength();
+    updateDescriptorLength();
     return m_application_length;
 }
 
-void Application::calcLength()
+void Application::updateDescriptorLength()
 {
     application_descriptors_loop_length = 0;
     for (std::list<Descriptor*>::iterator it=application_descriptors.begin();

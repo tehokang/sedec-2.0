@@ -1,7 +1,7 @@
 #include "base/macro.h"
+#include "base/descriptor.h"
 
 #include "descriptor_factory.h"
-#include "descriptors/descriptor.h"
 #include "descriptors/application_descriptor.h"
 #include "descriptors/application_name_descriptor.h"
 #include "descriptors/application_usage_descriptor.h"
@@ -27,23 +27,23 @@ Descriptor* DescriptorFactory::CreateDescriptor(base::BitReadWriter *rw)
         /**
          * @note It is related in ETSI TS 102 809 v1.4.1
          **/
-        case Descriptor::APPLICATION_DESCRIPTOR:
+        case APPLICATION_DESCRIPTOR:
             return new ApplicationDescriptor(rw);
-        case Descriptor::APPLICATION_NAME_DESCRIPTOR:
+        case APPLICATION_NAME_DESCRIPTOR:
             return new ApplicationNameDescriptor(rw);
-        case Descriptor::APPLICATION_USAGE_DESCRIPTOR:
+        case APPLICATION_USAGE_DESCRIPTOR:
             return new ApplicationUsageDescriptor(rw);
-        case Descriptor::APPLICATION_RECORDING_DESCRIPTOR:
+        case APPLICATION_RECORDING_DESCRIPTOR:
        	    return new ApplicationRecordingDescriptor(rw);
-        case Descriptor::SIMPLE_APPLICATION_LOCATION_DESCRIPTOR:
+        case SIMPLE_APPLICATION_LOCATION_DESCRIPTOR:
             return new SimpleApplicationLocationDescriptor(rw);
-        case Descriptor::SIMPLE_APPLICATION_BOUNDARY_DESCRIPTOR:
+        case SIMPLE_APPLICATION_BOUNDARY_DESCRIPTOR:
             return new SimpleApplicationBoundaryDescriptor(rw);
-        case Descriptor::TRANSPORT_PROTOCOL_DESCRIPTOR:
+        case TRANSPORT_PROTOCOL_DESCRIPTOR:
             return new TransportProtocolDescriptor(rw);
-        case Descriptor::PARENTAL_RATING_DESCRIPTOR:
+        case PARENTAL_RATING_DESCRIPTOR:
        	    return new ParentalRatingDescriptor(rw);
-        case Descriptor::CONNECTION_REQUIREMENT_DESCRIPTOR:
+        case CONNECTION_REQUIREMENT_DESCRIPTOR:
             return new ConnectionRequirementDescriptor(rw);
         default:
             return new UnknownDescriptor(rw);

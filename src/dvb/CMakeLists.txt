@@ -31,11 +31,11 @@ set(SOURCE_FILES ${SOURCE_FILES}
   descriptors/application_usage_descriptor.cc
   descriptors/application.cc
   descriptors/connection_requirement_descriptor.cc
-  descriptors/descriptor.cc
   descriptors/parental_rating_descriptor.cc
   descriptors/simple_application_boundary_descriptor.cc
   descriptors/simple_application_location_descriptor.cc
   descriptors/transport_protocol_descriptor.cc
+  descriptors/descriptor.cc
 
   sections/application_information_table.cc
   sections/application_information_table_transcoder.cc

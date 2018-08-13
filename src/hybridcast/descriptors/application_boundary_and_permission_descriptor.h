@@ -58,7 +58,7 @@ public:
     }
 
 protected:
-    virtual void calcLength();
+    virtual void updateDescriptorLength() override;
     std::list<ApplicationBoundaryAndPermission *> infos;
 };
 

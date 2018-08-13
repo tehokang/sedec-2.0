@@ -20,14 +20,10 @@ Section::Section(unsigned char* raw_buffer, unsigned int raw_length)
 {
 	m_buffer_length = raw_length;
 	m_buffer = new unsigned char[m_buffer_length];
-
 	memcpy(m_buffer, raw_buffer, m_buffer_length);
 	SetBuffer(m_buffer);
 
-	table_id = Read_On_Buffer(8);
-	section_syntax_indicator = Read_On_Buffer(1);
-	Skip_On_Buffer(3);
-	section_length = Read_On_Buffer(12);
+	__decode_section_header__();
 }
 
 Section::~Section()
@@ -36,6 +32,14 @@ Section::~Section()
 	{
 		delete []m_buffer;
 	}
+}
+
+void Section::__decode_section_header__()
+{
+	table_id = Read_On_Buffer(8);
+	section_syntax_indicator = Read_On_Buffer(1);
+	Skip_On_Buffer(3);
+	section_length = Read_On_Buffer(12);
 }
 
 void Section::__encode_prepare_buffer__()
@@ -63,11 +67,12 @@ void Section::__encode_write_section_header__()
 
 void Section::EncodeSection()
 {
-	CalcSectionLength();
-	SetSection();
+	__encode_update_section_length__();
+	__encode_preprare_section__();
+
 	__encode_prepare_buffer__();
 	__encode_write_section_header__();
-	WriteSection();
+	__encode_write_section_body__();
 	__encode_make_crc__();
 }
 
@@ -125,6 +130,43 @@ unsigned char* Section::GetSection()
 int Section::GetSectionLen()
 {
 	return m_buffer_length;
+}
+
+void Section::PrintSection()
+{
+    SECTION_PRINT("===== [%s] Section's information ===== \n",
+				m_section_name == nullptr ? "": m_section_name);
+    SECTION_PRINT("table_id : 0x%x \n", table_id);
+    SECTION_PRINT("section_syntax_indicator : 0x%x \n", section_syntax_indicator);
+    SECTION_PRINT("section_length : 0x%x (%d) \n", section_length, section_length);
+}
+
+UnknownSection::UnknownSection()
+	: Section()
+{
+
+}
+
+UnknownSection::UnknownSection(unsigned char* raw_buffer, unsigned int raw_length)
+	: Section(raw_buffer, raw_length)
+{
+	/**
+	 * @note NOTHING TO DO
+	 */
+}
+
+UnknownSection::~UnknownSection()
+{
+	/**
+	 * @note NOTHING TO DO
+	 */
+}
+
+void UnknownSection::__decode_section_body__()
+{
+	/**
+	 * @note NOTHING TO DO
+	 */
 }
 
 } // end of base namespace

@@ -10,7 +10,7 @@ namespace mpegh
 
 ApplicationDescriptor::ApplicationDescriptor()
 {
-    descriptor_tag = APPLICATION_DESCRIPTOR;
+    descriptor_tag = 0x8029;
     descriptor_length = 0;
 
     service_bound_flag = 0x00;
@@ -71,7 +71,7 @@ void ApplicationDescriptor::PrintDescriptor()
     SECTION_DEBUG("\n");
 }
 
-void ApplicationDescriptor::calcLength()
+void ApplicationDescriptor::updateDescriptorLength()
 {
     descriptor_length =
             1 + (application_profiles_length>0 ? 5:0) + 2 + transport_protocol_label_length;

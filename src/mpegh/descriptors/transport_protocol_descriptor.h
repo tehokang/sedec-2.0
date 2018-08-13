@@ -83,7 +83,7 @@ public:
     unsigned char GetComponentTag(){ return oc_transport.component_tag;}
 
 protected:
-    virtual void calcLength();
+    virtual void updateDescriptorLength() override;
 
     enum
     {

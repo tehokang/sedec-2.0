@@ -26,19 +26,19 @@ Descriptor* DescriptorFactory::CreateDescriptor(base::BitReadWriter *rw)
         /**
          * @note It is related in ARIB STD-B60 version 1.2
          **/
-        case Descriptor::APPLICATION_DESCRIPTOR:
+        case APPLICATION_DESCRIPTOR:
             return new ApplicationDescriptor(rw);
-        case Descriptor::SIMPLE_APPLICATION_LOCATION_DESCRIPTOR:
+        case SIMPLE_APPLICATION_LOCATION_DESCRIPTOR:
             return new SimpleApplicationLocationDescriptor(rw);
-        case Descriptor::TRANSPORT_PROTOCOL_DESCRIPTOR:
+        case TRANSPORT_PROTOCOL_DESCRIPTOR:
             return new TransportProtocolDescriptor(rw);
-        case Descriptor::APPLICATION_BOUNDARY_AND_PERMISSION_DESCRIPTOR:
+        case APPLICATION_BOUNDARY_AND_PERMISSION_DESCRIPTOR:
             return new ApplicationBoundaryAndPermissionDescriptor(rw);
-        case Descriptor::AUTOSTART_PRIORITY_DESCRIPTOR:
+        case AUTOSTART_PRIORITY_DESCRIPTOR:
             return new AutostartPriorityDescriptor(rw);
-        case Descriptor::CACHE_CONTROL_INFO_DESCRIPTOR:
+        case CACHE_CONTROL_INFO_DESCRIPTOR:
             return new CacheControlInfoDescriptor(rw);
-        case Descriptor::RANDOMIZED_LATENCY_DESCRIPTOR:
+        case RANDOMIZED_LATENCY_DESCRIPTOR:
             return new RandomizedLatencyDescriptor(rw);
         default:
             return new UnknownDescriptor(rw);

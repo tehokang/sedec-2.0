@@ -73,7 +73,7 @@ public:
     int GetTransportProtocolLabelLength(){ return transport_protocol_label_length;}
 
 protected:
-    virtual void calcLength();
+    virtual void updateDescriptorLength() override;
 
     int application_profiles_length;
     ApplicationProfile application_profiles;

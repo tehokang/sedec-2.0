@@ -10,7 +10,7 @@ namespace hybridcast
 
 RandomizedLatencyDescriptor::RandomizedLatencyDescriptor()
 {
-    descriptor_tag = RANDOMIZED_LATENCY_DESCRIPTOR;
+    descriptor_tag = 0x33;
     descriptor_length = 0;
     range = 0;
     rate = 0;
@@ -47,7 +47,7 @@ void RandomizedLatencyDescriptor::PrintDescriptor()
     SECTION_DEBUG("\n");
 }
 
-void RandomizedLatencyDescriptor::calcLength()
+void RandomizedLatencyDescriptor::updateDescriptorLength()
 {
     descriptor_length = 4 + ( randomization_end_time_flag ? 5 : 0 );
 }

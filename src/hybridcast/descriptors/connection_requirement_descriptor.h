@@ -33,7 +33,7 @@ public:
     bool GetIPConnectionRequirementFlag(){ return IP_connection_requirement_flag;}
 
 protected:
-    virtual void calcLength();
+    virtual void updateDescriptorLength() override;
 
     bool IP_connection_requirement_flag;
 };

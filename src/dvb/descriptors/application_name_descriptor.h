@@ -48,7 +48,7 @@ public:
     char *GetApplicationName() { return application_name;}
 
 protected:
-    virtual void calcLength();
+    virtual void updateDescriptorLength() override;
 
     unsigned char ISO_639_language_code[3];
     int application_name_length;

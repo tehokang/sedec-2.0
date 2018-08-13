@@ -46,7 +46,7 @@ public:
     /* Interface to decode (getter) */
 
 protected:
-    virtual void calcLength();
+    virtual void updateDescriptorLength() override;
 
     unsigned char boundary_extension_count;
     unsigned char boundary_extension_length[256];

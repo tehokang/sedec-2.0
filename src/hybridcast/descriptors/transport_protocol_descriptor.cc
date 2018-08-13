@@ -12,7 +12,7 @@ namespace hybridcast
 
 TransportProtocolDescriptor::TransportProtocolDescriptor()
 {
-    descriptor_tag = TRANSPORT_PROTOCOL_DESCRIPTOR;
+    descriptor_tag = 0x02;
     descriptor_length = 0;
 
     protocol_id = 0;
@@ -162,7 +162,7 @@ void TransportProtocolDescriptor::PrintDescriptor()
     SECTION_DEBUG("\n");
 }
 
-void TransportProtocolDescriptor::calcLength()
+void TransportProtocolDescriptor::updateDescriptorLength()
 {
     int selector_byte_length = 0;
     switch(protocol_id)

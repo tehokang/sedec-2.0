@@ -44,7 +44,7 @@ ApplicationInformationTableTranscoder::~ApplicationInformationTableTranscoder()
 }
 
 Descriptor* ApplicationInformationTableTranscoder::findDescriptor(list<Descriptor*>descriptors,
-        Descriptor::DESCRIPTOR_TAG tag)
+        int tag)
 {
     for (std::list<Descriptor*>::iterator it=descriptors.begin();
         it != descriptors.end(); ++it)
@@ -56,7 +56,7 @@ Descriptor* ApplicationInformationTableTranscoder::findDescriptor(list<Descripto
     return NULL;
 }
 
-void ApplicationInformationTableTranscoder::SetSection()
+void ApplicationInformationTableTranscoder::__encode_preprare_section__()
 {
     common_descriptors_length = 0;
     for (std::list<Descriptor*>::iterator it=m_common_descriptors.begin();
@@ -75,7 +75,7 @@ void ApplicationInformationTableTranscoder::SetSection()
     }
 }
 
-void ApplicationInformationTableTranscoder::CalcSectionLength()
+void ApplicationInformationTableTranscoder::__encode_update_section_length__()
 {
     section_length = 0;
     for (std::list<Descriptor*>::iterator it=m_common_descriptors.begin();
@@ -94,7 +94,7 @@ void ApplicationInformationTableTranscoder::CalcSectionLength()
     section_length += 13; /* 9 + crc(4) */
 }
 
-void ApplicationInformationTableTranscoder::WriteSection()
+void ApplicationInformationTableTranscoder::__encode_write_section_body__()
 {
     Write_On_Buffer(test_application_flag, 1);
     Write_On_Buffer(application_type, 15);
@@ -131,11 +131,11 @@ void ApplicationInformationTableTranscoder::SetApplicationUrl(const char *base_u
     {
         Application *app = (Application*)*it;
         Descriptor *desc = findDescriptor(app->GetDescriptors(),
-                Descriptor::SIMPLE_APPLICATION_LOCATION_DESCRIPTOR);
+                DescriptorFactory::SIMPLE_APPLICATION_LOCATION_DESCRIPTOR);
         ((SimpleApplicationLocationDescriptor*)desc)->SetInitialPath(init_path);
 
         desc = findDescriptor(app->GetDescriptors(),
-                Descriptor::TRANSPORT_PROTOCOL_DESCRIPTOR);
+                DescriptorFactory::TRANSPORT_PROTOCOL_DESCRIPTOR);
         ((TransportProtocolDescriptor*)desc)->SetBaseUrl(base_url);
     }
 }
@@ -147,7 +147,7 @@ void ApplicationInformationTableTranscoder::SetApplicationVisibility(const int v
     {
         Application *app = (Application*)*it;
         Descriptor *desc = findDescriptor(app->GetDescriptors(),
-                Descriptor::APPLICATION_DESCRIPTOR);
+                DescriptorFactory::APPLICATION_DESCRIPTOR);
         ((ApplicationDescriptor*)desc)->SetVisibility(value);
     }
 }
@@ -159,7 +159,7 @@ void ApplicationInformationTableTranscoder::SetApplicationVersion(const int majo
     {
         Application *app = (Application*)*it;
         Descriptor *desc = findDescriptor(app->GetDescriptors(),
-                Descriptor::APPLICATION_DESCRIPTOR);
+                DescriptorFactory::APPLICATION_DESCRIPTOR);
         ((ApplicationDescriptor*)desc)->SetApplicationVersion(major, minor, micro);
     }
 }
@@ -171,7 +171,7 @@ void ApplicationInformationTableTranscoder::GetApplicationVersion(int &major, in
     {
         Application *app = (Application*)*it;
         Descriptor *desc = findDescriptor(app->GetDescriptors(),
-                Descriptor::APPLICATION_DESCRIPTOR);
+                DescriptorFactory::APPLICATION_DESCRIPTOR);
         ((ApplicationDescriptor*)desc)->GetApplicationVersion(&major, &minor, &micro);
     }
 }
@@ -183,11 +183,11 @@ void ApplicationInformationTableTranscoder::GetApplicationUrl(const char **base_
     {
         Application *app = (Application*)*it;
         Descriptor *desc = findDescriptor(app->GetDescriptors(),
-                Descriptor::SIMPLE_APPLICATION_LOCATION_DESCRIPTOR);
+                DescriptorFactory::SIMPLE_APPLICATION_LOCATION_DESCRIPTOR);
         *init_path = ((SimpleApplicationLocationDescriptor*)desc)->GetInitialPath();
 
         desc = findDescriptor(app->GetDescriptors(),
-                Descriptor::TRANSPORT_PROTOCOL_DESCRIPTOR);
+                DescriptorFactory::TRANSPORT_PROTOCOL_DESCRIPTOR);
         *base_url = ((TransportProtocolDescriptor*)desc)->GetBaseUrl();
     }
 }
@@ -199,11 +199,11 @@ void ApplicationInformationTableTranscoder::SetTransportProtocolLabel(const char
     {
         Application *app = (Application*)*it;
         Descriptor *desc = findDescriptor(app->GetDescriptors(),
-                Descriptor::APPLICATION_DESCRIPTOR);
+                DescriptorFactory::APPLICATION_DESCRIPTOR);
         ((ApplicationDescriptor*)desc)->SetTransportProtocolLabel(label);
 
         desc = findDescriptor(app->GetDescriptors(),
-                Descriptor::TRANSPORT_PROTOCOL_DESCRIPTOR);
+                DescriptorFactory::TRANSPORT_PROTOCOL_DESCRIPTOR);
         ((TransportProtocolDescriptor*)desc)->SetTransportProtocolLabel((unsigned char)atoi(label));
     }
 }
@@ -235,7 +235,7 @@ void ApplicationInformationTableTranscoder::SetProtocolId(int value)
     {
         Application *app = (Application*)*it;
         Descriptor *desc = findDescriptor(app->GetDescriptors(),
-                                Descriptor::TRANSPORT_PROTOCOL_DESCRIPTOR);
+                                DescriptorFactory::TRANSPORT_PROTOCOL_DESCRIPTOR);
         ((TransportProtocolDescriptor*)desc)->SetProtocolId(value);
     }
 }
@@ -247,7 +247,7 @@ void ApplicationInformationTableTranscoder::SetRemoteConnection(const int value)
     {
         Application *app = (Application*)*it;
         Descriptor *desc = findDescriptor(app->GetDescriptors(),
-                                Descriptor::TRANSPORT_PROTOCOL_DESCRIPTOR);
+                                DescriptorFactory::TRANSPORT_PROTOCOL_DESCRIPTOR);
         ((TransportProtocolDescriptor*)desc)->SetRemoteConnection(value);
     }
 }
@@ -259,7 +259,7 @@ void ApplicationInformationTableTranscoder::SetOriginalNetworkId(const int value
     {
         Application *app = (Application*)*it;
         Descriptor *desc = findDescriptor(app->GetDescriptors(),
-                                Descriptor::TRANSPORT_PROTOCOL_DESCRIPTOR);
+                                DescriptorFactory::TRANSPORT_PROTOCOL_DESCRIPTOR);
         ((TransportProtocolDescriptor*)desc)->SetOriginalNetworkId(value);
     }
 }
@@ -271,7 +271,7 @@ void ApplicationInformationTableTranscoder::SetTransportStreamId(const int value
     {
         Application *app = (Application*)*it;
         Descriptor *desc = findDescriptor(app->GetDescriptors(),
-                                Descriptor::TRANSPORT_PROTOCOL_DESCRIPTOR);
+                                DescriptorFactory::TRANSPORT_PROTOCOL_DESCRIPTOR);
         ((TransportProtocolDescriptor*)desc)->SetTransportStreamId(value);
     }
 }
@@ -283,7 +283,7 @@ void ApplicationInformationTableTranscoder::SetServiceId(const int value)
     {
         Application *app = (Application*)*it;
         Descriptor *desc = findDescriptor(app->GetDescriptors(),
-                                Descriptor::TRANSPORT_PROTOCOL_DESCRIPTOR);
+                                DescriptorFactory::TRANSPORT_PROTOCOL_DESCRIPTOR);
         ((TransportProtocolDescriptor*)desc)->SetServiceId(value);
     }
 }
@@ -295,7 +295,7 @@ void ApplicationInformationTableTranscoder::SetComponentTag(const int value)
     {
         Application *app = (Application*)*it;
         Descriptor *desc = findDescriptor(app->GetDescriptors(),
-                                Descriptor::TRANSPORT_PROTOCOL_DESCRIPTOR);
+                                DescriptorFactory::TRANSPORT_PROTOCOL_DESCRIPTOR);
         ((TransportProtocolDescriptor*)desc)->SetComponentTag(value);
     }
 }

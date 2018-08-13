@@ -9,7 +9,7 @@ namespace dvb
 
 ApplicationRecordingDescriptor::ApplicationRecordingDescriptor()
 {
-    descriptor_tag = APPLICATION_RECORDING_DESCRIPTOR;
+    descriptor_tag = 0x06;
     descriptor_length = 0;
 
     scheduled_recording_flag = 0;
@@ -98,7 +98,7 @@ void ApplicationRecordingDescriptor::PrintDescriptor()
     SECTION_DEBUG("\n");
 }
 
-void ApplicationRecordingDescriptor::calcLength()
+void ApplicationRecordingDescriptor::updateDescriptorLength()
 {
     unsigned char temp_length = 0;
     for(int i=0;label_count;i++)

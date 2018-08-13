@@ -35,35 +35,35 @@ Descriptor* DescriptorFactory::CreateDescriptor(base::BitReadWriter *rw)
         /**
          * @note It is related in ETSI TS 102 809 v1.4.1
          **/
-        case Descriptor::APPLICATION_DESCRIPTOR:
+        case APPLICATION_DESCRIPTOR:
             return new ApplicationDescriptor(rw);
-        case Descriptor::APPLICATION_NAME_DESCRIPTOR:
+        case APPLICATION_NAME_DESCRIPTOR:
             return new ApplicationNameDescriptor(rw);
-        case Descriptor::APPLICATION_USAGE_DESCRIPTOR:
+        case APPLICATION_USAGE_DESCRIPTOR:
             return new ApplicationUsageDescriptor(rw);
-        case Descriptor::APPLICATION_RECORDING_DESCRIPTOR:
+        case APPLICATION_RECORDING_DESCRIPTOR:
        	    return new ApplicationRecordingDescriptor(rw);
-        case Descriptor::SIMPLE_APPLICATION_LOCATION_DESCRIPTOR:
+        case SIMPLE_APPLICATION_LOCATION_DESCRIPTOR:
             return new SimpleApplicationLocationDescriptor(rw);
-        case Descriptor::SIMPLE_APPLICATION_BOUNDARY_DESCRIPTOR:
+        case SIMPLE_APPLICATION_BOUNDARY_DESCRIPTOR:
             return new SimpleApplicationBoundaryDescriptor(rw);
-        case Descriptor::TRANSPORT_PROTOCOL_DESCRIPTOR:
+        case TRANSPORT_PROTOCOL_DESCRIPTOR:
             return new TransportProtocolDescriptor(rw);
-        case Descriptor::PARENTAL_RATING_DESCRIPTOR:
+        case PARENTAL_RATING_DESCRIPTOR:
        	    return new ParentalRatingDescriptor(rw);
-        case Descriptor::CONNECTION_REQUIREMENT_DESCRIPTOR:
+        case CONNECTION_REQUIREMENT_DESCRIPTOR:
             return new ConnectionRequirementDescriptor(rw);
 
         /**
          * @note It is related in IPTVFJ STD-0010 version 2.0
          **/
-        case Descriptor::APPLICATION_BOUNDARY_AND_PERMISSION_DESCRIPTOR:
+        case APPLICATION_BOUNDARY_AND_PERMISSION_DESCRIPTOR:
             return new ApplicationBoundaryAndPermissionDescriptor(rw);
-        case Descriptor::AUTOSTART_PRIORITY_DESCRIPTOR:
+        case AUTOSTART_PRIORITY_DESCRIPTOR:
             return new AutostartPriorityDescriptor(rw);
-        case Descriptor::CACHE_CONTROL_INFO_DESCRIPTOR:
+        case CACHE_CONTROL_INFO_DESCRIPTOR:
             return new CacheControlInfoDescriptor(rw);
-        case Descriptor::RANDOMIZED_LATENCY_DESCRIPTOR:
+        case RANDOMIZED_LATENCY_DESCRIPTOR:
             return new RandomizedLatencyDescriptor(rw);
 
         default:

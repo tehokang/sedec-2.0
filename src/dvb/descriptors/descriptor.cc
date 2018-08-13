@@ -1,4 +1,5 @@
 #include "base/macro.h"
+#include "base/bit_readwriter.h"
 #include "descriptors/descriptor.h"
 
 namespace sedec
@@ -9,7 +10,7 @@ namespace dvb
 
 Descriptor::Descriptor()
 {
-    descriptor_tag = UNKNOWN_DESCRIPTOR;
+    descriptor_tag = 0xff;
     descriptor_length = 0;
 }
 
@@ -22,24 +23,6 @@ Descriptor::Descriptor(base::BitReadWriter *rw)
 Descriptor::~Descriptor()
 {
 
-}
-
-int Descriptor::GetDescriptorTag()
-{
-    return descriptor_tag;
-}
-
-int Descriptor::GetDescriptorLength()
-{
-    calcLength();
-    return descriptor_length + DESCRIPTOR_HEADER_LENGTH;
-}
-
-void Descriptor::WriteDescriptor(base::BitReadWriter* rw)
-{
-    calcLength();
-    rw->Write_On_Buffer(descriptor_tag, 8);
-    rw->Write_On_Buffer(descriptor_length, 8);
 }
 
 UnknownDescriptor::UnknownDescriptor()
@@ -57,14 +40,6 @@ UnknownDescriptor::~UnknownDescriptor()
 
 }
 
-void UnknownDescriptor::PrintDescriptor()
-{
-    SECTION_DEBUG("\n");
-    SECTION_DEBUG("\tdescriptor_tag : 0x%02x (unknown descriptor) \n", descriptor_tag);
-    SECTION_DEBUG("\tdescriptor_length : 0x%x \n", descriptor_length);
-    SECTION_DEBUG("\n");
-}
-
-} // end of dvb namespace
+} // end of base namespace
 
 } // end of sedec namespace

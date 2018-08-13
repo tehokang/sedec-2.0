@@ -11,7 +11,7 @@ namespace dvb
 
 SimpleApplicationBoundaryDescriptor::SimpleApplicationBoundaryDescriptor()
 {
-    descriptor_tag = SIMPLE_APPLICATION_BOUNDARY_DESCRIPTOR;
+    descriptor_tag = 0x17;
     descriptor_length = 0;
 
     boundary_extension_count = 0;
@@ -57,7 +57,7 @@ void SimpleApplicationBoundaryDescriptor::PrintDescriptor()
     SECTION_DEBUG("\n");
 }
 
-void SimpleApplicationBoundaryDescriptor::calcLength()
+void SimpleApplicationBoundaryDescriptor::updateDescriptorLength()
 {
     // boundary_extension_count
     descriptor_length=1;

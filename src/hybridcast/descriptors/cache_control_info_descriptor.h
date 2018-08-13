@@ -44,7 +44,7 @@ public:
     unsigned int GetExpire_date() { return expire_date;}
 
 protected:
-    virtual void calcLength();
+    virtual void updateDescriptorLength() override;
 
     unsigned int application_size;
     unsigned char cache_priority;

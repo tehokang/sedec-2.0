@@ -31,7 +31,7 @@ public:
     virtual void PrintDescriptor();
 
 protected:
-    virtual void calcLength();
+    virtual void updateDescriptorLength() override;
 
     int country_code[64];
     unsigned char rating[64];

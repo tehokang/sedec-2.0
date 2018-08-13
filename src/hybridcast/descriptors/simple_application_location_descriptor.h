@@ -42,7 +42,7 @@ public:
     char* GetInitialPath(){ return initial_path_bytes;}
 
 protected:
-    virtual void calcLength();
+    virtual void updateDescriptorLength() override;
     char initial_path_bytes[256];
 };
 

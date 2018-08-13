@@ -9,7 +9,7 @@ namespace mpegh
 
 Descriptor::Descriptor()
 {
-    descriptor_tag = UNKNOWN_DESCRIPTOR;
+    descriptor_tag = 0xffff;
     descriptor_length = 0;
 }
 
@@ -24,20 +24,14 @@ Descriptor::~Descriptor()
 
 }
 
-int Descriptor::GetDescriptorTag()
-{
-    return descriptor_tag;
-}
-
 int Descriptor::GetDescriptorLength()
 {
-    calcLength();
-    return descriptor_length + DESCRIPTOR_HEADER_LENGTH;
+    updateDescriptorLength();
+    return descriptor_length + 3;
 }
 
 void Descriptor::WriteDescriptor(base::BitReadWriter* rw)
 {
-    calcLength();
     rw->Write_On_Buffer(descriptor_tag, 16);
     rw->Write_On_Buffer(descriptor_length, 8);
 }

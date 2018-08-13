@@ -3,6 +3,7 @@
 
 #include <list>
 #include "base/bit_readwriter.h"
+#include "descriptors/descriptor.h"
 
 using namespace std;
 
@@ -20,7 +21,6 @@ namespace dvb
     @{
 */
 
-class Descriptor;
 class Application
 {
 public:
@@ -54,7 +54,7 @@ public:
     list<Descriptor*>& GetDescriptors() { return application_descriptors;};
 
 private:
-    virtual void calcLength();
+    virtual void updateDescriptorLength();
 
     /* application identifier */
     int organization_id;

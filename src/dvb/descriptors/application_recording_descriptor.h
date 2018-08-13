@@ -3,8 +3,8 @@
 
 #include <list>
 #include <string.h>
-#include "descriptors/descriptor.h"
 #include "base/bit_readwriter.h"
+#include "descriptors/descriptor.h"
 
 namespace sedec
 {
@@ -45,7 +45,7 @@ public:
     int GetInitiatingReplayFlag() { return initiating_replay_flag;}
 
 protected:
-    virtual void calcLength();
+    virtual void updateDescriptorLength() override;
 
     int scheduled_recording_flag;
     int trick_mode_aware_flag;

@@ -9,7 +9,7 @@ namespace dvb
 
 ParentalRatingDescriptor::ParentalRatingDescriptor()
 {
-    descriptor_tag = PARENTAL_RATING_DESCRIPTOR;
+    descriptor_tag = 0x55;
     descriptor_length = 0;
     m_parent_rating_count = 0;
 
@@ -47,7 +47,7 @@ void ParentalRatingDescriptor::PrintDescriptor()
     SECTION_DEBUG("\n");
 }
 
-void ParentalRatingDescriptor::calcLength()
+void ParentalRatingDescriptor::updateDescriptorLength()
 {
     descriptor_length = m_parent_rating_count*4;
 }

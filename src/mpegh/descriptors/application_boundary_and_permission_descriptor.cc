@@ -10,7 +10,7 @@ namespace mpegh
 
 ApplicationBoundaryAndPermissionDescriptor::ApplicationBoundaryAndPermissionDescriptor()
 {
-    descriptor_tag = APPLICATION_BOUNDARY_AND_PERMISSION_DESCRIPTOR;
+    descriptor_tag = 0x802C;
     descriptor_length = 0;
 }
 
@@ -97,7 +97,7 @@ void ApplicationBoundaryAndPermissionDescriptor::PrintDescriptor()
     SECTION_DEBUG("\n");
 }
 
-void ApplicationBoundaryAndPermissionDescriptor::calcLength()
+void ApplicationBoundaryAndPermissionDescriptor::updateDescriptorLength()
 {
     int len = 0;
 

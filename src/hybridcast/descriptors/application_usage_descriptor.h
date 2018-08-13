@@ -34,7 +34,7 @@ public:
     unsigned char GetUsageType() { return usage_type;}
 
 protected:
-    virtual void calcLength();
+    virtual void updateDescriptorLength() override;
 
     unsigned char usage_type;
 };

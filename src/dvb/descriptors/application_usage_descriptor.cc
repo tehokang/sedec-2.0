@@ -9,7 +9,7 @@ namespace dvb
 
 ApplicationUsageDescriptor::ApplicationUsageDescriptor()
 {
-    descriptor_tag = APPLICATION_USAGE_DESCRIPTOR;
+    descriptor_tag = 0x16;
     descriptor_length = 0;
     usage_type = 0;
 }
@@ -33,7 +33,7 @@ void ApplicationUsageDescriptor::PrintDescriptor()
     SECTION_DEBUG("\n");
 }
 
-void ApplicationUsageDescriptor::calcLength()
+void ApplicationUsageDescriptor::updateDescriptorLength()
 {
     descriptor_length = 1;
 }

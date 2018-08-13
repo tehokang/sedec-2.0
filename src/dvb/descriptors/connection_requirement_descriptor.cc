@@ -10,7 +10,7 @@ namespace dvb
 
 ConnectionRequirementDescriptor::ConnectionRequirementDescriptor()
 {
-    descriptor_tag = CONNECTION_REQUIREMENT_DESCRIPTOR;
+    descriptor_tag = 0x72;
     descriptor_length = 0;
 
     IP_connection_requirement_flag = false;
@@ -40,7 +40,7 @@ void ConnectionRequirementDescriptor::PrintDescriptor()
     SECTION_DEBUG("\n");
 }
 
-void ConnectionRequirementDescriptor::calcLength()
+void ConnectionRequirementDescriptor::updateDescriptorLength()
 {
     descriptor_length = 3;
 }

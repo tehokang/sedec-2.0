@@ -11,7 +11,7 @@ namespace hybridcast
 
 ApplicationNameDescriptor::ApplicationNameDescriptor()
 {
-    descriptor_tag = APPLICATION_NAME_DESCRIPTOR;
+    descriptor_tag = 0x01;
     descriptor_length = 0;
     memset(ISO_639_language_code, 0x00, sizeof(ISO_639_language_code));
     application_name_length = 0;
@@ -62,7 +62,7 @@ void ApplicationNameDescriptor::PrintDescriptor()
     SECTION_DEBUG("\n");
 }
 
-void ApplicationNameDescriptor::calcLength()
+void ApplicationNameDescriptor::updateDescriptorLength()
 {
     descriptor_length = 4 + strlen((char*)application_name);
 }

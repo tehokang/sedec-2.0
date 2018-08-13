@@ -42,7 +42,7 @@ public:
     double GetRandomizationEndTime() { return randomization_end_time;}
 
 protected:
-    virtual void calcLength();
+    virtual void updateDescriptorLength() override;
 
     unsigned int range;
     unsigned int rate;

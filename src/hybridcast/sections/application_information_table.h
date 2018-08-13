@@ -53,10 +53,7 @@ protected:
     unsigned int application_loop_length;
     list<hybridcast::Application*> m_applications;
 
-    virtual void WriteSection();
-    virtual void SetSection();
-    virtual void CalcSectionLength();
-    virtual void decode();
+    virtual void __decode_section_body__();
 };
 
 /** @} */

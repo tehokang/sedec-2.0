@@ -35,7 +35,7 @@ public:
     char GetAutostartPriority() { return autostart_priority;}
 
 protected:
-    virtual void calcLength();
+    virtual void updateDescriptorLength() override;
 
     unsigned char autostart_priority;
 };

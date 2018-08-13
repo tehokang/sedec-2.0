@@ -42,6 +42,7 @@ set(SOURCE_FILES ${SOURCE_FILES}
   descriptors/transport_protocol_descriptor.cc
 
   sections/application_information_table.cc
+  sections/application_information_table_transcoder.cc
 )
 
 link_directories(

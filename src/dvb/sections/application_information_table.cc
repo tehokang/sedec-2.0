@@ -3,8 +3,9 @@
 #include <stdlib.h>
 
 #include "base/macro.h"
+#include "base/descriptor.h"
+
 #include "descriptor_factory.h"
-#include "descriptors/descriptor.h"
 #include "descriptors/application.h"
 #include "sections/application_information_table.h"
 
@@ -17,7 +18,7 @@ ApplicationInformationTable::ApplicationInformationTable()
 {
     m_section_name = strdup("ApplicationInformationTable");
 
-    table_id = DVB_APPLICATION_INFORMATION_TABLE;
+    table_id = 0x74;
     section_syntax_indicator = 0x01;
     section_length = 0;
     test_application_flag = 0;
@@ -34,7 +35,7 @@ ApplicationInformationTable::ApplicationInformationTable(unsigned char *raw_buff
 {
     m_section_name = strdup("ApplicationInformationTable");
 
-    decode();
+    __decode_section_body__();
 }
 
 
@@ -43,7 +44,7 @@ ApplicationInformationTable::ApplicationInformationTable(unsigned char *raw_buff
 {
     m_section_name = strdup("ApplicationInformationTable");
 
-    decode();
+    __decode_section_body__();
 }
 
 ApplicationInformationTable::~ApplicationInformationTable()
@@ -69,10 +70,9 @@ ApplicationInformationTable::~ApplicationInformationTable()
     m_common_descriptors.clear();
 }
 
-void ApplicationInformationTable::decode()
+void ApplicationInformationTable::__decode_section_body__()
 {
-    if(DVB_APPLICATION_INFORMATION_TABLE != table_id ||
-            4093 < section_length) return;
+    if ( 0x74 != table_id || 4093 < section_length ) return;
 
     test_application_flag = Read_On_Buffer(1);
     application_type = Read_On_Buffer(15);
@@ -103,11 +103,9 @@ void ApplicationInformationTable::decode()
 
 void ApplicationInformationTable::PrintSection()
 {
-    if(DVB_APPLICATION_INFORMATION_TABLE != table_id) return;
+    if ( 0x74 != table_id ) return;
     SECTION_DEBUG("= AIT Section's raw information is followings ===== \n");
-    SECTION_DEBUG("table_id : 0x%x \n", table_id);
-    SECTION_DEBUG("section_syntax_indicator : 0x%x \n", section_syntax_indicator);
-    SECTION_DEBUG("section_length : 0x%x (%d) \n", section_length, section_length);
+    Section::PrintSection();
     SECTION_DEBUG("test_application_flag : 0x%x \n", test_application_flag);
     SECTION_DEBUG("application_type : 0x%04x \n", application_type);
     SECTION_DEBUG("version_number : 0x%x \n", version_number);

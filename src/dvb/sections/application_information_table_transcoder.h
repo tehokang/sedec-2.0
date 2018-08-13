@@ -59,12 +59,12 @@ public:
     void SetApplications(const list<dvb::Application*> value);
 
 protected:
-    virtual void WriteSection();
-    virtual void SetSection();
-    virtual void CalcSectionLength();
+    virtual void __encode_write_section_body__() override;
+    virtual void __encode_preprare_section__() override;
+    virtual void __encode_update_section_length__() override;
 
 private:
-    dvb::Descriptor* findDescriptor(list<dvb::Descriptor*>descriptors, dvb::Descriptor::DESCRIPTOR_TAG tag);
+    Descriptor* findDescriptor(list<Descriptor*>descriptors, int tag);
 };
 
 /** @} */
