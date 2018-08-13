@@ -34,6 +34,13 @@ set(SOURCE_FILES ${SOURCE_FILES}
   descriptors/randomized_latency_descriptor.cc
   descriptors/simple_application_location_descriptor.cc
   descriptors/transport_protocol_descriptor.cc
+  descriptors/compression_type_descriptor.cc
+  descriptors/expire_descriptor.cc
+  descriptors/info_descriptor.cc
+  descriptors/linked_pu_descriptor.cc
+  descriptors/locked_cache_descriptor.cc
+  descriptors/type_descriptor.cc
+  descriptors/unlocked_cache_descriptor.cc
 
   sections/application_information_table.cc
 )

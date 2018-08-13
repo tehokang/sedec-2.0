@@ -11,7 +11,7 @@ namespace mpegh
 
 TransportProtocolDescriptor::TransportProtocolDescriptor()
 {
-    descriptor_tag = 0x802A;
+    descriptor_tag = 0x802a;
     descriptor_length = 0;
 
     protocol_id = 0;

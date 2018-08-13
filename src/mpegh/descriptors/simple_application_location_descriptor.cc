@@ -11,7 +11,7 @@ namespace mpegh
 
 SimpleApplicationLocationDescriptor::SimpleApplicationLocationDescriptor()
 {
-    descriptor_tag = 0x802B;
+    descriptor_tag = 0x802b;
     descriptor_length = 0;
     memset(initial_path_bytes, 0x00, sizeof(initial_path_bytes));
 }

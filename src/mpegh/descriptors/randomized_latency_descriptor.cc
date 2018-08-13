@@ -10,7 +10,7 @@ namespace mpegh
 
 RandomizedLatencyDescriptor::RandomizedLatencyDescriptor()
 {
-    descriptor_tag = 0x802F;
+    descriptor_tag = 0x802f;
     descriptor_length = 0;
     range = 0;
     rate = 0;

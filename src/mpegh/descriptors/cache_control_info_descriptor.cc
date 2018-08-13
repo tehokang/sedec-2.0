@@ -10,7 +10,7 @@ namespace mpegh
 
 CacheControlInfoDescriptor::CacheControlInfoDescriptor()
 {
-    descriptor_tag = 0x802E;
+    descriptor_tag = 0x802e;
     descriptor_length = 0;
     application_size = 0;
     cache_priority = 0;

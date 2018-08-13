@@ -10,7 +10,7 @@ namespace mpegh
 
 AutostartPriorityDescriptor::AutostartPriorityDescriptor()
 {
-    descriptor_tag = 0X802D;
+    descriptor_tag = 0x802d;
     descriptor_length = 0;
     autostart_priority = 0;
 }
