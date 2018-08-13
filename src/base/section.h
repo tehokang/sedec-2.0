@@ -1,7 +1,3 @@
-// Section.h: interface for the Section class.
-//
-//////////////////////////////////////////////////////////////////////
-
 #if !defined(__SECTION_H__)
 #define __SECTION_H__
 

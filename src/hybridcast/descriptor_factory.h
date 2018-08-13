@@ -1,6 +1,3 @@
-// descriptor_factory.h: interface for the DescriptorFactory class.
-//
-//////////////////////////////////////////////////////////////////////
 #if !defined __HYBRIDCAST_DESCRIPTOR_FACTORY_H__
 #define __HYBRIDCAST_DESCRIPTOR_FACTORY_H__
 

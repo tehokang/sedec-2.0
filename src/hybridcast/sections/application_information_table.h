@@ -1,7 +1,3 @@
-// DSISection.h: interface for the ApplicationInformationTable class.
-//
-//////////////////////////////////////////////////////////////////////
-
 #if !defined(__HC_AIT_SECTION_H__)
 #define __HC_AIT_SECTION_H__
 

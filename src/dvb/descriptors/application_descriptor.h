@@ -1,6 +1,3 @@
-// application_descriptor.h: interface for the ApplicationDescriptor class.
-//
-//////////////////////////////////////////////////////////////////////
 #if !defined __DVB_APPLICATION_DESCRIPTOR_H__
 #define __DVB_APPLICATION_DESCRIPTOR_H__
 

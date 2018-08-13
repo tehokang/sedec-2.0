@@ -1,6 +1,3 @@
-// Descriptor.h: interface for the Descriptor class.
-//
-//////////////////////////////////////////////////////////////////////
 #if !defined __DESCRIPTOR_H__
 #define __DESCRIPTOR_H__
 
