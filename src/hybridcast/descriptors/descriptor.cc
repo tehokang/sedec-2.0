@@ -39,6 +39,14 @@ UnknownDescriptor::~UnknownDescriptor()
 
 }
 
+void UnknownDescriptor::PrintDescriptor()
+{
+    SECTION_DEBUG("\n");
+    SECTION_DEBUG("\tdescriptor_tag : 0x%04x (unknown descriptor) \n", descriptor_tag);
+    SECTION_DEBUG("\tdescriptor_length : 0x%x \n", descriptor_length);
+    SECTION_DEBUG("\n");
+}
+
 } // end of hybridcast namespace
 
 } // end of sedec namespace

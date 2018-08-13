@@ -37,6 +37,7 @@ public:
     virtual ~UnknownDescriptor();
 
     virtual void PrintDescriptor();
+
 protected:
     virtual void updateDescriptorLength() override {};
 };

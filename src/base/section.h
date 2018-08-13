@@ -35,14 +35,6 @@ public:
     void PrintRawSection();
     virtual void PrintSection();
 
-    // static enum TABLE_ID
-    // {
-    //     DVB_APPLICATION_INFORMATION_TABLE = 0x74,
-    //     HC_APPLICATION_INFORMATION_TABLE = 0x74,
-    //     MH_APPLICATION_INFORMATION_TABLE = 0x9C,
-    //     UNKNOWN_TABLE = 0xff,
-    // }_SUPPORTED_TABLE_ID_;
-
 protected:
     /**
      * @warning PLEASE OVERRIDE TO PARSE YOUR SECTION TABLE
