@@ -2,9 +2,12 @@
 #include <stdlib.h>
 
 #include "base/macro.h"
+#include "mpegh/section_factory.h"
 #include "mpegh/sections/application_information_table.h"
 
 using namespace sedec;
+
+#define USE_SECTION_FACTORY 1
 
 int getFileLength(FILE *f)
 {
@@ -32,10 +35,16 @@ int main(int argc, char *argv[])
     unsigned char *raw_buffer = (unsigned char*)malloc(sizeof(unsigned char)*raw_buffer_length);
     if ( 0 < fread(raw_buffer, 1, raw_buffer_length, fp) )
     {
+#if USE_SECTION_FACTORY
+      mpegh::ApplicationInformationTable *ait =
+          static_cast<mpegh::ApplicationInformationTable*>
+          (mpegh::SectionFactory::CreateSection(raw_buffer));
+#else
       mpegh::ApplicationInformationTable *ait =
           new mpegh::ApplicationInformationTable(raw_buffer, raw_buffer_length);
-      ait->PrintSection();
+#endif
 
+      ait->PrintSection();
       delete ait;
       ait = nullptr;
     }
