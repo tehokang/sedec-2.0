@@ -23,8 +23,10 @@ base::Section* SectionFactory::CreateSection(unsigned char *raw_table)
          **/
         case APPLICATION_INFORMATION_TABLE:
             section = static_cast<base::Section*>(new ApplicationInformationTable(raw_table));
+            break;
         default:
             section = static_cast<base::Section*>(new base::UnknownSection(raw_table, table_length));
+            break;
     }
 
     return section;
