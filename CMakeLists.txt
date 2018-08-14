@@ -34,16 +34,13 @@ add_subdirectory(${CMAKE_SOURCE_DIR}/examples/decoder)
 #=======================================================================================
 # Build sources
 #=======================================================================================
-
+if (APPLE)
+  message("You're building on MACOSX")
+endif()
 
 #=====================================================================================
 # Install
 #=====================================================================================
-# file( GLOB_RECURSE LIBUSB_LIB_FILES ${LIBUSB_LIB}/libusb*.so* )
-# file(INSTALL ${LIBUSB_LIB_FILES} DESTINATION ${CMAKE_LIBRARY_OUTPUT_DIRECTORY} )
-
-# file( GLOB_RECURSE MYSPIN_LIB_FILES ${MYSPIN_LIB}/libmySPIN*.so* )
-# file(INSTALL ${MYSPIN_LIB_FILES} DESTINATION ${CMAKE_LIBRARY_OUTPUT_DIRECTORY} )
 install(
   DIRECTORY ${CMAKE_SOURCE_DIR}/src/base
   DESTINATION ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/include
