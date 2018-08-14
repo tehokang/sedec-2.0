@@ -26,8 +26,8 @@ public:
     CompressionTypeDescriptor(base::BitReadWriter *rw);
     virtual ~CompressionTypeDescriptor();
 
-    virtual void WriteDescriptor(base::BitReadWriter* rw);
-    virtual void PrintDescriptor();
+    virtual void WriteDescriptor(base::BitReadWriter* rw) override;
+    virtual void PrintDescriptor() override;
 
     /* Interface to encode (setter) */
     void SetCompressionType(unsigned int value) { compression_type = value; }

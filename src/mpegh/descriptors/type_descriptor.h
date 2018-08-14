@@ -28,8 +28,8 @@ public:
     TypeDescriptor(base::BitReadWriter *rw);
     virtual ~TypeDescriptor();
 
-    virtual void WriteDescriptor(base::BitReadWriter* rw);
-    virtual void PrintDescriptor();
+    virtual void WriteDescriptor(base::BitReadWriter* rw) override;
+    virtual void PrintDescriptor() override;
 
     /* Interface to encode (setter) */
     void SetTypeText(const char *type_text)

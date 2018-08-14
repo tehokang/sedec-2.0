@@ -41,8 +41,7 @@ LinkedPuDescriptor::~LinkedPuDescriptor()
 void LinkedPuDescriptor::PrintDescriptor()
 {
     SECTION_DEBUG("\n");
-    SECTION_DEBUG("\tdescriptor_tag : 0x%04x (linked_pu_descriptor)\n", descriptor_tag);
-    SECTION_DEBUG("\tdescriptor_length : 0x%x \n", descriptor_length);
+    Descriptor::PrintDescriptor("LinkedPuDescriptor");
 
     SECTION_DEBUG("\tnum_of_linked_PU : 0x%x \n",num_of_linked_PU);
     SECTION_DEBUG("\tlinked_PU_tag : %s \n",linked_PU_tag);

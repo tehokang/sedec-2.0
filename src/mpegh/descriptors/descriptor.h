@@ -36,7 +36,7 @@ public:
     UnknownDescriptor(base::BitReadWriter *rw);
     virtual ~UnknownDescriptor();
 
-    virtual void PrintDescriptor();
+    virtual void PrintDescriptor() override;
 
 protected:
     virtual void updateDescriptorLength() override {};

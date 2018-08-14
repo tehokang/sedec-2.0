@@ -53,12 +53,22 @@ link_directories(
 # Build sources
 #=======================================================================================
 add_library(${TARGET} SHARED ${SOURCE_FILES})
+
+if (APPLE)
+add_custom_command(
+  TARGET ${TARGET}
+  POST_BUILD
+  COMMAND ln -sf lib${TARGET}.dylib
+      ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/lib${MODULE_NAME}.dylib
+)
+elseif (LINUX)
 add_custom_command(
   TARGET ${TARGET}
   POST_BUILD
   COMMAND ln -sf lib${TARGET}.so
       ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/lib${MODULE_NAME}.so
 )
+endif()
 
 target_link_libraries(${TARGET}
   sedec-base

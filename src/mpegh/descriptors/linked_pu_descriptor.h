@@ -26,8 +26,8 @@ public:
     LinkedPuDescriptor(base::BitReadWriter *rw);
     virtual ~LinkedPuDescriptor();
 
-    virtual void WriteDescriptor(base::BitReadWriter* rw);
-    virtual void PrintDescriptor();
+    virtual void WriteDescriptor(base::BitReadWriter* rw) override;
+    virtual void PrintDescriptor() override;
 
     /* Interface to encode (setter) */
     void SetLinkedPUTag(char *value)
@@ -42,7 +42,7 @@ public:
     char *GetLinkedPUTag() { return linked_PU_tag;}
 
 protected:
-    virtual void updateDescriptorLength();
+    virtual void updateDescriptorLength() override;
 
     int num_of_linked_PU;
     char linked_PU_tag[256];

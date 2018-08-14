@@ -28,8 +28,8 @@ public:
     ApplicationDescriptor(base::BitReadWriter *rw);
     virtual ~ApplicationDescriptor();
 
-    virtual void WriteDescriptor(base::BitReadWriter* rw);
-    virtual void PrintDescriptor();
+    virtual void WriteDescriptor(base::BitReadWriter* rw) override;
+    virtual void PrintDescriptor() override;
 
     struct ApplicationProfile
     {

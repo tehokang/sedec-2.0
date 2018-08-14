@@ -41,8 +41,7 @@ UnlockedCacheDescriptor::~UnlockedCacheDescriptor()
 void UnlockedCacheDescriptor::PrintDescriptor()
 {
     SECTION_DEBUG("\n");
-    SECTION_DEBUG("\tdescriptor_tag : 0x%04x (unlocked_cache_descriptor)\n", descriptor_tag);
-    SECTION_DEBUG("\tdescriptor_length : 0x%x \n", descriptor_length);
+    Descriptor::PrintDescriptor("UnlockedCacheDescriptor");
 
     SECTION_DEBUG("\tnum_of_unlocked_cache_node : 0x%x \n",num_of_unlocked_cache_node);
     for (int i=0;i<num_of_unlocked_cache_node;i++)

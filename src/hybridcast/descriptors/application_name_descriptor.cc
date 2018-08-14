@@ -45,8 +45,8 @@ ApplicationNameDescriptor::~ApplicationNameDescriptor()
 void ApplicationNameDescriptor::PrintDescriptor()
 {
     SECTION_DEBUG("\n");
-    SECTION_DEBUG("\tdescriptor_tag : 0x%02x (application_name_descriptor)\n", descriptor_tag);
-    SECTION_DEBUG("\tdescriptor_length : 0x%x \n", descriptor_length);
+    Descriptor::PrintDescriptor("ApplicationNameDescriptor");
+
     for(int i=descriptor_length;i>0;)
     {
         SECTION_DEBUG("\tISO_639_languahe_code[0] : 0x%x(%c) \n",

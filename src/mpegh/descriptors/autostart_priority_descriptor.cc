@@ -28,8 +28,8 @@ AutostartPriorityDescriptor::~AutostartPriorityDescriptor()
 void AutostartPriorityDescriptor::PrintDescriptor()
 {
     SECTION_DEBUG("\n");
-    SECTION_DEBUG("\tdescriptor_tag : 0x%04x (autostart_priority_descriptor)\n", descriptor_tag);
-    SECTION_DEBUG("\tdescriptor_length : 0x%x \n", descriptor_length);
+    Descriptor::PrintDescriptor("AutostartPriorityDescriptor");
+
     SECTION_DEBUG("\tautostart_priority : 0x%x \n", autostart_priority);
     SECTION_DEBUG("\n");
 }

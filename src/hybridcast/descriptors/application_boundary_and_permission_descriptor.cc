@@ -72,8 +72,7 @@ ApplicationBoundaryAndPermissionDescriptor::~ApplicationBoundaryAndPermissionDes
 void ApplicationBoundaryAndPermissionDescriptor::PrintDescriptor()
 {
     SECTION_DEBUG("\n");
-    SECTION_DEBUG("\tdescriptor_tag : 0x%02x (application_boundary_and_permission_descriptor)\n", descriptor_tag);
-    SECTION_DEBUG("\tdescriptor_length : 0x%x \n", descriptor_length);
+    Descriptor::PrintDescriptor("ApplicationBoundaryAndPermissionDescriptor");
 
     for (std::list<ApplicationBoundaryAndPermission *>::iterator it=infos.begin();
             it != infos.end(); ++it)

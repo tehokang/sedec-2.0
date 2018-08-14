@@ -19,7 +19,6 @@ using namespace mpegh;
 
 ApplicationInformationTableTranscoder::ApplicationInformationTableTranscoder()
 {
-    m_section_name = strdup("ApplicationInformationTable");
 }
 
 ApplicationInformationTableTranscoder::ApplicationInformationTableTranscoder(unsigned char *raw_buffer)
@@ -37,10 +36,6 @@ ApplicationInformationTableTranscoder::ApplicationInformationTableTranscoder(uns
 
 ApplicationInformationTableTranscoder::~ApplicationInformationTableTranscoder()
 {
-    if(m_section_name) {
-        free(m_section_name);
-        m_section_name = NULL;
-    }
 }
 
 Descriptor* ApplicationInformationTableTranscoder::findDescriptor(list<Descriptor*>descriptors,

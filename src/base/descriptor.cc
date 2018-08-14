@@ -50,6 +50,14 @@ void Descriptor::PrintDescriptor()
     SECTION_DEBUG("\n");
 }
 
+void Descriptor::PrintDescriptor(string descriptor_name)
+{
+    SECTION_DEBUG("\n");
+    SECTION_DEBUG("\tdescriptor_tag : 0x%02x (%s) \n", descriptor_tag, descriptor_name.c_str());
+    SECTION_DEBUG("\tdescriptor_length : 0x%x \n", descriptor_length);
+    SECTION_DEBUG("\n");
+}
+
 UnknownDescriptor::UnknownDescriptor()
 {
 

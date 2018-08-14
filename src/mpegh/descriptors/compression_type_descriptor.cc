@@ -33,8 +33,7 @@ CompressionTypeDescriptor::~CompressionTypeDescriptor()
 void CompressionTypeDescriptor::PrintDescriptor()
 {
     SECTION_DEBUG("\n");
-    SECTION_DEBUG("\tdescriptor_tag : 0x%04x (compression_type_descriptor)\n", descriptor_tag);
-    SECTION_DEBUG("\tdescriptor_length : 0x%x \n", descriptor_length);
+    Descriptor::PrintDescriptor("CompressionTypeDescriptor");
 
     SECTION_DEBUG("\tcompression_type : 0x%x \n", compression_type);
     SECTION_DEBUG("\toriginal_size : 0x%x \n", original_size);

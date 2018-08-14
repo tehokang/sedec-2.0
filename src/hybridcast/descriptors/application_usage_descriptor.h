@@ -27,8 +27,8 @@ public:
     ApplicationUsageDescriptor(base::BitReadWriter *rw);
     virtual ~ApplicationUsageDescriptor();
 
-    virtual void WriteDescriptor(base::BitReadWriter* rw);
-    virtual void PrintDescriptor();
+    virtual void WriteDescriptor(base::BitReadWriter* rw) override;
+    virtual void PrintDescriptor() override;
 
     void SetUsageType(int value) { usage_type = value;}
     unsigned char GetUsageType() { return usage_type;}

@@ -28,8 +28,8 @@ public:
     AutostartPriorityDescriptor(base::BitReadWriter *rw);
     virtual ~AutostartPriorityDescriptor();
 
-    virtual void WriteDescriptor(base::BitReadWriter* rw);
-    virtual void PrintDescriptor();
+    virtual void WriteDescriptor(base::BitReadWriter* rw) override;
+    virtual void PrintDescriptor() override;
 
     void SetAutostartPriority(char value) { autostart_priority = value;}
     char GetAutostartPriority() { return autostart_priority;}

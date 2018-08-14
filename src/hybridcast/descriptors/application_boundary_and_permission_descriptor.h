@@ -44,8 +44,8 @@ public:
     ApplicationBoundaryAndPermissionDescriptor(base::BitReadWriter *rw);
     virtual ~ApplicationBoundaryAndPermissionDescriptor();
 
-    virtual void WriteDescriptor(base::BitReadWriter* rw);
-    virtual void PrintDescriptor();
+    virtual void WriteDescriptor(base::BitReadWriter* rw) override;
+    virtual void PrintDescriptor() override;
 
     int GetApplicationBoundaryAndPermissionCount()
     {

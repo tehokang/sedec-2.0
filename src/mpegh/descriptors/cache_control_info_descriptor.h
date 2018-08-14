@@ -28,8 +28,8 @@ public:
     CacheControlInfoDescriptor(base::BitReadWriter *rw);
     virtual ~CacheControlInfoDescriptor();
 
-    virtual void WriteDescriptor(base::BitReadWriter* rw);
-    virtual void PrintDescriptor();
+    virtual void WriteDescriptor(base::BitReadWriter* rw) override;
+    virtual void PrintDescriptor() override;
 
     void SetApplicationSize(unsigned int value) { application_size = value;}
     void SetCachePriority(unsigned char value) { cache_priority = value;}

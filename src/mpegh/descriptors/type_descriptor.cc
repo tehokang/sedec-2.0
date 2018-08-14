@@ -38,8 +38,8 @@ TypeDescriptor::~TypeDescriptor()
 void TypeDescriptor::PrintDescriptor()
 {
     SECTION_DEBUG("\n");
-    SECTION_DEBUG("\tdescriptor_tag : 0x%04x (type_descriptor)\n", descriptor_tag);
-    SECTION_DEBUG("\tdescriptor_length : 0x%x \n", descriptor_length);
+    Descriptor::PrintDescriptor("TypeDescriptor");
+
     SECTION_DEBUG("\ttext_char : %s \n", text_char);
     SECTION_DEBUG("\n");
 }

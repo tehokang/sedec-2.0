@@ -44,8 +44,8 @@ SimpleApplicationBoundaryDescriptor::~SimpleApplicationBoundaryDescriptor()
 void SimpleApplicationBoundaryDescriptor::PrintDescriptor()
 {
     SECTION_DEBUG("\n");
-    SECTION_DEBUG("\tdescriptor_tag : 0x%02x (simple_application_boundary_descriptor)\n", descriptor_tag);
-    SECTION_DEBUG("\tdescriptor_length : 0x%x \n", descriptor_length);
+    Descriptor::PrintDescriptor("SimpleApplicationBoundaryDescriptor");
+
     SECTION_DEBUG("\tboundary_extension_count : 0x%x \n", boundary_extension_count);
 
     for(int i=0;i<boundary_extension_count;i++)

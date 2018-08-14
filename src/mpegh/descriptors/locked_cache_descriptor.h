@@ -26,8 +26,8 @@ public:
     LockedCacheDescriptor(base::BitReadWriter *rw);
     virtual ~LockedCacheDescriptor();
 
-    virtual void WriteDescriptor(base::BitReadWriter* rw);
-    virtual void PrintDescriptor();
+    virtual void WriteDescriptor(base::BitReadWriter* rw) override;
+    virtual void PrintDescriptor() override;
 
     /* Interface to encode (setter) */
     void SetNodeTag(int value[], int length)
@@ -46,7 +46,7 @@ public:
     int GetNodeTag() { return node_tag[0];}
 
 protected:
-    virtual void updateDescriptorLength();
+    virtual void updateDescriptorLength() override;
 
     int num_of_locked_cache_node;
     int node_tag[128];

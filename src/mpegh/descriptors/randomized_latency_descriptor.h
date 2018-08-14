@@ -28,8 +28,8 @@ public:
     RandomizedLatencyDescriptor(base::BitReadWriter *rw);
     virtual ~RandomizedLatencyDescriptor();
 
-    virtual void WriteDescriptor(base::BitReadWriter* rw);
-    virtual void PrintDescriptor();
+    virtual void WriteDescriptor(base::BitReadWriter* rw) override;
+    virtual void PrintDescriptor() override;
 
     void SetRange(unsigned int value) { range = value;}
     void SetRate(unsigned int value) { rate = value;}

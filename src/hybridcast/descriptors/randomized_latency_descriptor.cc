@@ -35,8 +35,8 @@ RandomizedLatencyDescriptor::~RandomizedLatencyDescriptor()
 void RandomizedLatencyDescriptor::PrintDescriptor()
 {
     SECTION_DEBUG("\n");
-    SECTION_DEBUG("\tdescriptor_tag : 0x%02x (cache_control_info_descriptor)\n", descriptor_tag);
-    SECTION_DEBUG("\tdescriptor_length : 0x%x \n", descriptor_length);
+    Descriptor::PrintDescriptor("RandomizedLatencyDescriptor");
+
     SECTION_DEBUG("\trange : 0x%x \n", range);
     SECTION_DEBUG("\trate : 0x%x \n", rate);
     SECTION_DEBUG("\trandomization_end_time_flag : 0x%x \n", randomization_end_time_flag);

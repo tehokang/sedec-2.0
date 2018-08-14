@@ -26,8 +26,8 @@ public:
     UnlockedCacheDescriptor(base::BitReadWriter *rw);
     virtual ~UnlockedCacheDescriptor();
 
-    virtual void WriteDescriptor(base::BitReadWriter* rw);
-    virtual void PrintDescriptor();
+    virtual void WriteDescriptor(base::BitReadWriter* rw) override;
+    virtual void PrintDescriptor() override;
 
     /* Interface to encode (setter) */
     void SetNodeTag(int value[], int length)

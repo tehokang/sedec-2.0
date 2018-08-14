@@ -15,8 +15,6 @@ using namespace mpegh;
 
 ApplicationInformationTable::ApplicationInformationTable()
 {
-    m_section_name = strdup("ApplicationInformationTable");
-
     table_id = 0x9C;
     section_syntax_indicator = 0x01;
     section_length = 0;
@@ -31,8 +29,6 @@ ApplicationInformationTable::ApplicationInformationTable()
 ApplicationInformationTable::ApplicationInformationTable(unsigned char *raw_buffer)
     : Section(raw_buffer, (( raw_buffer[1] << 8 | raw_buffer[2] ) & 0x0fff ) + 3)
 {
-    m_section_name = strdup("ApplicationInformationTable");
-
     __decode_section_body__();
 }
 
@@ -40,18 +36,11 @@ ApplicationInformationTable::ApplicationInformationTable(unsigned char *raw_buff
 ApplicationInformationTable::ApplicationInformationTable(unsigned char *raw_buffer, unsigned int raw_length)
     : Section(raw_buffer, raw_length)
 {
-    m_section_name = strdup("ApplicationInformationTable");
-
     __decode_section_body__();
 }
 
 ApplicationInformationTable::~ApplicationInformationTable()
 {
-    if(m_section_name) {
-        free(m_section_name);
-        m_section_name = NULL;
-    }
-
     for (std::list<Descriptor*>::iterator it=m_common_descriptors.begin();
             it != m_common_descriptors.end(); ++it)
     {

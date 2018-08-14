@@ -1,6 +1,9 @@
 #if !defined __DESCRIPTOR_H__
 #define __DESCRIPTOR_H__
 
+#include <string>
+using namespace std;
+
 namespace sedec
 {
 /**
@@ -28,6 +31,7 @@ public:
 
     virtual void WriteDescriptor(BitReadWriter* rw);
     virtual void PrintDescriptor();
+    virtual void PrintDescriptor(string descriptor_name);
 
 protected:
     virtual void updateDescriptorLength() = 0;

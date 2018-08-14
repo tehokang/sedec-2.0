@@ -87,17 +87,6 @@ void Section::__encode_make_crc__()
 }
 
 
-void Section::SaveSection()
-{
-	FILE *fp = NULL;
-	fp = fopen(m_section_name, "wb");
-	if(fp)
-	{
-		fwrite(m_buffer, 1, m_buffer_length, fp);
-		fclose(fp);
-	}
-}
-
 void Section::SaveSection(char *filename)
 {
 	FILE *fp = NULL;
@@ -112,7 +101,7 @@ void Section::SaveSection(char *filename)
 void Section::PrintRawSection()
 {
 	int j=1;
-	SECTION_PRINT("#### %12s's Byte Align #### \n", m_section_name);
+	SECTION_PRINT("#### Section Byte Align #### \n");
 	SECTION_PRINT("%03d : ", j);
 	for(int i=0; i<m_buffer_length; i++)
 	{
@@ -134,8 +123,7 @@ int Section::GetSectionLen()
 
 void Section::PrintSection()
 {
-    SECTION_PRINT("===== [%s] Section's information ===== \n",
-				m_section_name == nullptr ? "": m_section_name);
+    SECTION_PRINT("===== Section's information ===== \n");
     SECTION_PRINT("table_id : 0x%x \n", table_id);
     SECTION_PRINT("section_syntax_indicator : 0x%x \n", section_syntax_indicator);
     SECTION_PRINT("section_length : 0x%x (%d) \n", section_length, section_length);

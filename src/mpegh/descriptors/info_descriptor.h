@@ -26,8 +26,8 @@ public:
     InfoDescriptor(base::BitReadWriter *rw);
     virtual ~InfoDescriptor();
 
-    virtual void WriteDescriptor(base::BitReadWriter* rw);
-    virtual void PrintDescriptor();
+    virtual void WriteDescriptor(base::BitReadWriter* rw) override;
+    virtual void PrintDescriptor() override;
 
     /* Interface to encode (setter) */
     void SetTextChar(char *value)

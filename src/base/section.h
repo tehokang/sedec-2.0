@@ -23,7 +23,6 @@ public:
     virtual ~Section();
 
     void EncodeSection();
-    void SaveSection();
     void SaveSection(char *filename);
     int GetSectionLen();
     unsigned char* GetSection();
@@ -52,7 +51,6 @@ protected:
     unsigned int checksum_CRC32;
     int m_buffer_length;
     unsigned char* m_buffer;
-    char *m_section_name;
 
     unsigned int table_id;
     unsigned int section_syntax_indicator;

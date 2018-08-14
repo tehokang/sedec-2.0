@@ -44,8 +44,7 @@ ExpireDescriptor::~ExpireDescriptor()
 void ExpireDescriptor::PrintDescriptor()
 {
     SECTION_DEBUG("\n");
-    SECTION_DEBUG("\tdescriptor_tag : 0x%04x (expire_descriptor)\n", descriptor_tag);
-    SECTION_DEBUG("\tdescriptor_length : 0x%x \n", descriptor_length);
+    Descriptor::PrintDescriptor("ExpireDescriptor");
 
     SECTION_DEBUG("\ttime_mode : 0x%x \n", time_mode);
 

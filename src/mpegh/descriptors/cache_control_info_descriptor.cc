@@ -36,8 +36,8 @@ CacheControlInfoDescriptor::~CacheControlInfoDescriptor()
 void CacheControlInfoDescriptor::PrintDescriptor()
 {
     SECTION_DEBUG("\n");
-    SECTION_DEBUG("\tdescriptor_tag : 0x%04x (cache_control_info_descriptor)\n", descriptor_tag);
-    SECTION_DEBUG("\tdescriptor_length : 0x%x \n", descriptor_length);
+    Descriptor::PrintDescriptor("CacheControlInfoDescriptor");
+
     SECTION_DEBUG("\tapplication_size : 0x%x \n", application_size);
     SECTION_DEBUG("\tcache_priority : 0x%x \n", cache_priority);
     SECTION_DEBUG("\tpackage_flag : 0x%x \n", package_flag);

@@ -45,8 +45,7 @@ InfoDescriptor::~InfoDescriptor()
 void InfoDescriptor::PrintDescriptor()
 {
     SECTION_DEBUG("\n");
-    SECTION_DEBUG("\tdescriptor_tag : 0x%04x (info_descriptor)\n", descriptor_tag);
-    SECTION_DEBUG("\tdescriptor_length : 0x%x \n", descriptor_length);
+    Descriptor::PrintDescriptor("InfoDescriptor");
 
     SECTION_DEBUG("\tISO_639_languahe_code[0] : 0x%x(%c) \n",
                 ISO_639_language_code[0],ISO_639_language_code[0]);
