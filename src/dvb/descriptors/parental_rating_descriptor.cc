@@ -37,8 +37,8 @@ ParentalRatingDescriptor::~ParentalRatingDescriptor()
 void ParentalRatingDescriptor::PrintDescriptor()
 {
     SECTION_DEBUG("\n");
-    SECTION_DEBUG("\tdescriptor_tag : 0x%02x (parental_rating_descriptor)\n", descriptor_tag);
-    SECTION_DEBUG("\tdescriptor_length : 0x%x \n", descriptor_length);
+    Descriptor::PrintDescriptor();
+
     for(int j=0;j<m_parent_rating_count;j++)
     {
         SECTION_DEBUG("\t country_code[%d] : 0x%x \n", j, country_code[j]);

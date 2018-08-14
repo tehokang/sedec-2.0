@@ -33,8 +33,8 @@ ConnectionRequirementDescriptor::~ConnectionRequirementDescriptor()
 void ConnectionRequirementDescriptor::PrintDescriptor()
 {
     SECTION_DEBUG("\n");
-    SECTION_DEBUG("\tdescriptor_tag : 0x%02x (connection_requirement_descriptor)\n", descriptor_tag);
-    SECTION_DEBUG("\tdescriptor_length : 0x%x \n", descriptor_length);
+    Descriptor::PrintDescriptor();
+
     SECTION_DEBUG("\tIP_connection_requirement_flag : %x \n", IP_connection_requirement_flag);
 
     SECTION_DEBUG("\n");

@@ -74,8 +74,8 @@ ApplicationRecordingDescriptor::~ApplicationRecordingDescriptor()
 void ApplicationRecordingDescriptor::PrintDescriptor()
 {
     SECTION_DEBUG("\n");
-    SECTION_DEBUG("\tdescriptor_tag : 0x%02x (application_recording_descriptor)\n", descriptor_tag);
-    SECTION_DEBUG("\tdescriptor_length : 0x%x \n", descriptor_length);
+    Descriptor::PrintDescriptor();
+
     SECTION_DEBUG("\tscheduled_recording_flag : 0x%x \n", scheduled_recording_flag);
     SECTION_DEBUG("\ttrick_mode_aware_flag : 0x%x \n", trick_mode_aware_flag);
     SECTION_DEBUG("\ttime_shift_flag : 0x%x \n", time_shift_flag);

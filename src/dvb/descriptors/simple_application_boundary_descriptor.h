@@ -27,8 +27,8 @@ public:
     SimpleApplicationBoundaryDescriptor(base::BitReadWriter *rw);
     virtual ~SimpleApplicationBoundaryDescriptor();
 
-    virtual void WriteDescriptor(base::BitReadWriter* rw);
-    virtual void PrintDescriptor();
+    virtual void WriteDescriptor(base::BitReadWriter* rw) override;
+    virtual void PrintDescriptor() override;
 
     /* Interface to encode (setter) */
     void SetBoundaryExtension(unsigned char ext_count,

@@ -27,8 +27,8 @@ public:
     ConnectionRequirementDescriptor(base::BitReadWriter *rw);
     virtual ~ConnectionRequirementDescriptor();
 
-    virtual void WriteDescriptor(base::BitReadWriter* rw);
-    virtual void PrintDescriptor();
+    virtual void WriteDescriptor(base::BitReadWriter* rw) override;
+    virtual void PrintDescriptor() override;
 
     /* Interface to decode (getter) */
     bool GetIPConnectionRequirementFlag(){ return IP_connection_requirement_flag;}

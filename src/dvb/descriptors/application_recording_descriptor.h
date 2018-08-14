@@ -27,8 +27,8 @@ public:
     ApplicationRecordingDescriptor(base::BitReadWriter *rw);
     virtual ~ApplicationRecordingDescriptor();
 
-    virtual void WriteDescriptor(base::BitReadWriter* rw);
-    virtual void PrintDescriptor();
+    virtual void WriteDescriptor(base::BitReadWriter* rw) override;
+    virtual void PrintDescriptor() override;
 
     void SetScheduledRecordingFlag(int value) { scheduled_recording_flag = value;}
     void SetTrickModeAwareFlag(int value){ trick_mode_aware_flag = value;}

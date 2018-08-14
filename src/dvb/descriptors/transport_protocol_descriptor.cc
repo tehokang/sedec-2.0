@@ -108,8 +108,8 @@ TransportProtocolDescriptor::~TransportProtocolDescriptor()
 void TransportProtocolDescriptor::PrintDescriptor()
 {
     SECTION_DEBUG("\n");
-    SECTION_DEBUG("\tdescriptor_tag : 0x%02x (transport_protocol_descriptor)\n", descriptor_tag);
-    SECTION_DEBUG("\tdescriptor_length : 0x%x \n", descriptor_length);
+    Descriptor::PrintDescriptor();
+
     SECTION_DEBUG("\tprotocol_id : %x \n", protocol_id);
     SECTION_DEBUG("\ttransport_protocol_label : %x \n", transport_protocol_label);
 

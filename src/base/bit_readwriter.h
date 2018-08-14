@@ -31,7 +31,6 @@ public:
 private:
     unsigned char*	m_szBuf;
     int		m_nPos;
-    int		m_nSize;
     int		m_nOutCnt;
     unsigned int m_byBuffer;
 };
