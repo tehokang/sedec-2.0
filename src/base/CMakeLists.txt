@@ -42,7 +42,7 @@ add_custom_command(
   COMMAND ln -sf lib${TARGET}.dylib
       ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/lib${MODULE_NAME}.dylib
 )
-elseif (LINUX)
+elseif (UNIX)
 add_custom_command(
   TARGET ${TARGET}
   POST_BUILD
