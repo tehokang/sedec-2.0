@@ -68,7 +68,7 @@ void Section::__encode_write_section_header__()
 void Section::EncodeSection()
 {
 	__encode_update_section_length__();
-	__encode_preprare_section__();
+  __encode_preprare_section__();
 
 	__encode_prepare_buffer__();
 	__encode_write_section_header__();
@@ -123,10 +123,18 @@ int Section::GetSectionLen()
 
 void Section::PrintSection()
 {
-    SECTION_PRINT("===== Section's information ===== \n");
-    SECTION_PRINT("table_id : 0x%x \n", table_id);
-    SECTION_PRINT("section_syntax_indicator : 0x%x \n", section_syntax_indicator);
-    SECTION_PRINT("section_length : 0x%x (%d) \n", section_length, section_length);
+	SECTION_PRINT("===== Section's information ===== \n");
+	SECTION_PRINT("table_id : 0x%x \n", table_id);
+	SECTION_PRINT("section_syntax_indicator : 0x%x \n", section_syntax_indicator);
+	SECTION_PRINT("section_length : 0x%x (%d) \n", section_length, section_length);
+}
+
+void Section::PrintSection(string section_name)
+{
+	SECTION_PRINT("===== Section's information ===== \n");
+	SECTION_PRINT("table_id : 0x%x (%s)\n", table_id, section_name.c_str());
+	SECTION_PRINT("section_syntax_indicator : 0x%x \n", section_syntax_indicator);
+	SECTION_PRINT("section_length : 0x%x (%d) \n", section_length, section_length);
 }
 
 UnknownSection::UnknownSection()

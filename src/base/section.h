@@ -2,6 +2,8 @@
 #define __SECTION_H__
 
 #include "bit_readwriter.h"
+#include <string>
+using namespace std;
 
 namespace sedec
 {
@@ -29,6 +31,7 @@ public:
 
     void PrintRawSection();
     virtual void PrintSection();
+    virtual void PrintSection(string section_name);
 
 protected:
     /**

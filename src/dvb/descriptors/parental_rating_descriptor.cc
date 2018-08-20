@@ -37,7 +37,7 @@ ParentalRatingDescriptor::~ParentalRatingDescriptor()
 void ParentalRatingDescriptor::PrintDescriptor()
 {
     SECTION_DEBUG("\n");
-    Descriptor::PrintDescriptor();
+    Descriptor::PrintDescriptor("ParentalRatingDescriptor");
 
     for(int j=0;j<m_parent_rating_count;j++)
     {

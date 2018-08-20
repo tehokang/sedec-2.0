@@ -74,7 +74,7 @@ ApplicationRecordingDescriptor::~ApplicationRecordingDescriptor()
 void ApplicationRecordingDescriptor::PrintDescriptor()
 {
     SECTION_DEBUG("\n");
-    Descriptor::PrintDescriptor();
+    Descriptor::PrintDescriptor("ApplicationRecordingDescriptor");
 
     SECTION_DEBUG("\tscheduled_recording_flag : 0x%x \n", scheduled_recording_flag);
     SECTION_DEBUG("\ttrick_mode_aware_flag : 0x%x \n", trick_mode_aware_flag);

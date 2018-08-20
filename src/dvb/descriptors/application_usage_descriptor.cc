@@ -27,7 +27,7 @@ ApplicationUsageDescriptor::~ApplicationUsageDescriptor()
 void ApplicationUsageDescriptor::PrintDescriptor()
 {
     SECTION_DEBUG("\n");
-    Descriptor::PrintDescriptor();
+    Descriptor::PrintDescriptor("ApplicationUsageDescriptor");
 
     SECTION_DEBUG("\tusage_type : 0x%x \n", usage_type);
     SECTION_DEBUG("\n");

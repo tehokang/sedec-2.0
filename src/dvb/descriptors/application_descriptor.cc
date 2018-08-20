@@ -54,7 +54,7 @@ ApplicationDescriptor::~ApplicationDescriptor()
 void ApplicationDescriptor::PrintDescriptor()
 {
     SECTION_DEBUG("\n");
-    Descriptor::PrintDescriptor();
+    Descriptor::PrintDescriptor("ApplicationDescriptor");
 
     SECTION_DEBUG("\tapplication_profiles_length : 0x%x \n", application_profiles_length);
     SECTION_DEBUG("\tapplication_profile : 0x%04x \n", application_profiles.applicaton_profile);

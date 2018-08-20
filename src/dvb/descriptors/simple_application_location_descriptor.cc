@@ -38,7 +38,7 @@ SimpleApplicationLocationDescriptor::~SimpleApplicationLocationDescriptor()
 void SimpleApplicationLocationDescriptor::PrintDescriptor()
 {
     SECTION_DEBUG("\n");
-    Descriptor::PrintDescriptor();
+    Descriptor::PrintDescriptor("SimpleApplicationLocationDescriptor");
     SECTION_DEBUG("\tinitial_path_bytes : %s \n", initial_path_bytes);
     SECTION_DEBUG("\n");
 }

@@ -45,7 +45,7 @@ ApplicationNameDescriptor::~ApplicationNameDescriptor()
 void ApplicationNameDescriptor::PrintDescriptor()
 {
     SECTION_DEBUG("\n");
-    Descriptor::PrintDescriptor();
+    Descriptor::PrintDescriptor("ApplicationNameDescriptor");
 
     for(int i=descriptor_length;i>0;)
     {
