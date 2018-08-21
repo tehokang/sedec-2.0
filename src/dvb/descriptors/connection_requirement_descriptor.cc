@@ -4,7 +4,6 @@
 namespace sedec
 {
 
-
 namespace dvb
 {
 

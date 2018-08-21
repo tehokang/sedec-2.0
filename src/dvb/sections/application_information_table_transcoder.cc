@@ -21,14 +21,17 @@ ApplicationInformationTableTranscoder::ApplicationInformationTableTranscoder()
 {
 }
 
-ApplicationInformationTableTranscoder::ApplicationInformationTableTranscoder(unsigned char *raw_buffer)
-    : ApplicationInformationTable(raw_buffer, (( raw_buffer[1] << 8 | raw_buffer[2] ) & 0x0fff ) + 3)
+ApplicationInformationTableTranscoder::ApplicationInformationTableTranscoder(
+      unsigned char *raw_buffer)
+    : ApplicationInformationTable(raw_buffer,
+            (( raw_buffer[1] << 8 | raw_buffer[2] ) & 0x0fff ) + 3)
 {
 
 }
 
 
-ApplicationInformationTableTranscoder::ApplicationInformationTableTranscoder(unsigned char *raw_buffer, unsigned int raw_length)
+ApplicationInformationTableTranscoder::ApplicationInformationTableTranscoder(
+      unsigned char *raw_buffer, unsigned int raw_length)
     : ApplicationInformationTable(raw_buffer, raw_length)
 {
 
@@ -38,8 +41,8 @@ ApplicationInformationTableTranscoder::~ApplicationInformationTableTranscoder()
 {
 }
 
-Descriptor* ApplicationInformationTableTranscoder::findDescriptor(list<Descriptor*>descriptors,
-        int tag)
+Descriptor* ApplicationInformationTableTranscoder::findDescriptor(
+    list<Descriptor*>descriptors, int tag)
 {
     for (std::list<Descriptor*>::iterator it=descriptors.begin();
         it != descriptors.end(); ++it)
@@ -119,7 +122,8 @@ void ApplicationInformationTableTranscoder::__encode_write_section_body__()
     }
 }
 
-void ApplicationInformationTableTranscoder::SetApplicationUrl(const char *base_url, const char *init_path)
+void ApplicationInformationTableTranscoder::SetApplicationUrl(
+        const char *base_url, const char *init_path)
 {
     for (std::list<Application*>::iterator it=m_applications.begin();
             it != m_applications.end(); ++it)
@@ -135,7 +139,8 @@ void ApplicationInformationTableTranscoder::SetApplicationUrl(const char *base_u
     }
 }
 
-void ApplicationInformationTableTranscoder::SetApplicationVisibility(const int value)
+void ApplicationInformationTableTranscoder::SetApplicationVisibility(
+        const int value)
 {
     for (std::list<Application*>::iterator it=m_applications.begin();
             it != m_applications.end(); ++it)
@@ -147,7 +152,8 @@ void ApplicationInformationTableTranscoder::SetApplicationVisibility(const int v
     }
 }
 
-void ApplicationInformationTableTranscoder::SetApplicationVersion(const int major, const int minor, const int micro)
+void ApplicationInformationTableTranscoder::SetApplicationVersion(
+        const int major, const int minor, const int micro)
 {
     for (std::list<Application*>::iterator it=m_applications.begin();
         it != m_applications.end(); ++it)
@@ -159,7 +165,8 @@ void ApplicationInformationTableTranscoder::SetApplicationVersion(const int majo
     }
 }
 
-void ApplicationInformationTableTranscoder::GetApplicationVersion(int &major, int &minor, int &micro)
+void ApplicationInformationTableTranscoder::GetApplicationVersion(
+        int &major, int &minor, int &micro)
 {
     for (std::list<Application*>::iterator it=m_applications.begin();
             it != m_applications.end(); ++it)
@@ -171,7 +178,8 @@ void ApplicationInformationTableTranscoder::GetApplicationVersion(int &major, in
     }
 }
 
-void ApplicationInformationTableTranscoder::GetApplicationUrl(const char **base_url, const char **init_path)
+void ApplicationInformationTableTranscoder::GetApplicationUrl(
+        const char **base_url, const char **init_path)
 {
     for (std::list<Application*>::iterator it=m_applications.begin();
             it != m_applications.end(); ++it)
@@ -187,7 +195,8 @@ void ApplicationInformationTableTranscoder::GetApplicationUrl(const char **base_
     }
 }
 
-void ApplicationInformationTableTranscoder::SetTransportProtocolLabel(const char *label)
+void ApplicationInformationTableTranscoder::SetTransportProtocolLabel(
+        const char *label)
 {
     for (std::list<Application*>::iterator it=m_applications.begin();
             it != m_applications.end(); ++it)
@@ -199,7 +208,8 @@ void ApplicationInformationTableTranscoder::SetTransportProtocolLabel(const char
 
         desc = findDescriptor(app->GetDescriptors(),
                 DescriptorFactory::TRANSPORT_PROTOCOL_DESCRIPTOR);
-        ((TransportProtocolDescriptor*)desc)->SetTransportProtocolLabel((unsigned char)atoi(label));
+        ((TransportProtocolDescriptor*)desc)->SetTransportProtocolLabel(
+                (unsigned char)atoi(label));
     }
 }
 
@@ -230,7 +240,7 @@ void ApplicationInformationTableTranscoder::SetProtocolId(int value)
     {
         Application *app = (Application*)*it;
         Descriptor *desc = findDescriptor(app->GetDescriptors(),
-                                DescriptorFactory::TRANSPORT_PROTOCOL_DESCRIPTOR);
+                DescriptorFactory::TRANSPORT_PROTOCOL_DESCRIPTOR);
         ((TransportProtocolDescriptor*)desc)->SetProtocolId(value);
     }
 }
@@ -295,7 +305,8 @@ void ApplicationInformationTableTranscoder::SetComponentTag(const int value)
     }
 }
 
-void ApplicationInformationTableTranscoder::SetCommonDescriptors(list<Descriptor*> value)
+void ApplicationInformationTableTranscoder::SetCommonDescriptors(
+        list<Descriptor*> value)
 {
     common_descriptors_length = 0;
     for (list<Descriptor*>::iterator it=value.begin();
@@ -307,7 +318,8 @@ void ApplicationInformationTableTranscoder::SetCommonDescriptors(list<Descriptor
     m_common_descriptors = value;
 }
 
-void ApplicationInformationTableTranscoder::SetApplications(list<Application*> value)
+void ApplicationInformationTableTranscoder::SetApplications(
+        list<Application*> value)
 {
     application_loop_length = 0;
     for (list<Application*>::iterator it=value.begin();

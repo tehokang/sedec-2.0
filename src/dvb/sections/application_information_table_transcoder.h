@@ -27,7 +27,8 @@ class ApplicationInformationTableTranscoder : public ApplicationInformationTable
 public:
     ApplicationInformationTableTranscoder();
     ApplicationInformationTableTranscoder(unsigned char *raw_buffer);
-    ApplicationInformationTableTranscoder(unsigned char *raw_buffer, unsigned int raw_length);
+    ApplicationInformationTableTranscoder(
+            unsigned char *raw_buffer, unsigned int raw_length);
     virtual ~ApplicationInformationTableTranscoder();
 
     /* Scenario Interfaces to encode (setter) */

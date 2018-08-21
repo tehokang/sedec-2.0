@@ -35,7 +35,8 @@ ApplicationInformationTable::ApplicationInformationTable(unsigned char *raw_buff
 }
 
 
-ApplicationInformationTable::ApplicationInformationTable(unsigned char *raw_buffer, unsigned int raw_length)
+ApplicationInformationTable::ApplicationInformationTable(
+        unsigned char *raw_buffer, unsigned int raw_length)
     : Section(raw_buffer, raw_length)
 {
     __decode_section_body__();
