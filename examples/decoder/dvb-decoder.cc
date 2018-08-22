@@ -2,8 +2,8 @@
 #include <stdlib.h>
 
 #include "base/macro.h"
-#include "dvb/section_factory.h"
-#include "dvb/sections/application_information_table.h"
+#include "dvb/table_factory.h"
+#include "dvb/tables/application_information_table.h"
 
 using namespace sedec;
 

@@ -2,8 +2,8 @@
 #include <stdlib.h>
 
 #include "base/macro.h"
-#include "mpegh/section_factory.h"
-#include "mpegh/sections/application_information_table.h"
+#include "mpegh/table_factory.h"
+#include "mpegh/tables/application_information_table.h"
 
 using namespace sedec;
 

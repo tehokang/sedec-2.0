@@ -2,8 +2,8 @@
 #include <stdlib.h>
 
 #include "base/macro.h"
-#include "hybridcast/section_factory.h"
-#include "hybridcast/sections/application_information_table.h"
+#include "hybridcast/table_factory.h"
+#include "hybridcast/tables/application_information_table.h"
 
 using namespace sedec;
 
