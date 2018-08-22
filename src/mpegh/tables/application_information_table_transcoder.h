@@ -31,9 +31,9 @@ public:
     virtual ~ApplicationInformationTableTranscoder();
 
 protected:
-    virtual void __encode_write_section_body__() override;
-    virtual void __encode_preprare_section__() override;
-    virtual void __encode_update_section_length__() override;
+    virtual void __encode_write_table_body__() override;
+    virtual void __encode_preprare_table__() override;
+    virtual void __encode_update_table_length__() override;
 
 private:
     Descriptor* findDescriptor(

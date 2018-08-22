@@ -24,21 +24,21 @@ public:
     Table(unsigned char* raw_buffer, unsigned int raw_length);
     virtual ~Table();
 
-    void EncodeSection();
-    void SaveSection(char *filename);
+    void EncodeTable();
+    void SaveTable(char *filename);
     int GetSectionLen();
     unsigned char* GetSection();
 
-    void PrintRawSection();
-    virtual void PrintSection();
-    virtual void PrintSection(string section_name);
+    void PrintRawTable();
+    virtual void PrintTable();
+    virtual void PrintTable(string section_name);
 
 protected:
     /**
      * @warning PLEASE OVERRIDE TO PARSE YOUR SECTION TABLE
      * and this call have to be called in your section's constructor.
      */
-    virtual void __decode_section_body__() = 0;
+    virtual void __decode_table_body__() = 0;
 
     /**
      * @note Please override followings if you want to modify original data with custom data
@@ -46,9 +46,9 @@ protected:
      * - __encode_preprare_section__
      * - __encode_update_section_length__
      */
-    virtual void __encode_write_section_body__() {};
-    virtual void __encode_preprare_section__() {};
-    virtual void __encode_update_section_length__() {};
+    virtual void __encode_write_table_body__() {};
+    virtual void __encode_preprare_table__() {};
+    virtual void __encode_update_table_length__() {};
 
     unsigned char* m_crc;
     unsigned int checksum_CRC32;
@@ -60,10 +60,10 @@ protected:
     unsigned int section_length;
 
 private:
-    void __decode_section_header__();
+    void __decode_table_header__();
 
     void __encode_prepare_buffer__();
-    void __encode_write_section_header__();
+    void __encode_write_table_header__();
     void __encode_make_crc__();
 };
 
@@ -73,7 +73,7 @@ public:
     UnknownSection();
     UnknownSection(unsigned char* raw_buffer, unsigned int raw_length);
     virtual ~UnknownSection();
-    virtual void __decode_section_body__() override;
+    virtual void __decode_table_body__() override;
 
 protected:
     virtual void updateDescriptorLength(){};

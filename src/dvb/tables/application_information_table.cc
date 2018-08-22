@@ -31,7 +31,7 @@ ApplicationInformationTable::ApplicationInformationTable()
 ApplicationInformationTable::ApplicationInformationTable(unsigned char *raw_buffer)
     : Table(raw_buffer, (( raw_buffer[1] << 8 | raw_buffer[2] ) & 0x0fff ) + 3)
 {
-    __decode_section_body__();
+    __decode_table_body__();
 }
 
 
@@ -39,7 +39,7 @@ ApplicationInformationTable::ApplicationInformationTable(
         unsigned char *raw_buffer, unsigned int raw_length)
     : Table(raw_buffer, raw_length)
 {
-    __decode_section_body__();
+    __decode_table_body__();
 }
 
 ApplicationInformationTable::~ApplicationInformationTable()
@@ -60,7 +60,7 @@ ApplicationInformationTable::~ApplicationInformationTable()
     common_descriptors.clear();
 }
 
-void ApplicationInformationTable::__decode_section_body__()
+void ApplicationInformationTable::__decode_table_body__()
 {
     test_application_flag = Read_On_Buffer(1);
     application_type = Read_On_Buffer(15);
@@ -89,10 +89,10 @@ void ApplicationInformationTable::__decode_section_body__()
     checksum_CRC32 = Read_On_Buffer(32);
 }
 
-void ApplicationInformationTable::PrintSection()
+void ApplicationInformationTable::PrintTable()
 {
     SECTION_DEBUG("= AIT Section's raw information is followings ===== \n");
-    Table::PrintSection();
+    Table::PrintTable();
     SECTION_DEBUG("test_application_flag : 0x%x \n", test_application_flag);
     SECTION_DEBUG("application_type : 0x%04x \n", application_type);
     SECTION_DEBUG("version_number : 0x%x \n", version_number);

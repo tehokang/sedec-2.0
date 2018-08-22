@@ -23,7 +23,7 @@ Table::Table(unsigned char* raw_buffer, unsigned int raw_length)
     memcpy(m_buffer, raw_buffer, m_buffer_length);
     SetBuffer(m_buffer);
 
-    __decode_section_header__();
+    __decode_table_header__();
 }
 
 Table::~Table()
@@ -34,7 +34,7 @@ Table::~Table()
     }
 }
 
-void Table::__decode_section_header__()
+void Table::__decode_table_header__()
 {
     table_id = Read_On_Buffer(8);
     section_syntax_indicator = Read_On_Buffer(1);
@@ -55,7 +55,7 @@ void Table::__encode_prepare_buffer__()
     SetBuffer(m_buffer);
 }
 
-void Table::__encode_write_section_header__()
+void Table::__encode_write_table_header__()
 {
     Write_On_Buffer( table_id, 8 );
     Write_On_Buffer( section_syntax_indicator, 1);
@@ -64,14 +64,14 @@ void Table::__encode_write_section_header__()
     Write_On_Buffer( section_length, 12);
 }
 
-void Table::EncodeSection()
+void Table::EncodeTable()
 {
-    __encode_update_section_length__();
-    __encode_preprare_section__();
+    __encode_update_table_length__();
+    __encode_preprare_table__();
 
     __encode_prepare_buffer__();
-    __encode_write_section_header__();
-    __encode_write_section_body__();
+    __encode_write_table_header__();
+    __encode_write_table_body__();
     __encode_make_crc__();
 }
 
@@ -86,7 +86,7 @@ void Table::__encode_make_crc__()
 }
 
 
-void Table::SaveSection(char *filename)
+void Table::SaveTable(char *filename)
 {
     FILE *fp = NULL;
     fp = fopen(filename, "wb");
@@ -97,7 +97,7 @@ void Table::SaveSection(char *filename)
     }
 }
 
-void Table::PrintRawSection()
+void Table::PrintRawTable()
 {
     int j=1;
     SECTION_PRINT("#### Section Byte Align #### \n");
@@ -120,7 +120,7 @@ int Table::GetSectionLen()
     return m_buffer_length;
 }
 
-void Table::PrintSection()
+void Table::PrintTable()
 {
     SECTION_PRINT("===== Section's information ===== \n");
     SECTION_PRINT("table_id : 0x%x \n", table_id);
@@ -128,7 +128,7 @@ void Table::PrintSection()
     SECTION_PRINT("section_length : 0x%x (%d) \n", section_length, section_length);
 }
 
-void Table::PrintSection(string section_name)
+void Table::PrintTable(string section_name)
 {
     SECTION_PRINT("===== Section's information ===== \n");
     SECTION_PRINT("table_id : 0x%x (%s)\n", table_id, section_name.c_str());
@@ -157,7 +157,7 @@ UnknownSection::~UnknownSection()
      */
 }
 
-void UnknownSection::__decode_section_body__()
+void UnknownSection::__decode_table_body__()
 {
     /**
      * @note NOTHING TO DO

@@ -51,7 +51,7 @@ Descriptor* ApplicationInformationTableTranscoder::findDescriptor(list<Descripto
     return NULL;
 }
 
-void ApplicationInformationTableTranscoder::__encode_preprare_section__()
+void ApplicationInformationTableTranscoder::__encode_preprare_table__()
 {
     common_descriptors_length = 0;
     for (std::list<Descriptor*>::iterator it=m_common_descriptors.begin();
@@ -70,7 +70,7 @@ void ApplicationInformationTableTranscoder::__encode_preprare_section__()
     }
 }
 
-void ApplicationInformationTableTranscoder::__encode_update_section_length__()
+void ApplicationInformationTableTranscoder::__encode_update_table_length__()
 {
     section_length = 0;
     for (std::list<Descriptor*>::iterator it=m_common_descriptors.begin();
@@ -89,7 +89,7 @@ void ApplicationInformationTableTranscoder::__encode_update_section_length__()
     section_length += 13; /* 9 + crc(4) */
 }
 
-void ApplicationInformationTableTranscoder::__encode_write_section_body__()
+void ApplicationInformationTableTranscoder::__encode_write_table_body__()
 {
     Write_On_Buffer(application_type, 16);
     Write_On_Buffer(0x03, 2);

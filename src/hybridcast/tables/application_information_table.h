@@ -25,7 +25,7 @@ public:
     ApplicationInformationTable(unsigned char *raw_buffer);
     ApplicationInformationTable(unsigned char *raw_buffer, unsigned int raw_length);
     virtual ~ApplicationInformationTable();
-    virtual void PrintSection();
+    virtual void PrintTable();
 
     /* Interfaces to get information (e.g. getter) */
     unsigned int GetApplicationType() const { return application_type;}
@@ -49,7 +49,7 @@ protected:
     unsigned int application_loop_length;
     list<hybridcast::Application*> m_applications;
 
-    virtual void __decode_section_body__();
+    virtual void __decode_table_body__();
 };
 
 /** @} */
