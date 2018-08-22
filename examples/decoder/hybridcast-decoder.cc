@@ -44,7 +44,7 @@ int main(int argc, char *argv[])
           new hybridcast::ApplicationInformationTable(raw_buffer, raw_buffer_length);
 #endif
 
-      ait->PrintSection();
+      ait->PrintTable();
       delete ait;
       ait = nullptr;
     }

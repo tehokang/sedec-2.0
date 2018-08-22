@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
       dvb::ApplicationInformationTable *ait =
           new dvb::ApplicationInformationTable(raw_buffer, raw_buffer_length);
 #endif
-      ait->PrintSection();
+      ait->PrintTable();
 
       delete ait;
       ait = nullptr;
