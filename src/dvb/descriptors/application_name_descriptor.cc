@@ -24,13 +24,13 @@ ApplicationNameDescriptor::ApplicationNameDescriptor(base::BitReadWriter *rw) : 
     application_name_length = 0;
     memset(application_name, 0x00, sizeof(application_name));
 
-    for(int i=descriptor_length;i>0;)
+    for ( int i=descriptor_length;i>0; )
     {
         ISO_639_language_code[0] = rw->Read_On_Buffer(8);
         ISO_639_language_code[1] = rw->Read_On_Buffer(8);
         ISO_639_language_code[2] = rw->Read_On_Buffer(8);
         application_name_length = rw->Read_On_Buffer(8);
-        for(int j=0;j<application_name_length;j++)
+        for ( int j=0;j<application_name_length;j++ )
         {
             application_name[j] = rw->Read_On_Buffer(8);
         }
@@ -47,7 +47,7 @@ void ApplicationNameDescriptor::PrintDescriptor()
     SECTION_DEBUG("\n");
     Descriptor::PrintDescriptor("ApplicationNameDescriptor");
 
-    for(int i=descriptor_length;i>0;)
+    for ( int i=descriptor_length;i>0; )
     {
         SECTION_DEBUG("\tISO_639_languahe_code[0] : 0x%x(%c) \n",
                         ISO_639_language_code[0],ISO_639_language_code[0]);
@@ -71,14 +71,14 @@ void ApplicationNameDescriptor::WriteDescriptor(base::BitReadWriter *rw)
 {
     Descriptor::WriteDescriptor(rw);
 
-    if( 0 < descriptor_length )
+    if ( 0 < descriptor_length )
     {
         rw->Write_On_Buffer(ISO_639_language_code[0], 8);
         rw->Write_On_Buffer(ISO_639_language_code[1], 8);
         rw->Write_On_Buffer(ISO_639_language_code[2], 8);
         rw->Write_On_Buffer(application_name_length, 8);
 
-        for(int i=0;i<application_name_length;i++)
+        for ( int i=0;i<application_name_length;i++ )
         {
             rw->Write_On_Buffer(application_name[i], 8);
         }

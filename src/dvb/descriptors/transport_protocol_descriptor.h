@@ -46,34 +46,34 @@ public:
     }
     void SetRemoteConnection(unsigned char value)
     {
-        oc_transport.remote_connection = value;
+        transport.remote_connection = value;
     }
     void SetOriginalNetworkId(unsigned int value)
     {
-        oc_transport.original_network_id = value;
+        transport.original_network_id = value;
     }
     void SetTransportStreamId(unsigned int value)
     {
-        oc_transport.transport_stream_id = value;
+        transport.transport_stream_id = value;
     }
     void SetServiceId(unsigned int value)
     {
-        oc_transport.service_id = value;
+        transport.service_id = value;
     }
     void SetComponentTag(unsigned char value)
     {
-        oc_transport.component_tag = value;
+        transport.component_tag = value;
     }
 
     /* Interface to decode (getter) */
     char* GetBaseUrl() { return channel_transport.URL_base_byte;}
     unsigned int GetProtocolId() { return protocol_id;}
     unsigned char GetTransportProtocolLabel() { return transport_protocol_label;}
-    unsigned char GetRemoteConnection() { return oc_transport.remote_connection;}
-    unsigned int GetOriginalNetworkId() { return oc_transport.original_network_id;}
-    unsigned int GetTransportStreamId() { return oc_transport.transport_stream_id;}
-    unsigned int GetServiceId(){ return oc_transport.service_id;}
-    unsigned char GetComponentTag(){ return oc_transport.component_tag;}
+    unsigned char GetRemoteConnection() { return transport.remote_connection;}
+    unsigned int GetOriginalNetworkId() { return transport.original_network_id;}
+    unsigned int GetTransportStreamId() { return transport.transport_stream_id;}
+    unsigned int GetServiceId(){ return transport.service_id;}
+    unsigned char GetComponentTag(){ return transport.component_tag;}
 
 protected:
     virtual void updateDescriptorLength() override;
@@ -92,23 +92,14 @@ protected:
     /**
      * @note It is related in IPTVFJ STD-0010 version 2.0
      **/
-    struct DCtransport{
+    struct Transport{
         unsigned char remote_connection;
         unsigned int original_network_id;
         unsigned int transport_stream_id;
         unsigned int service_id;
         unsigned char component_tag;
     };
-    DCtransport dc_transport;
-
-    struct OCtransport{
-        unsigned char remote_connection;
-        unsigned int original_network_id;
-        unsigned int transport_stream_id;
-        unsigned int service_id;
-        unsigned char component_tag;
-    };
-    OCtransport oc_transport;
+    Transport transport;
 
     struct UrlExtension {
         unsigned char URL_extension_length;

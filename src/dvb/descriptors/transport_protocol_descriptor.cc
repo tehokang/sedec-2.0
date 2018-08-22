@@ -18,13 +18,13 @@ TransportProtocolDescriptor::TransportProtocolDescriptor()
 
     protocol_id = 0;
     transport_protocol_label = 0;
-    memset(&oc_transport, 0x00, sizeof(OCtransport));
+    memset(&transport, 0x00, sizeof(Transport));
     memset(&channel_transport, 0x00, sizeof(Channeltransport));
 
     /**
      * @note It is related in IPTVFJ STD-0010 version 2.0
      **/
-    memset(&dc_transport, 0x00, sizeof(DCtransport));
+    memset(&transport, 0x00, sizeof(Transport));
 }
 
 TransportProtocolDescriptor::TransportProtocolDescriptor(base::BitReadWriter *rw) : Descriptor(rw)
@@ -38,16 +38,16 @@ TransportProtocolDescriptor::TransportProtocolDescriptor(base::BitReadWriter *rw
         {
             case PROTOCOL_OBJECT_CAROUSEL:
                 {
-                    memset(&oc_transport, 0x00, sizeof(OCtransport));
-                    oc_transport.remote_connection = rw->Read_On_Buffer(1);
+                    memset(&transport, 0x00, sizeof(Transport));
+                    transport.remote_connection = rw->Read_On_Buffer(1);
                     rw->Skip_On_Buffer(7);
-                    if(0x01 == oc_transport.remote_connection)
+                    if(0x01 == transport.remote_connection)
                     {
-                        oc_transport.original_network_id = rw->Read_On_Buffer(16);
-                        oc_transport.transport_stream_id = rw->Read_On_Buffer(16);
-                        oc_transport.service_id = rw->Read_On_Buffer(16);
+                        transport.original_network_id = rw->Read_On_Buffer(16);
+                        transport.transport_stream_id = rw->Read_On_Buffer(16);
+                        transport.service_id = rw->Read_On_Buffer(16);
                     }
-                    oc_transport.component_tag = rw->Read_On_Buffer(8);
+                    transport.component_tag = rw->Read_On_Buffer(8);
                 }
                 break;
             case PROTOCOL_HTTP:
@@ -77,16 +77,16 @@ TransportProtocolDescriptor::TransportProtocolDescriptor(base::BitReadWriter *rw
              **/
             case PROTOCOL_DATA_CAROUSEL:
                 {
-                    memset(&dc_transport, 0x00, sizeof(DCtransport));
-                    dc_transport.remote_connection = rw->Read_On_Buffer(1);
+                    memset(&transport, 0x00, sizeof(Transport));
+                    transport.remote_connection = rw->Read_On_Buffer(1);
                     rw->Skip_On_Buffer(7);
-                    if(0x01 == dc_transport.remote_connection)
+                    if(0x01 == transport.remote_connection)
                     {
-                        dc_transport.original_network_id = rw->Read_On_Buffer(16);
-                        dc_transport.transport_stream_id = rw->Read_On_Buffer(16);
-                        dc_transport.service_id = rw->Read_On_Buffer(16);
+                        transport.original_network_id = rw->Read_On_Buffer(16);
+                        transport.transport_stream_id = rw->Read_On_Buffer(16);
+                        transport.service_id = rw->Read_On_Buffer(16);
                     }
-                    dc_transport.component_tag = rw->Read_On_Buffer(8);
+                    transport.component_tag = rw->Read_On_Buffer(8);
                 }
                 break;
             default:
@@ -117,14 +117,14 @@ void TransportProtocolDescriptor::PrintDescriptor()
     {
         case PROTOCOL_OBJECT_CAROUSEL:
             {
-                SECTION_DEBUG("\tremote_connection : %x \n", oc_transport.remote_connection);
-                if(0x01 == oc_transport.remote_connection)
+                SECTION_DEBUG("\tremote_connection : %x \n", transport.remote_connection);
+                if(0x01 == transport.remote_connection)
                 {
-                    SECTION_DEBUG("\toriginal_network_id : %x \n", oc_transport.original_network_id);
-                    SECTION_DEBUG("\ttransport_stream_id : %x \n", oc_transport.transport_stream_id);
-                    SECTION_DEBUG("\tservice_id : %x \n", oc_transport.service_id);
+                    SECTION_DEBUG("\toriginal_network_id : %x \n", transport.original_network_id);
+                    SECTION_DEBUG("\ttransport_stream_id : %x \n", transport.transport_stream_id);
+                    SECTION_DEBUG("\tservice_id : %x \n", transport.service_id);
                 }
-                SECTION_DEBUG("\tcomponent_tag : %x \n", oc_transport.component_tag);
+                SECTION_DEBUG("\tcomponent_tag : %x \n", transport.component_tag);
             }
             break;
         case PROTOCOL_HTTP:
@@ -147,14 +147,14 @@ void TransportProtocolDescriptor::PrintDescriptor()
          **/
         case PROTOCOL_DATA_CAROUSEL:
             {
-                SECTION_DEBUG("\tremote_connection : %x \n", dc_transport.remote_connection);
-                if(0x01 == dc_transport.remote_connection)
+                SECTION_DEBUG("\tremote_connection : %x \n", transport.remote_connection);
+                if(0x01 == transport.remote_connection)
                 {
-                    SECTION_DEBUG("\toriginal_network_id : %x \n", dc_transport.original_network_id);
-                    SECTION_DEBUG("\ttransport_stream_id : %x \n", dc_transport.transport_stream_id);
-                    SECTION_DEBUG("\tservice_id : %x \n", dc_transport.service_id);
+                    SECTION_DEBUG("\toriginal_network_id : %x \n", transport.original_network_id);
+                    SECTION_DEBUG("\ttransport_stream_id : %x \n", transport.transport_stream_id);
+                    SECTION_DEBUG("\tservice_id : %x \n", transport.service_id);
                 }
-                SECTION_DEBUG("\tcomponent_tag : %x \n", dc_transport.component_tag);
+                SECTION_DEBUG("\tcomponent_tag : %x \n", transport.component_tag);
             }
             break;
         default:
@@ -169,7 +169,7 @@ void TransportProtocolDescriptor::updateDescriptorLength()
     switch(protocol_id)
     {
         case PROTOCOL_OBJECT_CAROUSEL:
-            if(0x01 == oc_transport.remote_connection)
+            if(0x01 == transport.remote_connection)
                 selector_byte_length = 8;
             else
                 selector_byte_length = 2;
@@ -190,7 +190,7 @@ void TransportProtocolDescriptor::updateDescriptorLength()
          * @note It is related in IPTVFJ STD-0010 version 2.0
          **/
         case PROTOCOL_DATA_CAROUSEL:
-            if(0x01 == dc_transport.remote_connection)
+            if(0x01 == transport.remote_connection)
                 selector_byte_length = 8;
             else
                 selector_byte_length = 2;
@@ -211,15 +211,15 @@ void TransportProtocolDescriptor::WriteDescriptor(base::BitReadWriter *rw)
     switch(protocol_id)
     {
         case PROTOCOL_OBJECT_CAROUSEL:
-            rw->Write_On_Buffer(oc_transport.remote_connection, 1);
+            rw->Write_On_Buffer(transport.remote_connection, 1);
             rw->Write_On_Buffer(0x7f, 7);
-            if(0x01 == oc_transport.remote_connection)
+            if(0x01 == transport.remote_connection)
             {
-                rw->Write_On_Buffer(oc_transport.original_network_id, 16);
-                rw->Write_On_Buffer(oc_transport.transport_stream_id, 16);
-                rw->Write_On_Buffer(oc_transport.service_id, 16);
+                rw->Write_On_Buffer(transport.original_network_id, 16);
+                rw->Write_On_Buffer(transport.transport_stream_id, 16);
+                rw->Write_On_Buffer(transport.service_id, 16);
             }
-            rw->Write_On_Buffer(oc_transport.component_tag, 8);
+            rw->Write_On_Buffer(transport.component_tag, 8);
             break;
         case PROTOCOL_HTTP:
             rw->Write_On_Buffer(channel_transport.URL_base_length, 8);
@@ -240,15 +240,15 @@ void TransportProtocolDescriptor::WriteDescriptor(base::BitReadWriter *rw)
          * @note It is related in IPTVFJ STD-0010 version 2.0
          **/
         case PROTOCOL_DATA_CAROUSEL:
-            rw->Write_On_Buffer(dc_transport.remote_connection, 1);
+            rw->Write_On_Buffer(transport.remote_connection, 1);
             rw->Write_On_Buffer(0x7f, 7);
-            if(0x01 == dc_transport.remote_connection)
+            if(0x01 == transport.remote_connection)
             {
-                rw->Write_On_Buffer(dc_transport.original_network_id, 16);
-                rw->Write_On_Buffer(dc_transport.transport_stream_id, 16);
-                rw->Write_On_Buffer(dc_transport.service_id, 16);
+                rw->Write_On_Buffer(transport.original_network_id, 16);
+                rw->Write_On_Buffer(transport.transport_stream_id, 16);
+                rw->Write_On_Buffer(transport.service_id, 16);
             }
-            rw->Write_On_Buffer(dc_transport.component_tag, 8);
+            rw->Write_On_Buffer(transport.component_tag, 8);
             break;
         default:
             break;

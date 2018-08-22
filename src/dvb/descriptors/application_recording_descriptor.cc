@@ -42,10 +42,10 @@ ApplicationRecordingDescriptor::ApplicationRecordingDescriptor(base::BitReadWrit
     rw->Skip_On_Buffer(2);
     label_count = rw->Read_On_Buffer(8);
 
-    for(int i=0; i<label_count;i++)
+    for ( int i=0; i<label_count;i++ )
     {
         label_length[i] = rw->Read_On_Buffer(8);
-        for(int j=0;label_length[i];j++)
+        for ( int j=0;j<label_length[i];j++ )
         {
             label_char[i][j] = rw->Read_On_Buffer(8);
         }
@@ -53,12 +53,12 @@ ApplicationRecordingDescriptor::ApplicationRecordingDescriptor(base::BitReadWrit
         rw->Skip_On_Buffer(6);
     }
     component_tag_list_length = rw->Read_On_Buffer(8);
-    for(int i=0; component_tag_list_length;i++)
+    for ( int i=0; component_tag_list_length;i++ )
     {
         component_tag[i] = rw->Read_On_Buffer(8);
     }
     private_length = rw->Read_On_Buffer(8);
-    for(int i=0;i<private_length;i++)
+    for ( int i=0;i<private_length;i++ )
     {
         __private[i] = rw->Read_On_Buffer(8);
     }
@@ -91,7 +91,7 @@ void ApplicationRecordingDescriptor::PrintDescriptor()
     }
 
     SECTION_DEBUG("\tcomponent_tag_list_length : 0x%x \n", component_tag_list_length);
-    for(int i=0; component_tag_list_length;i++)
+    for(int i=0; i<component_tag_list_length;i++)
     {
         SECTION_DEBUG("\tcomponent_tag : 0x%x \n", component_tag[i]);
     }
@@ -124,10 +124,10 @@ void ApplicationRecordingDescriptor::WriteDescriptor(base::BitReadWriter *rw)
     rw->Write_On_Buffer(0x0, 2);
     rw->Write_On_Buffer(label_count, 8);
 
-    for(int i=0; i<label_count;i++)
+    for ( int i=0; i<label_count;i++ )
     {
         rw->Write_On_Buffer(label_length[i], 8);
-        for(int j=0;label_length[i];j++)
+        for ( int j=0; j<label_length[i];j++ )
         {
             rw->Write_On_Buffer(label_char[i][j], 8);
         }
@@ -135,12 +135,12 @@ void ApplicationRecordingDescriptor::WriteDescriptor(base::BitReadWriter *rw)
         rw->Write_On_Buffer(0x0, 6);
     }
     rw->Write_On_Buffer(component_tag_list_length, 8);
-    for(int i=0; component_tag_list_length;i++)
+    for ( int i=0; i<component_tag_list_length;i++ )
     {
         rw->Write_On_Buffer(component_tag[i], 8);
     }
     rw->Write_On_Buffer(private_length, 8);
-    for(int i=0;i<private_length;i++)
+    for ( int i=0;i<private_length;i++ )
     {
         rw->Write_On_Buffer(__private[i], 8);
     }

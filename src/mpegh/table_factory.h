@@ -1,7 +1,7 @@
 #if !defined __MPEGH_SECTION_FACTORY_H__
 #define __MPEGH_SECTION_FACTORY_H__
 
-#include "base/section.h"
+#include "base/table.h"
 
 namespace sedec
 {
@@ -19,7 +19,7 @@ namespace mpegh
 class SectionFactory
 {
 public:
-    static base::Section* CreateSection(unsigned char *raw_table);
+    static base::Table* CreateSection(unsigned char *raw_table);
 
     enum TableId
     {

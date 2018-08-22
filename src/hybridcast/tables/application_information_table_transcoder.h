@@ -5,7 +5,7 @@
 
 #include "descriptors/application.h"
 #include "descriptors/descriptor.h"
-#include "sections/application_information_table.h"
+#include "tables/application_information_table.h"
 
 using namespace std;
 

@@ -1,21 +1,22 @@
-#include <string.h>
-#include <cstddef>
-#include <stdlib.h>
-
 #include "base/macro.h"
 #include "descriptor_factory.h"
 #include "descriptors/descriptor.h"
 #include "descriptors/application.h"
-#include "sections/application_information_table.h"
+#include "tables/application_information_table.h"
+
+#include <string.h>
+#include <cstddef>
+#include <stdlib.h>
 
 namespace sedec
 {
 
-using namespace mpegh;
+namespace hybridcast
+{
 
 ApplicationInformationTable::ApplicationInformationTable()
 {
-    table_id = 0x9C;
+    table_id = 0x74;
     section_syntax_indicator = 0x01;
     section_length = 0;
     application_type = 0; // hbbtv : 0x0010 | oipf : 0x0011
@@ -27,14 +28,14 @@ ApplicationInformationTable::ApplicationInformationTable()
 }
 
 ApplicationInformationTable::ApplicationInformationTable(unsigned char *raw_buffer)
-    : Section(raw_buffer, (( raw_buffer[1] << 8 | raw_buffer[2] ) & 0x0fff ) + 3)
+    : Table(raw_buffer, (( raw_buffer[1] << 8 | raw_buffer[2] ) & 0x0fff ) + 3)
 {
     __decode_section_body__();
 }
 
 
 ApplicationInformationTable::ApplicationInformationTable(unsigned char *raw_buffer, unsigned int raw_length)
-    : Section(raw_buffer, raw_length)
+    : Table(raw_buffer, raw_length)
 {
     __decode_section_body__();
 }
@@ -59,7 +60,7 @@ ApplicationInformationTable::~ApplicationInformationTable()
 
 void ApplicationInformationTable::__decode_section_body__()
 {
-    if ( 0x9C != table_id || 4093 < section_length) return;
+    if ( 0x74 != table_id || 4093 < section_length ) return;
 
     application_type = Read_On_Buffer(16);
     Skip_On_Buffer(2);
@@ -89,7 +90,7 @@ void ApplicationInformationTable::__decode_section_body__()
 
 void ApplicationInformationTable::PrintSection()
 {
-    if ( 0x9C != table_id ) return;
+    if ( 0x74 != table_id ) return;
     SECTION_DEBUG("= AIT Section's raw information is followings ===== \n");
     SECTION_DEBUG("table_id : 0x%x \n", table_id);
     SECTION_DEBUG("section_syntax_indicator : 0x%x \n", section_syntax_indicator);
@@ -125,4 +126,7 @@ void ApplicationInformationTable::PrintSection()
     SECTION_DEBUG("====================================== \n\n");
 }
 
+} // end of hybridcast namespace
+
 } // end of sedec namespace
+

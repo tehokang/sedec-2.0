@@ -25,7 +25,7 @@ ApplicationDescriptor::ApplicationDescriptor()
 ApplicationDescriptor::ApplicationDescriptor(base::BitReadWriter *rw) : Descriptor(rw)
 {
     application_profiles_length = rw->Read_On_Buffer(8);
-    for(int i=application_profiles_length;i>0;i-=5)
+    for ( int i=application_profiles_length;i>0;i-=5 )
     {
         application_profiles.applicaton_profile = rw->Read_On_Buffer(16);
         application_profiles.version_major = rw->Read_On_Buffer(8);
@@ -40,7 +40,7 @@ ApplicationDescriptor::ApplicationDescriptor(base::BitReadWriter *rw) : Descript
     transport_protocol_label_length =
         descriptor_length - 1 - (application_profiles_length>0 ? 5:0) - 2;
     memset(transport_protocol_label, 0x00, sizeof(transport_protocol_label));
-    for(int i=0;i<transport_protocol_label_length;i++)
+    for ( int i=0;i<transport_protocol_label_length;i++ )
     {
         transport_protocol_label[i] = rw->Read_On_Buffer(8);
     }
@@ -82,7 +82,7 @@ void ApplicationDescriptor::WriteDescriptor(base::BitReadWriter *rw)
     Descriptor::WriteDescriptor(rw);
 
     rw->Write_On_Buffer(application_profiles_length, 8);
-    for(int i=application_profiles_length;i>0;i-=5)
+    for ( int i=application_profiles_length;i>0;i-=5 )
     {
         rw->Write_On_Buffer(application_profiles.applicaton_profile, 16);
         rw->Write_On_Buffer(application_profiles.version_major, 8);
@@ -94,7 +94,7 @@ void ApplicationDescriptor::WriteDescriptor(base::BitReadWriter *rw)
     rw->Write_On_Buffer(0x1f, 5);
     rw->Write_On_Buffer(application_priority, 8);
 
-    for(int i=0;i<transport_protocol_label_length;i++)
+    for ( int i=0;i<transport_protocol_label_length;i++ )
     {
         rw->Write_On_Buffer(transport_protocol_label[i], 8);
     }

@@ -57,16 +57,16 @@ Descriptor* ApplicationInformationTableTranscoder::findDescriptor(
 void ApplicationInformationTableTranscoder::__encode_preprare_section__()
 {
     common_descriptors_length = 0;
-    for (std::list<Descriptor*>::iterator it=m_common_descriptors.begin();
-            it != m_common_descriptors.end(); ++it)
+    for (std::list<Descriptor*>::iterator it=common_descriptors.begin();
+            it != common_descriptors.end(); ++it)
     {
         Descriptor *desc = (Descriptor*)*it;
         common_descriptors_length+=desc->GetDescriptorLength();
     }
 
     application_loop_length = 0;
-    for (std::list<Application*>::iterator it=m_applications.begin();
-            it != m_applications.end(); ++it)
+    for (std::list<Application*>::iterator it=applications.begin();
+            it != applications.end(); ++it)
     {
         Application *app = (Application*)*it;
         application_loop_length += app->GetApplicationLength();
@@ -76,15 +76,15 @@ void ApplicationInformationTableTranscoder::__encode_preprare_section__()
 void ApplicationInformationTableTranscoder::__encode_update_section_length__()
 {
     section_length = 0;
-    for (std::list<Descriptor*>::iterator it=m_common_descriptors.begin();
-            it != m_common_descriptors.end(); ++it)
+    for (std::list<Descriptor*>::iterator it=common_descriptors.begin();
+            it != common_descriptors.end(); ++it)
     {
         Descriptor *desc = (Descriptor*)*it;
         section_length += desc->GetDescriptorLength();
     }
 
-    for (std::list<Application*>::iterator it=m_applications.begin();
-            it != m_applications.end(); ++it)
+    for (std::list<Application*>::iterator it=applications.begin();
+            it != applications.end(); ++it)
     {
         Application *app = (Application*)*it;
         section_length += app->GetApplicationLength();
@@ -104,8 +104,8 @@ void ApplicationInformationTableTranscoder::__encode_write_section_body__()
     Write_On_Buffer(0x0f, 4);
     Write_On_Buffer(common_descriptors_length, 12);
 
-    for (std::list<Descriptor*>::iterator it=m_common_descriptors.begin();
-            it != m_common_descriptors.end(); ++it)
+    for (std::list<Descriptor*>::iterator it=common_descriptors.begin();
+            it != common_descriptors.end(); ++it)
     {
         Descriptor *desc = (Descriptor*)*it;
         desc->WriteDescriptor(this);
@@ -114,8 +114,8 @@ void ApplicationInformationTableTranscoder::__encode_write_section_body__()
     Write_On_Buffer(0x0f, 4);
     Write_On_Buffer(application_loop_length, 12);
 
-    for (std::list<Application*>::iterator it=m_applications.begin();
-            it != m_applications.end(); ++it)
+    for (std::list<Application*>::iterator it=applications.begin();
+            it != applications.end(); ++it)
     {
         Application *app = (Application*)*it;
         app->WriteApplication(this);
@@ -125,8 +125,8 @@ void ApplicationInformationTableTranscoder::__encode_write_section_body__()
 void ApplicationInformationTableTranscoder::SetApplicationUrl(
         const char *base_url, const char *init_path)
 {
-    for (std::list<Application*>::iterator it=m_applications.begin();
-            it != m_applications.end(); ++it)
+    for (std::list<Application*>::iterator it=applications.begin();
+            it != applications.end(); ++it)
     {
         Application *app = (Application*)*it;
         Descriptor *desc = findDescriptor(app->GetDescriptors(),
@@ -142,8 +142,8 @@ void ApplicationInformationTableTranscoder::SetApplicationUrl(
 void ApplicationInformationTableTranscoder::SetApplicationVisibility(
         const int value)
 {
-    for (std::list<Application*>::iterator it=m_applications.begin();
-            it != m_applications.end(); ++it)
+    for (std::list<Application*>::iterator it=applications.begin();
+            it != applications.end(); ++it)
     {
         Application *app = (Application*)*it;
         Descriptor *desc = findDescriptor(app->GetDescriptors(),
@@ -155,8 +155,8 @@ void ApplicationInformationTableTranscoder::SetApplicationVisibility(
 void ApplicationInformationTableTranscoder::SetApplicationVersion(
         const int major, const int minor, const int micro)
 {
-    for (std::list<Application*>::iterator it=m_applications.begin();
-        it != m_applications.end(); ++it)
+    for (std::list<Application*>::iterator it=applications.begin();
+        it != applications.end(); ++it)
     {
         Application *app = (Application*)*it;
         Descriptor *desc = findDescriptor(app->GetDescriptors(),
@@ -168,8 +168,8 @@ void ApplicationInformationTableTranscoder::SetApplicationVersion(
 void ApplicationInformationTableTranscoder::GetApplicationVersion(
         int &major, int &minor, int &micro)
 {
-    for (std::list<Application*>::iterator it=m_applications.begin();
-            it != m_applications.end(); ++it)
+    for (std::list<Application*>::iterator it=applications.begin();
+            it != applications.end(); ++it)
     {
         Application *app = (Application*)*it;
         Descriptor *desc = findDescriptor(app->GetDescriptors(),
@@ -181,8 +181,8 @@ void ApplicationInformationTableTranscoder::GetApplicationVersion(
 void ApplicationInformationTableTranscoder::GetApplicationUrl(
         const char **base_url, const char **init_path)
 {
-    for (std::list<Application*>::iterator it=m_applications.begin();
-            it != m_applications.end(); ++it)
+    for (std::list<Application*>::iterator it=applications.begin();
+            it != applications.end(); ++it)
     {
         Application *app = (Application*)*it;
         Descriptor *desc = findDescriptor(app->GetDescriptors(),
@@ -198,8 +198,8 @@ void ApplicationInformationTableTranscoder::GetApplicationUrl(
 void ApplicationInformationTableTranscoder::SetTransportProtocolLabel(
         const char *label)
 {
-    for (std::list<Application*>::iterator it=m_applications.begin();
-            it != m_applications.end(); ++it)
+    for (std::list<Application*>::iterator it=applications.begin();
+            it != applications.end(); ++it)
     {
         Application *app = (Application*)*it;
         Descriptor *desc = findDescriptor(app->GetDescriptors(),
@@ -215,8 +215,8 @@ void ApplicationInformationTableTranscoder::SetTransportProtocolLabel(
 
 void ApplicationInformationTableTranscoder::SetApplicationId(const int value)
 {
-    for (std::list<Application*>::iterator it=m_applications.begin();
-            it != m_applications.end(); ++it)
+    for (std::list<Application*>::iterator it=applications.begin();
+            it != applications.end(); ++it)
     {
         Application *app = (Application*)*it;
         app->SetApplicationId(value);
@@ -225,8 +225,8 @@ void ApplicationInformationTableTranscoder::SetApplicationId(const int value)
 
 void ApplicationInformationTableTranscoder::SetOrganizationId(const int value)
 {
-    for (std::list<Application*>::iterator it=m_applications.begin();
-            it != m_applications.end(); ++it)
+    for (std::list<Application*>::iterator it=applications.begin();
+            it != applications.end(); ++it)
     {
         Application *app = (Application*)*it;
         app->SetOrganizationId(value);
@@ -235,8 +235,8 @@ void ApplicationInformationTableTranscoder::SetOrganizationId(const int value)
 
 void ApplicationInformationTableTranscoder::SetProtocolId(int value)
 {
-    for (std::list<Application*>::iterator it=m_applications.begin();
-                it != m_applications.end(); ++it)
+    for (std::list<Application*>::iterator it=applications.begin();
+                it != applications.end(); ++it)
     {
         Application *app = (Application*)*it;
         Descriptor *desc = findDescriptor(app->GetDescriptors(),
@@ -247,8 +247,8 @@ void ApplicationInformationTableTranscoder::SetProtocolId(int value)
 
 void ApplicationInformationTableTranscoder::SetRemoteConnection(const int value)
 {
-    for (std::list<Application*>::iterator it=m_applications.begin();
-                it != m_applications.end(); ++it)
+    for (std::list<Application*>::iterator it=applications.begin();
+                it != applications.end(); ++it)
     {
         Application *app = (Application*)*it;
         Descriptor *desc = findDescriptor(app->GetDescriptors(),
@@ -259,8 +259,8 @@ void ApplicationInformationTableTranscoder::SetRemoteConnection(const int value)
 
 void ApplicationInformationTableTranscoder::SetOriginalNetworkId(const int value)
 {
-    for (std::list<Application*>::iterator it=m_applications.begin();
-                it != m_applications.end(); ++it)
+    for (std::list<Application*>::iterator it=applications.begin();
+                it != applications.end(); ++it)
     {
         Application *app = (Application*)*it;
         Descriptor *desc = findDescriptor(app->GetDescriptors(),
@@ -271,8 +271,8 @@ void ApplicationInformationTableTranscoder::SetOriginalNetworkId(const int value
 
 void ApplicationInformationTableTranscoder::SetTransportStreamId(const int value)
 {
-    for (std::list<Application*>::iterator it=m_applications.begin();
-                it != m_applications.end(); ++it)
+    for (std::list<Application*>::iterator it=applications.begin();
+                it != applications.end(); ++it)
     {
         Application *app = (Application*)*it;
         Descriptor *desc = findDescriptor(app->GetDescriptors(),
@@ -283,8 +283,8 @@ void ApplicationInformationTableTranscoder::SetTransportStreamId(const int value
 
 void ApplicationInformationTableTranscoder::SetServiceId(const int value)
 {
-    for (std::list<Application*>::iterator it=m_applications.begin();
-                it != m_applications.end(); ++it)
+    for (std::list<Application*>::iterator it=applications.begin();
+                it != applications.end(); ++it)
     {
         Application *app = (Application*)*it;
         Descriptor *desc = findDescriptor(app->GetDescriptors(),
@@ -295,8 +295,8 @@ void ApplicationInformationTableTranscoder::SetServiceId(const int value)
 
 void ApplicationInformationTableTranscoder::SetComponentTag(const int value)
 {
-    for (std::list<Application*>::iterator it=m_applications.begin();
-                it != m_applications.end(); ++it)
+    for (std::list<Application*>::iterator it=applications.begin();
+                it != applications.end(); ++it)
     {
         Application *app = (Application*)*it;
         Descriptor *desc = findDescriptor(app->GetDescriptors(),
@@ -315,7 +315,7 @@ void ApplicationInformationTableTranscoder::SetCommonDescriptors(
         Descriptor *desc = (Descriptor*)*it;
         common_descriptors_length+=desc->GetDescriptorLength();
     }
-    m_common_descriptors = value;
+    common_descriptors = value;
 }
 
 void ApplicationInformationTableTranscoder::SetApplications(
@@ -328,7 +328,7 @@ void ApplicationInformationTableTranscoder::SetApplications(
         Application *app = (Application*)*it;
         application_loop_length += app->GetApplicationLength();
     }
-    m_applications = value;
+    applications = value;
 }
 
 } // end of sedec namespace

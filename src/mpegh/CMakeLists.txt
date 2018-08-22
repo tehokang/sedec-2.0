@@ -22,7 +22,7 @@ include_directories(
 )
 
 set(SOURCE_FILES ${SOURCE_FILES}
-  section_factory.cc
+  table_factory.cc
   descriptor_factory.cc
 
   descriptors/application_boundary_and_permission_descriptor.cc
@@ -42,7 +42,7 @@ set(SOURCE_FILES ${SOURCE_FILES}
   descriptors/type_descriptor.cc
   descriptors/unlocked_cache_descriptor.cc
 
-  sections/application_information_table.cc
+  tables/application_information_table.cc
 )
 
 link_directories(

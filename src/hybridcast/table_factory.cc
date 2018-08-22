@@ -1,7 +1,6 @@
 #include "base/macro.h"
-#include "base/section.h"
-#include "section_factory.h"
-#include "sections/application_information_table.h"
+#include "table_factory.h"
+#include "tables/application_information_table.h"
 
 namespace sedec
 {
@@ -9,12 +8,12 @@ namespace sedec
 namespace hybridcast
 {
 
-base::Section* SectionFactory::CreateSection(unsigned char *raw_table)
+base::Table* SectionFactory::CreateSection(unsigned char *raw_table)
 {
     int table_id = (raw_table[0] & 0xff);
     int table_length = (( raw_table[1] << 8 | raw_table[2] ) & 0x0fff ) + 3;
 
-    base::Section *section = nullptr;
+    base::Table *section = nullptr;
 
     switch(table_id)
     {
@@ -22,10 +21,10 @@ base::Section* SectionFactory::CreateSection(unsigned char *raw_table)
          * @note It is related in ETSI TS 102 809 v1.4.1
          **/
         case APPLICATION_INFORMATION_TABLE:
-            section = static_cast<base::Section*>(new ApplicationInformationTable(raw_table));
+            section = static_cast<base::Table*>(new ApplicationInformationTable(raw_table));
             break;
         default:
-            section = static_cast<base::Section*>(new base::UnknownSection(raw_table, table_length));
+            section = static_cast<base::Table*>(new base::UnknownSection(raw_table, table_length));
             break;
     }
 

@@ -1,5 +1,5 @@
 #include "macro.h"
-#include "section.h"
+#include "table.h"
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -10,13 +10,13 @@ namespace sedec
 namespace base
 {
 
-Section::Section()
+Table::Table()
 {
     m_buffer = NULL;
     m_buffer_length = 0;
 }
 
-Section::Section(unsigned char* raw_buffer, unsigned int raw_length)
+Table::Table(unsigned char* raw_buffer, unsigned int raw_length)
 {
     m_buffer_length = raw_length;
     m_buffer = new unsigned char[m_buffer_length];
@@ -26,7 +26,7 @@ Section::Section(unsigned char* raw_buffer, unsigned int raw_length)
     __decode_section_header__();
 }
 
-Section::~Section()
+Table::~Table()
 {
     if(m_buffer != NULL)
     {
@@ -34,7 +34,7 @@ Section::~Section()
     }
 }
 
-void Section::__decode_section_header__()
+void Table::__decode_section_header__()
 {
     table_id = Read_On_Buffer(8);
     section_syntax_indicator = Read_On_Buffer(1);
@@ -42,7 +42,7 @@ void Section::__decode_section_header__()
     section_length = Read_On_Buffer(12);
 }
 
-void Section::__encode_prepare_buffer__()
+void Table::__encode_prepare_buffer__()
 {
     if(m_buffer != NULL)
     {
@@ -55,7 +55,7 @@ void Section::__encode_prepare_buffer__()
     SetBuffer(m_buffer);
 }
 
-void Section::__encode_write_section_header__()
+void Table::__encode_write_section_header__()
 {
     Write_On_Buffer( table_id, 8 );
     Write_On_Buffer( section_syntax_indicator, 1);
@@ -64,7 +64,7 @@ void Section::__encode_write_section_header__()
     Write_On_Buffer( section_length, 12);
 }
 
-void Section::EncodeSection()
+void Table::EncodeSection()
 {
     __encode_update_section_length__();
     __encode_preprare_section__();
@@ -75,7 +75,7 @@ void Section::EncodeSection()
     __encode_make_crc__();
 }
 
-void Section::__encode_make_crc__()
+void Table::__encode_make_crc__()
 {
     m_crc = new unsigned char[section_length-1];
     memcpy( m_crc, m_buffer, section_length-1 );
@@ -86,7 +86,7 @@ void Section::__encode_make_crc__()
 }
 
 
-void Section::SaveSection(char *filename)
+void Table::SaveSection(char *filename)
 {
     FILE *fp = NULL;
     fp = fopen(filename, "wb");
@@ -97,7 +97,7 @@ void Section::SaveSection(char *filename)
     }
 }
 
-void Section::PrintRawSection()
+void Table::PrintRawSection()
 {
     int j=1;
     SECTION_PRINT("#### Section Byte Align #### \n");
@@ -110,17 +110,17 @@ void Section::PrintRawSection()
     SECTION_PRINT("\n################################### \n\n");
 }
 
-unsigned char* Section::GetSection()
+unsigned char* Table::GetSection()
 {
     return m_buffer;
 }
 
-int Section::GetSectionLen()
+int Table::GetSectionLen()
 {
     return m_buffer_length;
 }
 
-void Section::PrintSection()
+void Table::PrintSection()
 {
     SECTION_PRINT("===== Section's information ===== \n");
     SECTION_PRINT("table_id : 0x%x \n", table_id);
@@ -128,7 +128,7 @@ void Section::PrintSection()
     SECTION_PRINT("section_length : 0x%x (%d) \n", section_length, section_length);
 }
 
-void Section::PrintSection(string section_name)
+void Table::PrintSection(string section_name)
 {
     SECTION_PRINT("===== Section's information ===== \n");
     SECTION_PRINT("table_id : 0x%x (%s)\n", table_id, section_name.c_str());
@@ -137,13 +137,13 @@ void Section::PrintSection(string section_name)
 }
 
 UnknownSection::UnknownSection()
-    : Section()
+    : Table()
 {
 
 }
 
 UnknownSection::UnknownSection(unsigned char* raw_buffer, unsigned int raw_length)
-    : Section(raw_buffer, raw_length)
+    : Table(raw_buffer, raw_length)
 {
     /**
      * @note NOTHING TO DO

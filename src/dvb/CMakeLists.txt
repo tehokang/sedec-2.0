@@ -22,7 +22,7 @@ include_directories(
 )
 
 set(SOURCE_FILES ${SOURCE_FILES}
-  section_factory.cc
+  table_factory.cc
   descriptor_factory.cc
 
   descriptors/application_descriptor.cc
@@ -37,8 +37,8 @@ set(SOURCE_FILES ${SOURCE_FILES}
   descriptors/transport_protocol_descriptor.cc
   descriptors/descriptor.cc
 
-  sections/application_information_table.cc
-  sections/application_information_table_transcoder.cc
+  tables/application_information_table.cc
+  tables/application_information_table_transcoder.cc
 )
 
 link_directories(

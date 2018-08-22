@@ -1,10 +1,10 @@
-#if !defined(__HC_AIT_SECTION_H__)
-#define __HC_AIT_SECTION_H__
+#if !defined(__MH_AIT_SECTION_H__)
+#define __MH_AIT_SECTION_H__
 
 using namespace std;
 #include <list>
 
-#include "base/section.h"
+#include "base/table.h"
 
 namespace sedec
 {
@@ -13,12 +13,16 @@ namespace sedec
     @{
 */
 
-namespace hybridcast
+namespace mpegh
 {
 
+/**
+    @addtogroup mh
+    @{
+*/
 class Application;
 class Descriptor;
-class ApplicationInformationTable : public base::Section
+class ApplicationInformationTable : public base::Table
 {
 public:
     ApplicationInformationTable();
@@ -34,9 +38,9 @@ public:
     unsigned int GetSectionNumber() const { return section_number;}
     unsigned int GetLastSectionNumber() const { return last_section_number;}
     unsigned int GetCommonDescriptorLength() const { return common_descriptors_length;}
-    list<hybridcast::Descriptor*> GetCommonDescriptors() const { return m_common_descriptors;}
+    list<mpegh::Descriptor*> GetCommonDescriptors() const { return m_common_descriptors;}
     unsigned int GetApplicationLoopLength() const { return application_loop_length;}
-    list<hybridcast::Application*> GetApplications() const { return m_applications;}
+    list<mpegh::Application*> GetApplications() const { return m_applications;}
 
 protected:
     unsigned int application_type;
@@ -45,15 +49,15 @@ protected:
     unsigned int section_number;
     unsigned int last_section_number;
     unsigned int common_descriptors_length;
-    list<hybridcast::Descriptor*> m_common_descriptors;
+    list<mpegh::Descriptor*> m_common_descriptors;
     unsigned int application_loop_length;
-    list<hybridcast::Application*> m_applications;
+    list<mpegh::Application*> m_applications;
 
     virtual void __decode_section_body__();
 };
 
 /** @} */
-} // end of hybridcast namespace
+}
 
 /** @} */
 } // end of sedec namespace

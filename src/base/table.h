@@ -17,12 +17,12 @@ namespace base
     @{
 */
 
-class Section  : public BitReadWriter
+class Table  : public BitReadWriter
 {
 public:
-    Section();
-    Section(unsigned char* raw_buffer, unsigned int raw_length);
-    virtual ~Section();
+    Table();
+    Table(unsigned char* raw_buffer, unsigned int raw_length);
+    virtual ~Table();
 
     void EncodeSection();
     void SaveSection(char *filename);
@@ -67,7 +67,7 @@ private:
     void __encode_make_crc__();
 };
 
-class UnknownSection : public Section
+class UnknownSection : public Table
 {
 public:
     UnknownSection();

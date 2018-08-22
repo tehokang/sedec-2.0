@@ -23,7 +23,7 @@ include_directories(
 set(SOURCE_FILES ${SOURCE_FILES}
   bit_readwriter.cc
   descriptor.cc
-  section.cc
+  table.cc
 )
 
 link_directories(
