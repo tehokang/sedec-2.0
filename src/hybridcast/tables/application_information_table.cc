@@ -60,8 +60,6 @@ ApplicationInformationTable::~ApplicationInformationTable()
 
 void ApplicationInformationTable::__decode_section_body__()
 {
-    if ( 0x74 != table_id || 4093 < section_length ) return;
-
     application_type = Read_On_Buffer(16);
     Skip_On_Buffer(2);
     version_number = Read_On_Buffer(5);
@@ -90,7 +88,6 @@ void ApplicationInformationTable::__decode_section_body__()
 
 void ApplicationInformationTable::PrintSection()
 {
-    if ( 0x74 != table_id ) return;
     SECTION_DEBUG("= AIT Section's raw information is followings ===== \n");
     SECTION_DEBUG("table_id : 0x%x \n", table_id);
     SECTION_DEBUG("section_syntax_indicator : 0x%x \n", section_syntax_indicator);
