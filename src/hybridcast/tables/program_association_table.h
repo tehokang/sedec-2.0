@@ -1,5 +1,5 @@
-#if !defined(__DVB_PAT_SECTION_H__)
-#define __DVB_PAT_SECTION_H__
+#if !defined(__HYBRIDCAST_PAT_SECTION_H__)
+#define __HYBRIDCAST_PAT_SECTION_H__
 
 #include <list>
 #include "base/table.h"
@@ -13,7 +13,7 @@ namespace sedec
     @{
 */
 
-namespace dvb
+namespace hybridcast
 {
 /**
     @addtogroup dvb
@@ -55,7 +55,7 @@ protected:
 
 /** @} */
 
-} // end of dvb namespace
+} // end of hybridcast namespace
 
 /** @} */
 

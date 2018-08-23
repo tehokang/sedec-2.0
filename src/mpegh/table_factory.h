@@ -23,6 +23,7 @@ public:
 
     enum TableId
     {
+        PROGRAM_ASSOCIATION_TABLE = 0x00,
         APPLICATION_INFORMATION_TABLE = 0x9C,
         UNKNOWN_TABLE = 0xff,
     };

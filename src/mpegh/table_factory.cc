@@ -1,5 +1,6 @@
 #include "base/macro.h"
 #include "table_factory.h"
+#include "tables/program_association_table.h"
 #include "tables/application_information_table.h"
 
 namespace sedec
@@ -17,6 +18,9 @@ base::Table* TableFactory::CreateSection(unsigned char *raw_table)
 
     switch(table_id)
     {
+        case PROGRAM_ASSOCIATION_TABLE:
+            section = static_cast<base::Table*>(new ProgramAssociationTable(raw_table));
+            break;
         case APPLICATION_INFORMATION_TABLE:
             section = static_cast<base::Table*>(new ApplicationInformationTable(raw_table));
             break;

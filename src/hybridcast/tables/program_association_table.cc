@@ -11,7 +11,7 @@
 namespace sedec
 {
 
-using namespace dvb;
+using namespace hybridcast;
 
 ProgramAssociationTable::ProgramAssociationTable()
 {
