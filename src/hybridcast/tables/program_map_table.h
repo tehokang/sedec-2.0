@@ -1,5 +1,5 @@
-#if !defined(__HYBRIDCAST_PAT_SECTION_H__)
-#define __HYBRIDCAST_PAT_SECTION_H__
+#if !defined(__HYBRIDCAST_PMT_SECTION_H__)
+#define __HYBRIDCAST_PMT_SECTION_H__
 
 #include <list>
 #include "base/table.h"
@@ -22,34 +22,36 @@ namespace hybridcast
 
 class Descriptor;
 
-class ProgramAssociationTable : public base::Table
+class ProgramMapTable : public base::Table
 {
 public:
     class Program
     {
     public:
-        Program(int _program_number, int _pid)
-        {
-            program_number = _program_number;
-            pid = _pid;
-        }
-        int program_number;
-        int pid;
+        unsigned char stream_type;
+        int elementary_PID;
+        int ES_info_length;
+        list<Descriptor*> descriptors;
     };
-    ProgramAssociationTable();
-    ProgramAssociationTable(unsigned char *raw_buffer);
-    ProgramAssociationTable(unsigned char *raw_buffer, unsigned int raw_length);
-    virtual ~ProgramAssociationTable();
+
+    ProgramMapTable();
+    ProgramMapTable(unsigned char *raw_buffer);
+    ProgramMapTable(unsigned char *raw_buffer, unsigned int raw_length);
+    virtual ~ProgramMapTable();
     virtual void PrintTable();
 
 
 protected:
-    int transport_stream_id;
+    int program_number;
     unsigned char version_number;
     unsigned char current_next_indicator;
     unsigned char section_number;
     unsigned char last_section_number;
+    int PCR_PID;
+    int program_info_length;
+    list<Descriptor*> descriptors;
     list<Program*> programs;
+
     virtual void __decode_table_body__();
 };
 

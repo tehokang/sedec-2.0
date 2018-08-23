@@ -44,6 +44,8 @@ set(SOURCE_FILES ${SOURCE_FILES}
 
   tables/application_information_table.cc
   tables/program_association_table.cc
+  tables/conditional_access_table.cc
+  tables/program_map_table.cc
 )
 
 link_directories(
