@@ -43,6 +43,7 @@ set(SOURCE_FILES ${SOURCE_FILES}
   descriptors/unlocked_cache_descriptor.cc
 
   tables/application_information_table.cc
+  tables/program_association_table.cc
 )
 
 link_directories(

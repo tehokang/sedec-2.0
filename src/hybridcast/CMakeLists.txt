@@ -43,6 +43,7 @@ set(SOURCE_FILES ${SOURCE_FILES}
 
   tables/application_information_table.cc
   tables/application_information_table_transcoder.cc
+  tables/program_association_table.cc
 )
 
 link_directories(
