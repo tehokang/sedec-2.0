@@ -42,7 +42,7 @@ public:
     char* GetTypeText(){ return text_char;}
 
 protected:
-    virtual void calcLength();
+    virtual void updateDescriptorLength() override;
     char text_char[256];
 };
 

@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
 #if USE_SECTION_FACTORY
       hybridcast::ApplicationInformationTable *ait =
           static_cast<hybridcast::ApplicationInformationTable*>
-          (hybridcast::SectionFactory::CreateSection(raw_buffer));
+          (hybridcast::TableFactory::CreateSection(raw_buffer));
 #else
       hybridcast::ApplicationInformationTable *ait =
           new hybridcast::ApplicationInformationTable(raw_buffer, raw_buffer_length);

@@ -47,11 +47,11 @@ void InfoDescriptor::PrintDescriptor()
     SECTION_DEBUG("\n");
     Descriptor::PrintDescriptor("InfoDescriptor");
 
-    SECTION_DEBUG("\tISO_639_languahe_code[0] : 0x%x(%c) \n",
+    SECTION_DEBUG("\tISO_639_language_code[0] : 0x%x(%c) \n",
                 ISO_639_language_code[0],ISO_639_language_code[0]);
-    SECTION_DEBUG("\tISO_639_languahe_code[1] : 0x%x(%c) \n",
+    SECTION_DEBUG("\tISO_639_language_code[1] : 0x%x(%c) \n",
                 ISO_639_language_code[1],ISO_639_language_code[1]);
-    SECTION_DEBUG("\tISO_639_languahe_code[2] : 0x%x(%c) \n",
+    SECTION_DEBUG("\tISO_639_language_code[2] : 0x%x(%c) \n",
                 ISO_639_language_code[2],ISO_639_language_code[2]);
 
     SECTION_DEBUG("\ttext_char : %s \n", text_char);

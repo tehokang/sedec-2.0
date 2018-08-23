@@ -16,7 +16,7 @@ namespace mpegh
     @addtogroup dvb
     @{
 */
-class SectionFactory
+class TableFactory
 {
 public:
     static base::Table* CreateSection(unsigned char *raw_table);
@@ -28,8 +28,8 @@ public:
     };
 
 private:
-    SectionFactory(){};
-    virtual ~SectionFactory(){};
+    TableFactory(){};
+    virtual ~TableFactory(){};
 };
 
 /** @} */

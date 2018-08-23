@@ -52,7 +52,7 @@ void UnlockedCacheDescriptor::PrintDescriptor()
     SECTION_DEBUG("\n");
 }
 
-void UnlockedCacheDescriptor::calcLength()
+void UnlockedCacheDescriptor::updateDescriptorLength()
 {
     descriptor_length = 1 + num_of_unlocked_cache_node*2;
 }

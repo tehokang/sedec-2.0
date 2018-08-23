@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
 #if USE_SECTION_FACTORY
       mpegh::ApplicationInformationTable *ait =
           static_cast<mpegh::ApplicationInformationTable*>
-          (mpegh::SectionFactory::CreateSection(raw_buffer));
+          (mpegh::TableFactory::CreateSection(raw_buffer));
 #else
       mpegh::ApplicationInformationTable *ait =
           new mpegh::ApplicationInformationTable(raw_buffer, raw_buffer_length);

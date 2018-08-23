@@ -8,7 +8,7 @@ namespace sedec
 namespace dvb
 {
 
-base::Table* SectionFactory::CreateSection(unsigned char *raw_table)
+base::Table* TableFactory::CreateSection(unsigned char *raw_table)
 {
     int table_id = (raw_table[0] & 0xff);
     int table_length = (( raw_table[1] << 8 | raw_table[2] ) & 0x0fff ) + 3;

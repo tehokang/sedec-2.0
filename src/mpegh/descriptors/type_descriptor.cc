@@ -44,7 +44,7 @@ void TypeDescriptor::PrintDescriptor()
     SECTION_DEBUG("\n");
 }
 
-void TypeDescriptor::calcLength()
+void TypeDescriptor::updateDescriptorLength()
 {
     descriptor_length = strlen((char*)text_char);
 }

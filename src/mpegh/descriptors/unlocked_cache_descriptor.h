@@ -46,7 +46,7 @@ public:
     int GetNodeTag() { return node_tag[0];}
 
 protected:
-    virtual void calcLength();
+    virtual void updateDescriptorLength() override;
 
     int num_of_unlocked_cache_node;
     int node_tag[128];

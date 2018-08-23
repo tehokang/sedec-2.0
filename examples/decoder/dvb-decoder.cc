@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
 #if USE_SECTION_FACTORY
       dvb::ApplicationInformationTable *ait =
           static_cast<dvb::ApplicationInformationTable*>
-          (dvb::SectionFactory::CreateSection(raw_buffer));
+          (dvb::TableFactory::CreateSection(raw_buffer));
 #else
       dvb::ApplicationInformationTable *ait =
           new dvb::ApplicationInformationTable(raw_buffer, raw_buffer_length);
