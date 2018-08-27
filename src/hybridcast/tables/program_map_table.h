@@ -40,7 +40,6 @@ public:
     virtual ~ProgramMapTable();
     virtual void PrintTable();
 
-
 protected:
     int program_number;
     unsigned char version_number;
