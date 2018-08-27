@@ -91,8 +91,8 @@ void ApplicationInformationTable::__decode_table_body__()
 
 void ApplicationInformationTable::PrintTable()
 {
-    SECTION_DEBUG("= AIT Section's raw information is followings ===== \n");
-    Table::PrintTable();
+    Table::PrintTable("ApplicationInformationTable");
+
     SECTION_DEBUG("test_application_flag : 0x%x \n", test_application_flag);
     SECTION_DEBUG("application_type : 0x%04x \n", application_type);
     SECTION_DEBUG("version_number : 0x%x \n", version_number);

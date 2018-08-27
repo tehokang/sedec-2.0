@@ -1,6 +1,7 @@
 #include "base/macro.h"
 #include "table_factory.h"
 #include "tables/program_association_table.h"
+#include "tables/program_map_table.h"
 #include "tables/application_information_table.h"
 
 namespace sedec
@@ -20,6 +21,9 @@ base::Table* TableFactory::CreateSection(unsigned char *raw_table)
     {
         case PROGRAM_ASSOCIATION_TABLE:
             section = static_cast<base::Table*>(new ProgramAssociationTable(raw_table));
+            break;
+        case PROGRAM_MAP_TABLE:
+            section = static_cast<base::Table*>(new ProgramMapTable(raw_table));
             break;
         /**
          * @note It is related in ETSI TS 102 809 v1.4.1

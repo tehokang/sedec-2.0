@@ -87,7 +87,8 @@ void ApplicationInformationTable::__decode_table_body__()
 
 void ApplicationInformationTable::PrintTable()
 {
-    SECTION_DEBUG("= AIT Section's raw information is followings ===== \n");
+    Table::PrintTable("ApplicationInformationTable");
+
     SECTION_DEBUG("table_id : 0x%x \n", table_id);
     SECTION_DEBUG("section_syntax_indicator : 0x%x \n", section_syntax_indicator);
     SECTION_DEBUG("section_length : 0x%x (%d) \n", section_length, section_length);

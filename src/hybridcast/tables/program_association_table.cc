@@ -68,8 +68,7 @@ void ProgramAssociationTable::__decode_table_body__()
 
 void ProgramAssociationTable::PrintTable()
 {
-    SECTION_DEBUG("= PAT Section's raw information is followings ===== \n");
-    Table::PrintTable();
+    Table::PrintTable("ProgramAssociationTable");
 
     SECTION_DEBUG("transport_stream_id : 0x%x \n", transport_stream_id);
     SECTION_DEBUG("version_number : 0x%x \n", version_number);

@@ -122,18 +122,18 @@ int Table::GetSectionLen()
 
 void Table::PrintTable()
 {
-    SECTION_PRINT("===== Section's information ===== \n");
-    SECTION_PRINT("table_id : 0x%x \n", table_id);
-    SECTION_PRINT("section_syntax_indicator : 0x%x \n", section_syntax_indicator);
-    SECTION_PRINT("section_length : 0x%x (%d) \n", section_length, section_length);
+    SECTION_DEBUG("===== Section's information ===== \n");
+    SECTION_DEBUG("table_id : 0x%x \n", table_id);
+    SECTION_DEBUG("section_syntax_indicator : 0x%x \n", section_syntax_indicator);
+    SECTION_DEBUG("section_length : 0x%x (%d) \n", section_length, section_length);
 }
 
 void Table::PrintTable(string section_name)
 {
-    SECTION_PRINT("===== Section's information ===== \n");
-    SECTION_PRINT("table_id : 0x%x (%s)\n", table_id, section_name.c_str());
-    SECTION_PRINT("section_syntax_indicator : 0x%x \n", section_syntax_indicator);
-    SECTION_PRINT("section_length : 0x%x (%d) \n", section_length, section_length);
+    SECTION_DEBUG("===== Section's information ===== \n");
+    SECTION_DEBUG("table_id : 0x%x (%s)\n", table_id, section_name.c_str());
+    SECTION_DEBUG("section_syntax_indicator : 0x%x \n", section_syntax_indicator);
+    SECTION_DEBUG("section_length : 0x%x (%d) \n", section_length, section_length);
 }
 
 UnknownSection::UnknownSection()

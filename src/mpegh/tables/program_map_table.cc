@@ -88,8 +88,7 @@ void ProgramMapTable::__decode_table_body__()
 
 void ProgramMapTable::PrintTable()
 {
-    SECTION_DEBUG("= PAT Section's raw information is followings ===== \n");
-    Table::PrintTable();
+    Table::PrintTable("ProgramMapTable");
 
     SECTION_DEBUG("program_number : 0x%x \n", program_number);
     SECTION_DEBUG("version_number : 0x%x \n", version_number);
@@ -105,7 +104,7 @@ void ProgramMapTable::PrintTable()
     }
 
     int i=0;
-    for ( list<Program*>::iterator it=programs.begin();it!=programs.end(); ++it)
+    for ( list<Program*>::iterator it=programs.begin();it!=programs.end(); ++it, i++)
     {
         Program *program = (*it);
         SECTION_DEBUG("\t[%d] Program \n", i);

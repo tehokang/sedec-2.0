@@ -64,8 +64,7 @@ void ConditionalAccessTable::__decode_table_body__()
 
 void ConditionalAccessTable::PrintTable()
 {
-    SECTION_DEBUG("= PAT Section's raw information is followings ===== \n");
-    Table::PrintTable();
+    Table::PrintTable("ConditionalAccessTable");
 
     SECTION_DEBUG("version_number : 0x%x \n", version_number);
     SECTION_DEBUG("current_next_indicator : 0x%x \n", current_next_indicator);
