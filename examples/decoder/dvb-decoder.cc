@@ -36,17 +36,19 @@ int main(int argc, char *argv[])
     if ( 0 < fread(raw_buffer, 1, raw_buffer_length, fp) )
     {
 #if USE_SECTION_FACTORY
-      dvb::ApplicationInformationTable *ait =
-          static_cast<dvb::ApplicationInformationTable*>
+      base::Table *table =
           (dvb::TableFactory::CreateSection(raw_buffer));
 #else
-      dvb::ApplicationInformationTable *ait =
+      base::Table *table =
           new dvb::ApplicationInformationTable(raw_buffer, raw_buffer_length);
 #endif
-      ait->PrintTable();
+      if ( table )
+      {
+          table->PrintTable();
 
-      delete ait;
-      ait = nullptr;
+          delete table;
+          table = nullptr;
+      }
     }
   }
 

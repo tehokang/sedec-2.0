@@ -18,14 +18,13 @@ message(STATUS "CMAKE_TOOLCHAIN_FILE='${CMAKE_TOOLCHAIN_FILE}'")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/build/${CMAKE_BUILD_TYPE}/out/bin)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/build/${CMAKE_BUILD_TYPE}/out/lib)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/build/${CMAKE_BUILD_TYPE}/out/lib)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=c++11")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -std=c++11 -Wno-c++1z-extensions")
 #=====================================================================================
 # Sub directories
 #=====================================================================================
 add_subdirectory(${CMAKE_SOURCE_DIR}/src/base)
 add_subdirectory(${CMAKE_SOURCE_DIR}/src/dvb)
-add_subdirectory(${CMAKE_SOURCE_DIR}/src/hybridcast)
-add_subdirectory(${CMAKE_SOURCE_DIR}/src/mpegh)
+add_subdirectory(${CMAKE_SOURCE_DIR}/src/arib)
 
 add_subdirectory(${CMAKE_SOURCE_DIR}/examples/decoder)
 # add_subdirectory(${CMAKE_SOURCE_DIR}/examples/encoder)
@@ -54,16 +53,7 @@ install(
 )
 
 install(
-  DIRECTORY ${CMAKE_SOURCE_DIR}/src/hybridcast
+  DIRECTORY ${CMAKE_SOURCE_DIR}/src/arib
   DESTINATION ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/include
   FILES_MATCHING PATTERN "*.h"
 )
-
-install(
-  DIRECTORY ${CMAKE_SOURCE_DIR}/src/mpegh
-  DESTINATION ${CMAKE_LIBRARY_OUTPUT_DIRECTORY}/include
-  FILES_MATCHING PATTERN "*.h"
-)
-
-
-

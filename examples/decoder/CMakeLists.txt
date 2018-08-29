@@ -34,16 +34,12 @@ target_link_libraries(sedec-dvb-decoder
   sedec-dvb
 )
 
-add_executable(sedec-hybridcast-decoder hybridcast-decoder.cc)
-target_link_libraries(sedec-hybridcast-decoder
+add_executable(sedec-arib-decoder arib-decoder.cc)
+target_link_libraries(sedec-arib-decoder
   sedec-base
-  sedec-hybridcast
-)
-
-add_executable(sedec-mpegh-decoder mpegh-decoder.cc)
-target_link_libraries(sedec-mpegh-decoder
-  sedec-base
-  sedec-mpegh
+  sedec-arib-b10
+  sedec-arib-b24
+  sedec-arib-b39
 )
 
 #=====================================================================================

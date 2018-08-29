@@ -2,8 +2,8 @@
 #include <stdlib.h>
 
 #include "base/macro.h"
-#include "hybridcast/table_factory.h"
-#include "hybridcast/tables/application_information_table.h"
+#include "arib/b24/table_factory.h"
+#include "arib/b24/tables/application_information_table.h"
 
 using namespace sedec;
 
@@ -36,17 +36,18 @@ int main(int argc, char *argv[])
     if ( 0 < fread(raw_buffer, 1, raw_buffer_length, fp) )
     {
 #if USE_SECTION_FACTORY
-      hybridcast::ApplicationInformationTable *ait =
-          static_cast<hybridcast::ApplicationInformationTable*>
-          (hybridcast::TableFactory::CreateSection(raw_buffer));
+      base::Table *table =
+          (arib::b24::TableFactory::CreateSection(raw_buffer));
 #else
-      hybridcast::ApplicationInformationTable *ait =
-          new hybridcast::ApplicationInformationTable(raw_buffer, raw_buffer_length);
+      base::Table *table =
+          new arib::b24::ApplicationInformationTable(raw_buffer, raw_buffer_length);
 #endif
-
-      ait->PrintTable();
-      delete ait;
-      ait = nullptr;
+      if ( table )
+      {
+          table->PrintTable();
+          delete table;
+          table = nullptr;
+      }
     }
   }
 
