@@ -10,7 +10,8 @@ SEDEC 2.0 has slightly different architecture from 1.0 so that 2.0 supports more
 Let's look at source tree, 'base' folder has base classes can be used by dvb, hybridcast and mpegh.
 In other words, dvb, hybridcast and mpegh basically will have implementations to modify bases.
 
-<code>
+
+<pre>
 src 
 ├── base 
 ├── dvb
@@ -22,26 +23,26 @@ src
 └── mpegh
     ├── descriptors
     └── sections
-</code>
+</pre>
 
 
 # How to build
 
 SEDEC is built on cmake, c++ library has to support c++11.
 
-<code>
+<pre>
 $mkdir build
 $cd build
 $cmake -DCMAKE_TOOLCHAIN_FILE=../cmake/XXXXX.cmake (you can choose what you want)
 $make
 $make install
-</code>
+</pre>
 
 # How to run examples
 
 Project has sections for example in sections-dumped and you can run executables after building
-<code>
+<pre>
 $./out/bin/sedec-dvb-decoder ../examples/sections-dumped/dvb/ait/XX_XXX_XXX
-</code>
+</pre>
 
 The presentation of result has sample screen like 1.0 version of sedec
